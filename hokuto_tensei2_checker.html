@@ -157,11 +157,13 @@
 
 <script>
   let resetMode='no', rateMode='equal';
-  function selectReset(v){resetMode=v;document.getElementById('btn-reset-no').classList.toggle('active',v==='no');document.getElementById('btn-reset-yes').classList.toggle('active',v==='yes');}
-  function selectRate(v){rateMode=v;document.getElementById('btn-rate-eq').classList.toggle('active',v==='equal');document.getElementById('btn-rate-56').classList.toggle('active',v==='5.6');}
+  function selectReset(v){resetMode=v;document.getElementById('btn-reset-no').classList.toggle('active',v==='no');document.getElementById('btn-reset-yes').classList.toggle('active',v==='yes');if(document.getElementById('resultWrap').classList.contains('show')) judge();}
+  function selectRate(v){rateMode=v;document.getElementById('btn-rate-eq').classList.toggle('active',v==='equal');document.getElementById('btn-rate-56').classList.toggle('active',v==='5.6');if(document.getElementById('resultWrap').classList.contains('show')) judge();}
 
   function judge(){
-    const a=parseInt(document.getElementById('aInput').value)||0;
+    let a=parseInt(document.getElementById('aInput').value,10);
+    if(isNaN(a) || a<0) a=0;
+    if(a>2000) a=2000;
     const isReset=resetMode==='yes';
     const isEqual=rateMode==='equal';
     let rank,rankClass,label,title,detail,note,special=null,rows=[];
@@ -171,7 +173,7 @@
       if(a>=line){
         rank='◎';rankClass='rank-S';label='即着席推奨';
         title=`リセット確定 ${a}あべし — 狙い目ライン超え`;
-        detail='リセット後は天井1280あべしに短縮。256あべし以内のゾーン当選率も若干上昇。'+isEqual?'等価なら400あべし〜がプラス域。':'5.6枚なら500あべし〜がプラス域。';
+        detail='リセット後は天井1280あべしに短縮。256あべし以内のゾーン当選率も若干上昇。'+(isEqual?'等価なら400あべし〜がプラス域。':'5.6枚なら500あべし〜がプラス域。');
         note='💡 1473あべし以降に当選するとATレベル3以上確定（継続率・勝舞魂大幅優遇）。深い台ほど高価値。';
       } else {
         rank='○';rankClass='rank-A';label='条件付きで狙える';
@@ -237,6 +239,14 @@
     document.getElementById('resultWrap').classList.remove('show');
     document.querySelector('.checker-wrap').scrollIntoView({behavior:'smooth'});
   }
+  document.getElementById('aInput').addEventListener('input', function(){
+    if(this.value === '') return;
+    judge();
+  });
+  document.getElementById('aInput').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') judge();
+  });
+
 </script>
 </body>
 </html>
