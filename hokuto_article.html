@@ -16,15 +16,15 @@
   .page-title{font-family:'Shippori Mincho',serif;font-size:24px;color:var(--accent2);margin-bottom:8px}
   .section-title{font-family:'Shippori Mincho',serif;font-size:20px;color:var(--accent);border-left:3px solid var(--accent);padding-left:12px;margin:40px 0 20px}
 
-  /* ★修正ポイント：目次(#toc)とカード(.card)の幅を完全に統一★ */
+  /* ★目次とカードの幅を完全に統一★ */
   .card, #toc {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     margin-bottom: 16px;
     width: 100%;
-    box-sizing: border-box; /* paddingを含めた幅計算にする */
-    padding: 20px; /* 余白を20pxで統一 */
+    box-sizing: border-box;
+    padding: 20px;
   }
 
   #toc { list-style: none; }
@@ -35,9 +35,11 @@
   #toc a:hover { color: var(--accent); border-bottom: 1px solid var(--accent); }
 
   table{width:100%;border-collapse:collapse;margin-top:10px}
-  th,td{border:1px solid var(--border);padding:10px;text-align:center;font-size:14px}
+  th,td{border:1px solid var(--border);padding:10px;text-align:center;font-size:13px}
   th{background:var(--surface2);color:var(--text-sub);font-weight:400}
   .highlight{color:var(--accent2);font-weight:700}
+  .status-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;margin-bottom:8px;font-weight:bold}
+  .bg-good{background:rgba(74,158,106,0.2);color:#7cfc00}
 
   .checker-banner{display:flex;align-items:center;background:linear-gradient(135deg,#1e1e26,#111115);border:1px solid var(--accent);border-radius:12px;padding:16px;text-decoration:none;color:inherit;margin:20px 0}
   .cb-icon{font-size:24px;margin-right:12px}
@@ -48,42 +50,63 @@
 <div class="container">
   <header>
     <div class="page-title">スマスロ 北斗の拳</div>
+    <p style="font-size:12px;color:var(--text-muted)">更新：2025年3月</p>
   </header>
 
   <nav id="toc">
     <div id="toc-title"><span>📍</span>目次</div>
     <ul>
       <li><a href="#tenjo">天井情報・恩恵</a></li>
-      <li><a href="#line">狙い目ライン</a></li>
-      <li><a href="#yame">やめどき</a></li>
+      <li><a href="#reset">設定変更(リセット)恩恵</a></li>
+      <li><a href="#line">狙い目・期待値</a></li>
+      <li><a href="#yame">やめどき注意点</a></li>
     </ul>
   </nav>
 
   <section id="tenjo">
     <h2 class="section-title">天井情報・恩恵</h2>
     <div class="card">
-      <p>・通常時最大<span class="highlight">1268G+α</span>でBB確定</p>
-      <p>・設定変更時は天井が<span class="highlight">800G+α</span>に短縮</p>
-      <p>・天井到達時の恩恵：継続率79%以上のBB比率がアップ</p>
+      <div class="status-badge bg-good">通常時</div>
+      <p>・最大天井：<span class="highlight">1268G + α</span></p>
+      <p>・恩恵：BB確定（北斗揃い期待度アップ）</p>
+      <p style="font-size:13px;color:var(--text-sub);margin-top:8px">※天井到達時は継続率79%以上の選択率が優遇されるため、一撃性能が高まります。</p>
+    </div>
+  </section>
+
+  <section id="reset">
+    <h2 class="section-title">リセット(設定変更)恩恵</h2>
+    <div class="card">
+      <div class="status-badge bg-good">設定変更時</div>
+      <p>・最大天井：<span class="highlight">800G + α</span>に短縮</p>
+      <p>・恩恵：通常時と同様の天井優遇あり</p>
+      <p style="font-size:13px;color:var(--text-sub);margin-top:8px">リセット時は100G、300Gなどのゾーンも期待度が高まっており、早い当選にも期待できます。</p>
     </div>
   </section>
 
   <section id="line">
-    <h2 class="section-title">狙い目ライン</h2>
+    <h2 class="section-title">狙い目・期待値</h2>
     <div class="card">
+      <p style="margin-bottom:10px">【等価交換】</p>
       <table>
-        <tr><th>状況</th><th>等価</th><th>5.6枚</th></tr>
-        <tr><td>通常</td><td>600G〜</td><td>700G〜</td></tr>
-        <tr><td>リセット</td><td>150G〜</td><td>250G〜</td></tr>
+        <tr><th>状況</th><th>狙い目ライン</th></tr>
+        <tr><td>通常時</td><td><span class="highlight">620G 〜</span></td></tr>
+        <tr><td>リセット後</td><td><span class="highlight">180G 〜</span></td></tr>
+      </table>
+      <p style="margin:15px 0 10px">【5.6枚現金】</p>
+      <table>
+        <tr><th>状況</th><th>狙い目ライン</th></tr>
+        <tr><td>通常時</td><td><span class="highlight">750G 〜</span></td></tr>
+        <tr><td>リセット後</td><td><span class="highlight">320G 〜</span></td></tr>
       </table>
     </div>
   </section>
 
   <section id="yame">
-    <h2 class="section-title">やめどき</h2>
+    <h2 class="section-title">やめどき注意点</h2>
     <div class="card">
-      <p>・BB終了後、天国モード否定を確認してやめ。</p>
-      <p>・1G連・即前兆の可能性があるため数Gは様子見推奨。</p>
+      <p>・BB終了後、ジャギステージや天国示唆がないことを確認してやめ。</p>
+      <p>・<span class="highlight">32G＋α</span>は前兆の可能性があるため様子見を推奨。</p>
+      <p>・弱チェリーやスイカを引いた直後のやめは厳禁。</p>
     </div>
   </section>
 
@@ -91,7 +114,7 @@
     <div class="cb-icon">⚡</div>
     <div class="cb-body">
       <div class="cb-title">北斗の拳 狙い目チェッカー</div>
-      <p style="font-size:12px;color:var(--text-sub)">G数を入れるだけで即判定</p>
+      <p style="font-size:12px;color:var(--text-sub)">現在のG数を入力して期待値を即判定</p>
     </div>
   </a>
 
