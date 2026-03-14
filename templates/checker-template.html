@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{機種名}} 狙い目チェッカー</title>
+<meta name="description" content="{{機種名}}の狙い目チェッカー用テンプレートです。数値・判定条件を差し替えて使用してください。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/checker.css">
+<style>
+  /* 判定UIの固有スタイルだけここへ残す */
+</style>
+</head>
+<body class="machine-checker">
+<header class="site-header">
+  <a href="index.html" class="logo">狙い目手帖</a>
+  <a href="{{slug}}_article.html" class="header-back">← {{機種名}}記事へ</a>
+</header>
+<div class="mv">
+  <div class="mv-label">FREE TOOL · {{slug | upper}}</div>
+  <h1 class="mv-title">{{機種名}}<br><em>狙い目チェッカー</em></h1>
+  <p class="mv-desc">入力条件をもとに ◎○△× で判定するテンプレートです。</p>
+</div>
+<div class="checker-wrap">
+  <div class="checker-card">
+    <div class="checker-card-title">⚡ 条件を入力してください</div>
+    <!-- 入力欄 -->
+  </div>
+</div>
+<a href="{{slug}}_article.html" class="article-link">
+  <div class="al-icon">📖</div>
+  <div class="al-body">
+    <div class="al-label">解説記事</div>
+    <div class="al-title">{{機種名}} 天井・狙い目まとめ</div>
+    <div class="al-desc">記事への導線</div>
+  </div>
+  <span class="al-arr">›</span>
+</a>
+<footer>
+  <div class="footer-logo">狙い目手帖</div>
+  <div class="footer-links"><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></div>
+  <p class="footer-copy">掲載内容は参考情報です。最終判断はご自身でお願いいたします。</p>
+</footer>
+<script>
+// ここに機種別判定ロジックを記述
+</script>
+</body>
+</html>
