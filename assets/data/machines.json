@@ -10,7 +10,7 @@
     "slug": "baki",
     "name": "バキ",
     "mode": "separated",
-    "sub": "既存構成",
+    "sub": "新方式サンプル / 記事＋共通チェッカー対応",
     "article": "baki_article.html",
     "checker": "baki_checker.html"
   },

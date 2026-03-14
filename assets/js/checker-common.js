@@ -22,12 +22,29 @@
     return data;
   }
 
+  function renderFacts(result) {
+    if (!Array.isArray(result.facts) || result.facts.length === 0) return '';
+    return `
+      <div class="checker-result-facts">
+        ${result.facts.map((item) => `
+          <div class="checker-result-fact">
+            <div class="checker-result-fact-label">${escapeHtml(item.label || '')}</div>
+            <div class="checker-result-fact-value">${escapeHtml(item.value || '')}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
   function renderResult(target, result) {
     target.innerHTML = `
       <div class="checker-result checker-result-${escapeHtml(result.rank || 'info')}">
+        ${result.special ? `<div class="checker-result-special">${escapeHtml(result.special)}</div>` : ''}
         <div class="checker-result-rank">${escapeHtml(result.badge || '判定')}</div>
         <div class="checker-result-title">${escapeHtml(result.title || '')}</div>
         <p class="checker-result-message">${escapeHtml(result.message || '')}</p>
+        ${result.note ? `<p class="checker-result-note">${escapeHtml(result.note)}</p>` : ''}
+        ${renderFacts(result)}
       </div>
     `;
   }

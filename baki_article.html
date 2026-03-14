@@ -7,514 +7,222 @@
 <meta name="description" content="スマスロLバキ 強くなりたくば喰らえ!!!の天井・狙い目を解説。CZ間600G天井・CZ3スルー天井の仕組み、換金率別狙い目、エンドルフィンポイント狙い、やめどきまで網羅。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0c0c0e;
-    --surface: #111115;
-    --surface2: #18181e;
-    --border: #222230;
-    --accent: #c8972a;
-    --accent2: #e8b84a;
-    --text: #ddd8cc;
-    --text-muted: #7a7870;
-    --text-sub: #aaa49a;
-    --good: #4a9e6a;
-    --warn: #c8972a;
-    --bad: #9e4a4a;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-weight: 300; line-height: 1.8; font-size: 15px; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; }
-  body > *:not(header) { display: block; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
-  a, button { touch-action: manipulation; }
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: rgba(12,12,14,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .logo { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: 0.08em; }
-  .header-back { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 4px; }
-  .mv { padding: 72px 16px 32px; border-bottom: 1px solid var(--border); }
-  .mv-label { font-size: 0.6rem; color: var(--accent); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 10px; }
-  .mv-title { font-family: 'Shippori Mincho', serif; font-size: clamp(1.4rem, 6vw, 2rem); font-weight: 800; line-height: 1.4; margin-bottom: 12px; }
-  .mv-title em { color: var(--accent); font-style: normal; }
-  .mv-desc {
-    font-size: 0.8rem;
-    color: var(--text-sub);
-    line-height: 1.9;
-    margin-bottom: 16px;
-    text-align: left;
-  }
-  .mv-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { border: 1px solid var(--border); color: var(--text-muted); font-size: 0.62rem; padding: 3px 8px; border-radius: 20px; }
-  .toc {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: calc(100% - 32px);
-    margin-left: 16px;
-    margin-right: 16px;
-    box-sizing: border-box;
-  }
-  .toc-title { font-size: 0.72rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px; }
-  .toc a { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-sub); text-decoration: none; padding: 6px 0; border-bottom: 1px solid var(--border); }
-  .toc a:last-child { border-bottom: none; }
-  .toc a::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-  .checker-banner { margin: 0 16px 4px; background: linear-gradient(135deg, #1a1508 0%, #0c0c0e 100%); border: 1px solid var(--accent); border-radius: 12px; padding: 16px; text-decoration: none; display: flex; align-items: center; gap: 14px; width: calc(100% - 32px); }
-  .checker-banner:active { opacity: 0.85; }
-  .cb-icon { font-size: 2rem; flex-shrink: 0; }
-  .cb-body { flex: 1; min-width: 0; }
-  .cb-label { font-size: 0.58rem; color: var(--accent); font-weight: 700; letter-spacing: 0.15em; margin-bottom: 3px; }
-  .cb-title { font-size: 0.9rem; font-weight: 700; color: var(--accent); margin-bottom: 3px; }
-  .cb-desc { font-size: 0.68rem; color: var(--text-muted); line-height: 1.5; }
-  .cb-arr { color: var(--accent); font-size: 1.2rem; flex-shrink: 0; }
-  .article { padding: 0 16px; }
-  .section { padding: 32px 0 0; }
-  .section-title { font-family: 'Shippori Mincho', serif; font-size: 1.15rem; font-weight: 700; padding-bottom: 10px; border-bottom: 2px solid var(--accent); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
-  .section-title .icon { font-size: 1rem; }
-  .h3 { font-size: 0.92rem; font-weight: 700; color: var(--accent2); margin: 20px 0 10px; padding-left: 10px; border-left: 3px solid var(--accent); }
-  p { font-size: 0.84rem; color: var(--text-sub); line-height: 2; margin-bottom: 14px; }
-  p.note { font-size: 0.76rem; color: var(--text-muted); background: var(--surface); border-left: 3px solid var(--accent); padding: 10px 12px; border-radius: 0 6px 6px 0; margin-bottom: 14px; line-height: 1.8; }
-  strong { color: var(--text); font-weight: 700; }
-  .info-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
-  .info-box-title { font-size: 0.72rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 10px; }
-  .aim-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-bottom: 14px; }
-  .aim-table th { background: var(--surface2); color: var(--text-muted); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
-  .aim-table td { padding: 10px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
-  .aim-table tr:last-child td { border-bottom: none; }
-  .aim-table .num { font-weight: 700; font-size: 0.9rem; color: var(--accent2); white-space: nowrap; }
-  .aim-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
-  .aim-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; }
-  .aim-card.special { border-color: var(--accent); background: linear-gradient(135deg, #1a1508 0%, #111115 100%); }
-  .aim-badge { font-size: 0.62rem; font-weight: 700; padding: 3px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
-  .badge-normal { background: rgba(200,151,42,0.15); color: var(--accent); }
-  .badge-special { background: rgba(200,151,42,0.3); color: var(--accent2); }
-  .badge-reset { background: rgba(74,158,106,0.15); color: var(--good); }
-  .aim-card-title { font-size: 0.86rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .aim-card-desc { font-size: 0.74rem; color: var(--text-muted); line-height: 1.8; }
-  .stop-list { display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--border); margin-bottom: 14px; }
-  .stop-row { background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
-  .stop-row-head { font-size: 0.8rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
-  .stop-row-body { font-size: 0.73rem; color: var(--text-muted); line-height: 1.7; }
-  .dot-good { color: var(--good); }
-  .dot-warn { color: var(--warn); }
-  .dot-bad  { color: var(--bad); }
-  footer { border-top: 1px solid var(--border); padding: 24px 16px; text-align: center; }
-  .footer-logo { font-family: 'Shippori Mincho', serif; font-size: 0.95rem; color: var(--accent); font-weight: 800; margin-bottom: 12px; }
-  .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 12px; }
-  .footer-links a { font-size: 0.7rem; color: var(--text-muted); text-decoration: none; }
-  .footer-copy { font-size: 0.6rem; color: var(--text-muted); }
-</style>
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/article.css">
+<style>
+  .mv{padding:72px 16px 30px;border-bottom:1px solid var(--border);}
+  .mv-label{font-size:.62rem;color:var(--accent);letter-spacing:.24em;margin-bottom:10px;}
+  .mv-title{font-family:'Shippori Mincho',serif;font-size:clamp(1.38rem,6vw,2.05rem);line-height:1.45;margin-bottom:12px;}
+  .mv-title em{color:var(--accent);font-style:normal;}
+  .mv-desc{font-size:.82rem;color:var(--text-sub);line-height:1.9;}
+  .mv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+  .tag{border:1px solid var(--border);color:var(--text-muted);font-size:.62rem;padding:3px 8px;border-radius:999px;}
+  .toc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin:18px 16px 0;}
+  .toc-title{font-size:.72rem;color:var(--accent);font-weight:700;letter-spacing:.12em;margin-bottom:10px;}
+  .toc a{display:block;padding:7px 0;border-bottom:1px solid var(--border);color:var(--text-sub);font-size:.8rem;}
+  .toc a:last-child{border-bottom:none;}
+  .checker-banner{display:flex;align-items:center;gap:14px;margin:14px 16px 0;padding:16px;border:1px solid var(--accent);border-radius:14px;background:linear-gradient(135deg,#1a1508 0%,#111115 100%);}
+  .cb-icon{font-size:1.9rem;flex-shrink:0;}
+  .cb-body{flex:1;min-width:0;}
+  .cb-label{font-size:.58rem;color:var(--accent);font-weight:700;letter-spacing:.15em;margin-bottom:3px;}
+  .cb-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+  .cb-desc{font-size:.72rem;color:var(--text-muted);line-height:1.7;}
+  .cb-arr{font-size:1.2rem;color:var(--accent);}
+  .article{padding:0 16px 8px;}
+  .section{padding-top:32px;}
+  .section-title{display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:2px solid var(--accent);margin-bottom:18px;font-size:1.1rem;color:var(--text);}
+  .icon{font-size:.95rem;color:var(--accent);}
+  .lead,.article p{font-size:.84rem;color:var(--text-sub);line-height:1.95;margin-bottom:14px;}
+  .note{font-size:.76rem;color:var(--text-muted);background:var(--surface);border-left:3px solid var(--accent);padding:10px 12px;border-radius:0 6px 6px 0;}
+  .info-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;}
+  .info-box-title{font-size:.7rem;color:var(--accent);font-weight:700;letter-spacing:.12em;margin-bottom:10px;}
+  .aim-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+  .aim-table th{background:var(--surface2);color:var(--text-muted);font-size:.65rem;font-weight:700;letter-spacing:.05em;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);}
+  .aim-table td{padding:10px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.75;}
+  .aim-table tr:last-child td{border-bottom:none;}
+  .num{font-weight:700;color:var(--accent2);}
+  .cards{display:grid;gap:10px;margin-bottom:14px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;}
+  .card.highlight{border-color:var(--accent);background:linear-gradient(135deg,#1a1508 0%,#111115 100%);}
+  .card-title{font-size:.86rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+  .card-desc{font-size:.75rem;color:var(--text-muted);line-height:1.8;}
+  .stop-list{display:grid;gap:10px;}
+  .stop-row{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;}
+  .stop-row-head{font-size:.82rem;color:var(--text);font-weight:700;margin-bottom:4px;}
+  .stop-row-body{font-size:.75rem;color:var(--text-muted);line-height:1.8;}
+</style>
 </head>
 <body class="machine-article">
-
 <header class="site-header">
-  <a href="index.html" class="logo">狙い目手帖</a>
-  <a href="index.html" class="header-back">← 機種一覧へ</a>
+  <div class="header-inner">
+    <a href="index.html" class="logo">狙い目手帖</a>
+    <a href="index.html" class="header-back">← 機種一覧へ</a>
+  </div>
 </header>
-
-<div class="mv">
-  <p class="mv-label">Slot Strategy</p>
+<section class="mv">
+  <div class="mv-label">SLOT GUIDE · BAKI</div>
   <h1 class="mv-title"><em>Lバキ 強くなりたくば喰らえ!!!</em><br>天井・狙い目まとめ</h1>
-  <p class="mv-desc">
-    CZ間600G天井・CZ3スルー天井の仕組みから<br>
-    エンドルフィンポイント狙い、換金率別の狙い目、<br>
-    やめどきまでまとめました。
-  </p>
+  <p class="mv-desc">CZ間600G天井・CZ3スルー天井の仕組みから、エンドルフィンポイント狙い、換金率別の狙い目、やめどきまでまとめています。</p>
   <div class="mv-tags">
     <span class="tag">天井狙い</span>
     <span class="tag">CZスルー</span>
     <span class="tag">エンドルフィン</span>
     <span class="tag">ゾーン狙い</span>
     <span class="tag">やめどき</span>
-    <span class="tag">強喰</span>
   </div>
+</section>
+<div class="toc">
+  <div class="toc-title">CONTENTS</div>
+  <a href="#tenjo">天井・基本スペック</a>
+  <a href="#mode">内部モードとゾーン</a>
+  <a href="#line">換金率別の狙い目</a>
+  <a href="#through">CZスルー回数狙い</a>
+  <a href="#endorphin">エンドルフィン狙い</a>
+  <a href="#reset">リセット時の注意点</a>
+  <a href="#quit">やめどき</a>
 </div>
-
 <a href="baki_checker.html" class="checker-banner">
   <div class="cb-icon">⚡</div>
   <div class="cb-body">
     <div class="cb-label">無料ツール</div>
     <div class="cb-title">バキ 狙い目チェッカー</div>
-    <div class="cb-desc">G数・スルー回数を入れるだけで今すぐ狙えるか◎○△×で判定</div>
+    <div class="cb-desc">CZ間G数・スルー回数を入力すると、狙い目かどうかをすぐ確認できます。</div>
   </div>
   <span class="cb-arr">›</span>
 </a>
-
-<div class="toc">
-  <div class="toc-title">▶ 目次</div>
-  <a href="#tenjo">天井・基本スペック</a>
-  <a href="#mode">内部モードとゾーン</a>
-  <a href="#neraiime">換金率別の狙い目</a>
-  <a href="#suruu">CZスルー回数狙い</a>
-  <a href="#endorphin">エンドルフィンポイント狙い</a>
-  <a href="#reset">リセット（朝一）の注意点</a>
-  <a href="#yametime">やめどき</a>
-  <a href="#user-voice">ユーザーの声・実戦での反応</a>
-</div>
-
-<div class="article">
-
-  <!-- 天井・基本スペック -->
-  <div class="section" id="tenjo">
-    <h2 class="section-title">天井・基本スペック</h2>
-
+<main class="article">
+  <section class="section" id="tenjo">
+    <h2 class="section-title"><span class="icon">■</span> 天井・基本スペック</h2>
     <div class="info-box">
+      <div class="info-box-title">基本情報</div>
       <table class="aim-table">
-        <thead><tr><th></th><th>内容</th></tr></thead>
-        <tr><td>CZ間ゲーム数天井</td><td class="num">600G+αでCZ「解放のカタルシス」確定</td></tr>
-        <tr><td>CZスルー回数天井</td><td class="num">3スルーで4回目のCZがAT確定</td></tr>
-        <tr><td>天井恩恵</td><td>CZ確定（ゲーム数天井）／4回目CZでAT確定（スルー天井）</td></tr>
-        <tr><td>AT「オーガバトルボーナス」純増</td><td class="num">約2.3〜2.5枚/G</td></tr>
-        <tr><td>上位AT「バキバキアルティメット」純増</td><td class="num">約4.0枚/G</td></tr>
-        <tr><td>コイン持ち</td><td class="num">約33.6G/50枚</td></tr>
-        <tr><td>機械割</td><td>設定1：約97.5% ～ 設定6：約110.4%</td></tr>
+        <thead><tr><th>項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>CZ間ゲーム数天井</td><td><span class="num">600G+αでCZ「解放のカタルシス」確定</span></td></tr>
+          <tr><td>CZスルー回数天井</td><td><span class="num">3スルーで4回目のCZがAT確定</span></td></tr>
+          <tr><td>AT純増</td><td>オーガバトルボーナス 約2.3〜2.5枚/G</td></tr>
+          <tr><td>上位AT純増</td><td>バキバキアルティメット 約4.0枚/G</td></tr>
+          <tr><td>コイン持ち</td><td>約33.6G/50枚</td></tr>
+        </tbody>
       </table>
     </div>
+    <p class="lead">本機はCZ当選＝AT確定ではなく、CZを突破して初めてATへ繋がります。そのぶん、<strong>CZ3スルーで4回目CZがAT確定</strong>という救済がかなり重要です。</p>
+    <p class="note">CZ失敗が続いている台ほど価値が上がりやすい機種です。データカウンターでAT非当選のCZ回数を必ず確認してください。</p>
+  </section>
 
-    <p class="note">💡 CZ「解放のカタルシス」はAT前兆ゾーンであり、バトルに勝利するとAT確定。ただし<strong>CZに当選してもAT突入は別途抽選</strong>です。スルー回数天井（3スルー→4回目CZでAT確定）が本機の最大の救済ポイントです。</p>
-
-    <p>本機はオリンピア初のスマスロとして2022年11月に登場。通常時は<strong>G数抽選・力みカウンター・範馬メーター</strong>のトリプル抽選でCZを目指し、AT中は10勝 or 20勝で「強喰」を獲得して上位ATを狙う自力感強めのゲーム性です。</p>
-  </div>
-
-  <!-- 内部モードとゾーン -->
-  <div class="section" id="mode">
-    <h2 class="section-title">内部モードとゾーン</h2>
-
-    <p>本機には<strong>6種類の通常モード＋設定変更時専用モード</strong>が存在します。天国モード滞在時は132G以内にCZが濃厚となります。</p>
-
+  <section class="section" id="mode">
+    <h2 class="section-title"><span class="icon">■</span> 内部モードとゾーン</h2>
+    <p>通常時は6種類の通常モードに加え、設定変更時専用モードが存在します。天国モード滞在時は132G以内のCZが濃厚です。</p>
     <div class="info-box">
       <table class="aim-table">
-        <thead><tr><th>モード</th><th>CZ当選タイミング目安</th><th>立ち回り</th></tr></thead>
-        <tr>
-          <td><strong>天国A・B ★</strong></td>
-          <td>132G以内にCZ濃厚</td>
-          <td style="color:var(--good)"><strong>当選まで続行</strong></td>
-        </tr>
-        <tr>
-          <td>通常モード各種</td>
-          <td>G数抽選・力みカウンター・範馬メーター</td>
-          <td style="color:var(--text-muted)">G数次第</td>
-        </tr>
-        <tr>
-          <td>設定変更時専用</td>
-          <td>天国移行率が優遇</td>
-          <td style="color:var(--good)">朝一1スルー後に天国狙い有効</td>
-        </tr>
+        <thead><tr><th>モード・要素</th><th>立ち回りの見方</th></tr></thead>
+        <tbody>
+          <tr><td>天国A・B</td><td>132G以内のCZ当選に期待。示唆があれば当選まで続行候補。</td></tr>
+          <tr><td>100G前後・200G前後</td><td>CZ当選が寄りやすいゾーン。浅い台でも示唆ありなら確認候補。</td></tr>
+          <tr><td>400G前後</td><td>通常の天井狙いで最も意識したいゾーン帯。</td></tr>
+          <tr><td>終了後PUSHボイス</td><td>天国示唆や逆転示唆があるので、即やめ前に必ず確認。</td></tr>
+        </tbody>
       </table>
     </div>
+    <p class="note">「頭の位置をより高きに置くのそれが勝者だ」ボイスなど、天国期待度が高まるパターンがあるため、終了後のPUSH確認は必須です。</p>
+  </section>
 
-    <h3 class="section-sub">📊 ゾーン・強いポイント</div>
-
+  <section class="section" id="line">
+    <h2 class="section-title"><span class="icon">■</span> 換金率別の狙い目</h2>
     <div class="info-box">
       <table class="aim-table">
-        <thead><tr><th>G数帯</th><th>特徴</th></tr></thead>
-        <tr><td class="num">100G前後</td><td style="color:var(--good)">CZ当選率が高め</td></tr>
-        <tr><td class="num">200G前後</td><td style="color:var(--good)">CZ当選率が高め</td></tr>
-        <tr><td class="num">400G前後</td><td style="color:var(--good)">天井狙いのメインターゲット</td></tr>
-        <tr><td class="num">天国確認後 80G〜</td><td style="color:var(--good)"><strong>天国モード狙い（132G天井）</strong></td></tr>
-      </table>
-      <p style="font-size:0.75rem;color:var(--text-sub);margin-top:4px;">※実戦値では100G台・200G台前半のゾーンで多くの当選が集中しています。</p>
-    </div>
-
-    <h3 class="section-sub">🔍 モード示唆の確認方法</div>
-
-    <div class="info-box">
-      <table class="aim-table">
-        <thead><tr><th>示唆演出</th><th>意味</th></tr></thead>
-        <tr>
-          <td>CZ・AT終了後の<strong>PUSHボタン押下でボイス</strong></td>
-          <td>逆転示唆・次回モード示唆</td>
-        </tr>
-        <tr>
-          <td>「頭の位置をより高きに置くのそれが勝者だ」ボイス<br>→逆転演出なし</td>
-          <td style="color:var(--good)">天国A or B濃厚</td>
-        </tr>
-        <tr>
-          <td>ステージ：死闘（青）</td>
-          <td>通常</td>
-        </tr>
-        <tr>
-          <td>ステージ：血闘（赤）〜覚醒（金）</td>
-          <td style="color:var(--good)">高モード示唆。上位ほど当選期待度アップ</td>
-        </tr>
+        <thead><tr><th>条件</th><th>等価</th><th>5.6枚交換</th></tr></thead>
+        <tbody>
+          <tr><td>通常天井狙い</td><td><span class="num">340〜360G〜</span></td><td><span class="num">450G〜</span></td></tr>
+          <tr><td>天国示唆あり</td><td>80G〜</td><td>80G〜</td></tr>
+          <tr><td>CZ2スルー確定</td><td>200G台後半〜</td><td>250G〜</td></tr>
+          <tr><td>CZ3スルー確定</td><td>即着席</td><td>即着席</td></tr>
+        </tbody>
       </table>
     </div>
-
-    <p class="note">⚠️ CZ・AT終了後は<strong>必ずPUSHボタンを押してボイスを確認</strong>しましょう。天国示唆のボイスが出た場合は即やめ厳禁です。</p>
-  </div>
-
-  <!-- 換金率別の狙い目 -->
-  <div class="section" id="neraiime">
-    <h2 class="section-title">換金率別の狙い目</h2>
-
-    <div class="info-box">
-      <table class="aim-table">
-        <thead><tr><th>種別</th><th>等価</th><th>5.6枚交換</th></tr></thead>
-        <tr>
-          <td>通常天井狙い<br><small>（スルー回数・モード不問）</small></td>
-          <td class="num">約340〜360G〜</td>
-          <td class="num">約450G〜</td>
-        </tr>
-        <tr>
-          <td>天国モード確認後<br><small>（ボイス・ステージ示唆あり）</small></td>
-          <td class="num">80G〜（即着席）</td>
-          <td class="num">80G〜（即着席）</td>
-        </tr>
-        <tr>
-          <td>CZ2スルー確定</td>
-          <td class="num">200G前後〜</td>
-          <td class="num">250G〜</td>
-        </tr>
-        <tr>
-          <td>CZ3スルー確定<br><small>（4回目CZでAT確定）</small></td>
-          <td class="num">即着席</td>
-          <td class="num">即着席</td>
-        </tr>
-      </table>
-    </div>
-
-    <p class="note">💡 等価なら<strong>250Gからプラス期待値</strong>、確実ラインは340G〜。エンドルフィンポイントが蓄積している台はさらにボーダーを下げて狙えます。</p>
-  </div>
-
-  <!-- CZスルー回数狙い -->
-  <div class="section" id="suruu">
-    <h2 class="section-title">CZスルー回数狙い</h2>
-
-    <p>本機の大きな特徴が<strong>CZスルー回数天井</strong>。CZを3回連続失敗すると4回目のCZでAT突入が確定します。</p>
-
-    <div class="aim-cards">
-      <div class="aim-card special">
-        <span class="aim-badge badge-special">3スルー確定</span>
-        <div class="aim-card-body">
-          <div class="aim-card-title">4回目のCZでAT確定→即着席</div>
-          <div class="aim-card-desc">
-            CZを3回連続失敗した台は<strong>次回CZがAT確定</strong>。CZ当選さえすれば必ずATに突入するため、G数に関わらず即着席推奨です。履歴を必ず確認してから着席しましょう。
-          </div>
-        </div>
+    <div class="cards">
+      <div class="card highlight">
+        <div class="card-title">通常狙いの本命ライン</div>
+        <div class="card-desc">等価なら340G前後、5.6枚交換なら450G前後をひとつの目安にすると打ちやすいです。</div>
       </div>
-      <div class="aim-card">
-        <span class="aim-badge badge-normal">2スルー</span>
-        <div class="aim-card-body">
-          <div class="aim-card-title">200G前後から狙い目に</div>
-          <div class="aim-card-desc">
-            CZ2スルーの台は3スルー到達でAT確定が近い状態。200G前後のゾーン手前から狙うのが有効。ただし2スルーだけではゲーム数が浅い場合は期待値が伴わないため、G数も合わせて判断しましょう。
-          </div>
-        </div>
+      <div class="card">
+        <div class="card-title">浅めから打てる条件</div>
+        <div class="card-desc">エンドルフィン示唆・天国示唆・2スルー以上が重なっていれば、通常ラインより浅めからでも検討余地があります。</div>
       </div>
     </div>
+  </section>
 
-    <p class="note">⚠️ CZスルー回数はデータカウンターの履歴から確認します。「AT非当選のCZ」が何回連続しているかを見てください。AT当選でスルーカウントはリセットされます。</p>
-  </div>
-
-  <!-- エンドルフィンポイント狙い -->
-  <div class="section" id="endorphin">
-    <h2 class="section-title">エンドルフィンポイント狙い</h2>
-
-    <p>本機最大の特徴が<strong>エンドルフィンポイント</strong>。CZ失敗やAT単発などのネガティブな結果が出るたびにポイントが蓄積し、<strong>100ptで次回CZ成功＋強力な報酬</strong>が確定します。星矢の不屈・まどかの穢れに近い仕様です。</p>
-
-    <div class="info-box">
-      <div class="info-box-title">エンドルフィンポイント蓄積示唆</div>
-      <table class="aim-table">
-        <thead><tr><th>示唆演出</th><th>意味</th></tr></thead>
-        <tr>
-          <td>バキオーラ発生（青）</td>
-          <td style="color:var(--good)">70pt以上所持濃厚→CZ当選まで続行推奨</td>
-        </tr>
-        <tr>
-          <td>バキオーラ発生（赤）</td>
-          <td style="color:var(--good)"><strong>100pt所持濃厚→次回CZでエンドルフィン発動確定級</strong></td>
-        </tr>
-        <tr>
-          <td>エフェクトが大きい</td>
-          <td>大量ポイント獲得の示唆</td>
-        </tr>
-        <tr>
-          <td>CZで柴千春に敗北</td>
-          <td>20pt以上獲得濃厚</td>
-        </tr>
-        <tr>
-          <td>CZ3連続失敗</td>
-          <td>20pt以上獲得濃厚</td>
-        </tr>
-        <tr>
-          <td>AT3連続単発</td>
-          <td>20pt以上獲得濃厚</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="aim-cards">
-      <div class="aim-card special">
-        <span class="aim-badge badge-special">エンドルフィン発動時</span>
-        <div class="aim-card-body">
-          <div class="aim-card-title">左V×20 or AT確定の恩恵</div>
-          <div class="aim-card-desc">
-            エンドルフィン発動時のCZ成功報酬は<strong>左Vストック×20（上位AT確定） or AT直撃</strong>。通常CZ成功と比べて圧倒的に強い恩恵のため、エンドルフィン発動が確実な台は最優先で狙いましょう。発動時はCZ中にV×20が必ず出現するので確認できます。
-          </div>
-        </div>
+  <section class="section" id="through">
+    <h2 class="section-title"><span class="icon">■</span> CZスルー回数狙い</h2>
+    <p>バキで最も強い狙い方のひとつがCZスルー回数狙いです。<strong>3スルー台は4回目のCZでAT確定</strong>なので、ゲーム数が浅くても優先度が上がります。</p>
+    <div class="cards">
+      <div class="card highlight">
+        <div class="card-title">3スルー台</div>
+        <div class="card-desc">0Gからでも着席候補。最優先クラスで狙える条件です。</div>
+      </div>
+      <div class="card">
+        <div class="card-title">2スルー台</div>
+        <div class="card-desc">250G前後からかなり打ちやすくなります。次のCZ失敗でAT確定の3スルーに近い点が強みです。</div>
       </div>
     </div>
+    <p class="note">スルー回数は「AT非当選のCZが何回続いているか」で確認します。AT当選でカウントはリセットです。</p>
+  </section>
 
-    <p class="note">⚠️ エンドルフィンポイントは<strong>規定枚数獲得（差枚2300枚）での有利区間リセット時にリセット</strong>されます。強喰突入で有利区間がリセットされる場合もポイントが消えることがあるので、前任者が強喰に突入していた台は注意が必要です。</p>
-  </div>
+  <section class="section" id="endorphin">
+    <h2 class="section-title"><span class="icon">■</span> エンドルフィンポイント狙い</h2>
+    <p>バキ最大の特徴がエンドルフィンポイントです。CZ失敗やAT単発などのマイナス結果でポイントが蓄積し、100pt到達で次回CZ成功＋強い報酬に期待できます。</p>
+    <div class="info-box">
+      <table class="aim-table">
+        <thead><tr><th>示唆</th><th>見方</th></tr></thead>
+        <tbody>
+          <tr><td>バキオーラ（青）</td><td>70pt以上示唆。CZ当選まで続行候補。</td></tr>
+          <tr><td>バキオーラ（赤）</td><td>100pt濃厚級。次回CZまでかなり強い。</td></tr>
+          <tr><td>CZで柴千春に敗北</td><td>20pt以上獲得濃厚。</td></tr>
+          <tr><td>CZ3連続失敗 / AT3連続単発</td><td>20pt以上獲得濃厚。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">有利区間リセットや強喰突入でポイントが消える可能性があります。前任者の終了契機も確認できると理想です。</p>
+  </section>
 
-  <!-- リセット -->
-  <div class="section" id="reset">
-    <h2 class="section-title">リセット（朝一）の注意点</h2>
-
+  <section class="section" id="reset">
+    <h2 class="section-title"><span class="icon">■</span> リセット時の注意点</h2>
     <div class="info-box">
       <table class="aim-table">
         <thead><tr><th>項目</th><th>リセット時の挙動</th></tr></thead>
-        <tr>
-          <td>内部モード</td>
-          <td style="color:var(--good)">設定変更時専用モードへ移行（天国移行率優遇）</td>
-        </tr>
-        <tr>
-          <td>エンドルフィンポイント</td>
-          <td>再抽選（引き継ぎなし）</td>
-        </tr>
-        <tr>
-          <td>天井ゲーム数</td>
-          <td style="color:var(--bad)">リセット（0Gから再スタート）</td>
-        </tr>
-        <tr>
-          <td>CZスルー回数</td>
-          <td style="color:var(--bad)">リセット</td>
-        </tr>
+        <tbody>
+          <tr><td>内部モード</td><td>設定変更時専用モードへ移行。天国移行率が優遇。</td></tr>
+          <tr><td>エンドルフィンポイント</td><td>再抽選で引き継ぎなし。</td></tr>
+          <tr><td>天井ゲーム数 / CZスルー回数</td><td>どちらもリセット。</td></tr>
+        </tbody>
       </table>
     </div>
+    <p>朝一は専用モードの恩恵があるものの、0Gから無条件で狙うほどではありません。朝一当選後のやめ台や、1スルー後の天国狙いなど、条件が重なった台を優先した方が打ちやすいです。</p>
+  </section>
 
-    <p>設定変更後は専用モードへ移行し<strong>天国移行率が優遇</strong>されます。リセット確定台で朝一当選→即やめの台があった場合は、<strong>1スルー後の天国狙いで100G+αまで打ってみる</strong>価値があります。</p>
-
-    <p class="note">⚠️ ただし0Gからリセット台を狙うのはリターンに対してリスクが大きめです。エンドルフィンの引き継ぎもないため、リセット台より<strong>前日深ハマり据え置き台の方が価値が高い</strong>ケースが多いです。</p>
-  </div>
-
-  <!-- やめどき -->
-  <div class="section" id="yametime">
-    <h2 class="section-title">やめどき</h2>
-
-    <p>CZ・AT終了後は<strong>必ずPUSHボタンを押してボイスを確認</strong>してからやめどきを判断します。天国示唆が出た場合は132Gまでフォロー必須です。</p>
-
-    <div class="info-box">
-      <div class="info-box-title">CZ終了後のやめどき</div>
-      <table class="aim-table">
-        <thead><tr><th>状況</th><th>判断</th></tr></thead>
-        <tr>
-          <td>CZ当選→<strong>AT突入</strong></td>
-          <td style="color:var(--good)">AT中は強喰まで続行</td>
-        </tr>
-        <tr>
-          <td>CZ当選→<strong>AT非突入（スルー）</strong><br>PUSHボイスで天国示唆</td>
-          <td style="color:var(--good)"><strong>132Gまでフォロー</strong></td>
-        </tr>
-        <tr>
-          <td>CZ当選→AT非突入<br>PUSHボイスで示唆なし</td>
-          <td style="color:var(--warn)">即やめ推奨</td>
-        </tr>
-        <tr>
-          <td>CZ非当選（ゾーン外れ）</td>
-          <td style="color:var(--warn)">即やめ推奨</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="info-box">
-      <div class="info-box-title">AT終了後のやめどき</div>
-      <table class="aim-table">
-        <thead><tr><th>状況</th><th>判断</th></tr></thead>
-        <tr>
-          <td><strong>強喰確定ストック</strong>あり</td>
-          <td style="color:var(--good)"><strong>強喰消化まで続行必須</strong></td>
-        </tr>
-        <tr>
-          <td>PUSHボイスで天国示唆</td>
-          <td style="color:var(--good)">132Gまでフォロー</td>
-        </tr>
-        <tr>
-          <td>バキオーラ（青・赤）確認</td>
-          <td style="color:var(--good)">次回CZ当選まで続行推奨</td>
-        </tr>
-        <tr>
-          <td>示唆なし</td>
-          <td style="color:var(--warn)">即やめ推奨</td>
-        </tr>
-      </table>
-    </div>
-
+  <section class="section" id="quit">
+    <h2 class="section-title"><span class="icon">■</span> やめどき</h2>
     <div class="stop-list">
       <div class="stop-row">
-        <div class="stop-row-head"><span class="dot-good">🟢</span>即やめOKなパターン</div>
-        <div class="stop-row-body">
-          ・CZ失敗後、PUSHボイスで天国示唆なし<br>
-          ・AT終了後、強喰ストックなし＋示唆演出なし<br>
-          ・ゾーン外れ後、エンドルフィンエフェクトなし
-        </div>
+        <div class="stop-row-head">示唆なしで終了した場合</div>
+        <div class="stop-row-body">CZ・AT終了後にPUSHボイスやステージ示唆が弱ければ即やめ寄りです。</div>
       </div>
       <div class="stop-row">
-        <div class="stop-row-head"><span class="dot-warn">🟡</span>様子を見るべきパターン</div>
-        <div class="stop-row-body">
-          ・PUSHボイスで天国示唆→132Gまでフォロー<br>
-          ・バキオーラ（青）確認→次回CZまで<br>
-          ・CZ失敗後のステージが血闘（赤）以上
-        </div>
+        <div class="stop-row-head">天国示唆が出た場合</div>
+        <div class="stop-row-body">132Gまでフォロー候補。終了後のPUSH確認を飛ばさないことが大切です。</div>
       </div>
       <div class="stop-row">
-        <div class="stop-row-head"><span class="dot-bad">🔴</span>絶対やめないパターン</div>
-        <div class="stop-row-body">
-          ・強喰確定ストックが残っている（強喰消化まで必須）<br>
-          ・バキオーラ（赤）確認→次回CZでエンドルフィン発動確定<br>
-          ・PUSHボイスで「頭の位置〜」発生＋逆転演出なし（天国A or B濃厚）<br>
-          ・CZ3スルー済み（4回目CZでAT確定）
-        </div>
+        <div class="stop-row-head">バキオーラ・エンドルフィン示唆あり</div>
+        <div class="stop-row-body">次回CZ当選まで続行推奨。浅いゲーム数でも即やめしない方が安全です。</div>
       </div>
     </div>
-
-    <p class="note">📝 本機は<strong>最愛モード中にオーガボーナスに直撃した場合もストックを必ず消化</strong>してからやめること。ストックを残したままやめると大きな損失になります。</p>
-  </div>
-
-
-</div><!-- /article -->
-
-
-<!-- ユーザーの声 -->
-<section id="user-voice">
-  <h2 class="section-title">ユーザーの声・実戦での反応</h2>
-  <p>バキを実際にプレイしたユーザーの声や、SNSでの反応をまとめています。立ち回りの参考にしてください。</p>
-    <h3 class="section-sub">実戦での感想・口コミ</h3>
-    <p>バキの迫力ある世界観と演出が好評で、「CZ間天井が浅く狙いやすい」という声が多い。3スルーAT確定という強力な恩恵も評価されており、スルー台が捨てられているホールでは特においしい台になりやすいと言われている。</p>
-    <h3 class="section-sub">立ち回りメモ</h3>
-    <p>エンドルフィンシステムによりスルーごとに次のCZ天井が短縮されるため、スルー回数の確認が重要。3スルー台は0Gから打ち始めてAT当選まで続行する価値がある。</p>
-    <h3 class="section-sub">打つ前に知っておきたいこと</h3>
-    <p>CZ間600Gは等価でも狙い始められる水準だが、AT自体は差枚数管理型のため一撃性はやや控えめ。エンドルフィンの引き継ぎ状況を確認しないまま着席すると、実際の期待値とかけ離れた判断になりやすい。</p>
-</section>
-
-<a href="baki_checker.html" class="checker-banner" style="margin: 16px 16px 32px;">
-  <div class="cb-icon">⚡</div>
-  <div class="cb-body">
-    <div class="cb-label">無料ツール</div>
-    <div class="cb-title">バキ 狙い目チェッカー</div>
-    <div class="cb-desc">G数・スルー回数・エンドルフィン状況を入れるだけで今すぐ狙えるか◎○△×で判定</div>
-  </div>
-  <span class="cb-arr">›</span>
-</a>
-
-<div style="margin: 0 16px 32px; text-align: center;">
-  <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 24px;color:var(--accent);text-decoration:none;font-size:0.85rem;font-weight:700;">
-    ← 機種一覧へ戻る
-  </a>
-</div>
-
+    <p class="note">最愛モード中のオーガボーナス直撃など、ストックを抱えたまま終わるケースは損失が大きいです。やめる前に必ず取り切り状況を確認してください。</p>
+  </section>
+</main>
 <footer class="article-footer">
   <div class="footer-logo">狙い目手帖</div>
-  <div class="footer-links">
-    <a href="privacy.html">プライバシーポリシー</a>
-    <a href="contact.html">お問い合わせ</a>
-  </div>
+  <div class="footer-links"><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></div>
   <p class="footer-copy">掲載内容は公開情報をもとにした考察です。実際の立ち回りはご自身の判断でお願いします。</p>
-  <p class="footer-copy" style="margin-top:6px;">© 2025 狙い目手帖</p>
 </footer>
-
 </body>
 </html>
