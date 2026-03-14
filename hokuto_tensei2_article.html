@@ -24,151 +24,24 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 300;
-    line-height: 1.8;
-    font-size: 15px;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* 左端を「16px」で統一するための修正：
-     全てのブロック要素の最大幅を600pxに制限し、
-     左右に16pxの余白を強制することでガタつきを解消します。
-  */
-  body > *:not(header) {
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-weight: 300; line-height: 1.8; font-size: 15px; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; }
+  body > *:not(header) { display: block; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; }
   a, button { touch-action: manipulation; }
-  /* ===== ヘッダー ===== */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* 中央配置に変更 */
-    background: rgba(12,12,14,0.96);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  
-  .header-inner {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-  }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: rgba(12,12,14,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
   .logo { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; font-weight: 800; color: var(--accent); text-decoration: none; letter-spacing: 0.08em; }
   .header-back { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 4px; }
-  .mv {
-    padding-top: 72px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mv-label {
-    font-size: 0.6rem;
-    color: var(--accent);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-
-  .mv-title {
-    font-family: 'Shippori Mincho', serif;
-    font-size: clamp(1.4rem, 6vw, 2rem);
-    font-weight: 800;
-    line-height: 1.4;
-    margin-bottom: 12px;
-    text-align: left;
-  }
-
+  .mv { padding: 72px 16px 32px; border-bottom: 1px solid var(--border); }
+  .mv-label { font-size: 0.6rem; color: var(--accent); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 10px; }
+  .mv-title { font-family: 'Shippori Mincho', serif; font-size: clamp(1.4rem, 6vw, 2rem); font-weight: 800; line-height: 1.4; margin-bottom: 12px; }
   .mv-title em { color: var(--accent); font-style: normal; }
-
-  .mv-desc {
-    font-size: 0.8rem;
-    color: var(--text-sub);
-    line-height: 1.9;
-    margin-bottom: 16px;
-    text-align: left;
-  }
-  .mv-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: flex-start; /* 左寄せ */
-  }
-
-  .tag {
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 0.62rem;
-    padding: 3px 8px;
-    border-radius: 20px;
-  }
-  /* ===== 目次・バナーの幅調整 ===== */
-  .toc, .checker-banner {
-    width: calc(100% - 32px) !important; /* padding分の32pxを引く */
-    margin-left: 16px !important;
-    margin-right: 16px !important;
-    box-sizing: border-box;
-  }
-
-  .toc {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .toc-title {
-    font-size: 0.72rem;
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-  }
-
-  .toc a {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--text-sub);
-    text-decoration: none;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .toc a:last-child { border-bottom: none; }
-  .toc a::before {
-    content: '';
-    display: block;
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
+  .mv-desc { font-size: 0.8rem; color: var(--text-sub); line-height: 1.9; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 20px 16px; padding: 16px; width: calc(100% - 32px); }
+  .toc-title { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 10px; }
+  .toc ul { list-style: none; }
+  .toc ul li { border-bottom: 1px solid var(--border); }
+  .toc ul li:last-child { border-bottom: none; }
+  .toc ul li a { display: block; padding: 8px 4px; font-size: 0.82rem; color: var(--text-sub); text-decoration: none; }
+  .toc ul li a::before { content: "→ "; color: var(--accent); }
   .checker-banner { margin: 0 16px 4px; background: linear-gradient(135deg, #1a1508 0%, #0c0c0e 100%); border: 1px solid var(--accent); border-radius: 12px; padding: 16px; text-decoration: none; display: flex; align-items: center; gap: 14px; width: calc(100% - 32px); }
   .checker-banner:active { opacity: 0.85; }
   .cb-icon { font-size: 2rem; flex-shrink: 0; }
@@ -208,29 +81,43 @@
   .spec-val { font-family: 'Shippori Mincho', serif; font-size: 1.15rem; font-weight: 800; color: var(--accent); }
   .spec-val small { font-size: 0.72rem; color: var(--text-sub); }
   .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+.fixed-checker-btn{
+position:fixed;
+left:16px;
+right:16px;
+bottom:16px;
+z-index:300;
+display:block;
+text-align:center;
+padding:15px 16px;
+border-radius:12px;
+background:linear-gradient(135deg,#c8972a 0%,#a07320 100%);
+color:#0c0c0e;
+font-weight:700;
+font-size:0.9rem;
+letter-spacing:0.05em;
+text-decoration:none;
+box-shadow:0 6px 18px rgba(0,0,0,0.35);
+}
+.fixed-checker-btn:active{
+transform:scale(0.97);
+}
+
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-inner">
-    <a href="index.html" class="logo">狙い目手帖</a>
-    <a href="index.html" class="header-back">← 機種一覧へ</a>
-  </div>
+  <a class="logo" href="index.html">狙い目手帖</a>
+  <a class="header-back" href="index.html">← 機種一覧へ</a>
 </header>
 
 
 <div class="mv">
-  <p class="mv-label">Slot Strategy</p>
+  <div class="mv-label">SMARTPACHISLO GUIDE</div>
   <h1 class="mv-title">スマスロ<br><em>北斗の拳 転生の章2</em><br>天井・狙い目まとめ</h1>
-  <p class="mv-desc">5号機で人気を博した「北斗の拳 転生の章」のスマスロ後継機。通常時は毎ゲーム「あべし」（擬似ポイント）を1以上獲得し、規定あべし到達でAT「闘神演舞」に当選する仕組み。AT中は勝舞魂をバトルで消費して継続を目指す。上位AT「裏闘神演舞」へ突入すれば期待枚数は3000枚超。</p>
-  <div class="mv-tags">
-    <span class="tag">あべしシステム</span>
-    <span class="tag">天井狙い</span>
-    <span class="tag">AT継続率</span>
-    <span class="tag">裏闘神演舞</span>
-    <span class="tag">リセット恩恵</span>
-  </div>
+  <p class="mv-desc">やめどき・リセット恩恵も解説｜2026年1月導入</p>
 </div>
 
 <!-- 上部チェッカーバナー -->
@@ -244,18 +131,21 @@
   <span class="cb-arr">›</span>
 </a>
 
-<div class="toc">
+<nav class="toc">
   <div class="toc-title">▶ 目次</div>
-  <a href="#spec">基本スペック</a>
-  <a href="#abeshi">あべしシステムとは</a>
-  <a href="#tenjou">天井の種類と恩恵</a>
-  <a href="#neraime">狙い目まとめ</a>
-  <a href="#reset">リセット（朝一）恩恵</a>
-  <a href="#mode">モード・ゾーン</a>
-  <a href="#yameoki">やめどき</a>
-  <a href="#tokushu">特殊狙い目</a>
-</div>
-    
+  <ul>
+    <li><a href="#spec">基本スペック</a></li>
+    <li><a href="#abeshi">あべしシステムとは</a></li>
+    <li><a href="#tenjou">天井の種類と恩恵</a></li>
+    <li><a href="#neraime">狙い目まとめ</a></li>
+    <li><a href="#reset">リセット（朝一）恩恵</a></li>
+    <li><a href="#mode">モード・ゾーン</a></li>
+    <li><a href="#yameoki">やめどき</a></li>
+    <li><a href="#tokushu">特殊狙い目</a></li>
+    <li><a href="#user-voice">ユーザーの声・実戦での反応</a></li>
+  </ul>
+</nav>
+
 <!-- 基本スペック -->
 <section class="section" id="spec">
   <h2 class="section-title">基本スペック</h2>
@@ -276,7 +166,7 @@
       <div class="spec-label">導入日</div>
       <div class="spec-val" style="font-size:0.85rem;">2026年<small>1/5</small></div>
     </div>
-  </h3>
+  </div>
   <p>5号機で人気を博した「北斗の拳 転生の章」のスマスロ後継機。通常時は毎ゲーム「あべし」（擬似ポイント）を1以上獲得し、規定あべし到達でAT「闘神演舞」に当選する仕組み。AT中は勝舞魂をバトルで消費して継続を目指す。上位AT「裏闘神演舞」へ突入すれば期待枚数は3000枚超。</p>
 </section>
 
@@ -566,6 +456,11 @@
   <p class="footer-copy">掲載内容は公開情報をもとにした考察です。実際の立ち回りはご自身の判断でお願いします。</p>
   <p class="footer-copy" style="margin-top:6px;">© 2025 狙い目手帖</p>
 </footer>
+
+
+<a href="hokuto_tensei2_checker.html" class="fixed-checker-btn">
+⚡ 今すぐ狙い目を判定する
+</a>
 
 </body>
 </html>
