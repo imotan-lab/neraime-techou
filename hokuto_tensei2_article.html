@@ -35,13 +35,13 @@
   .mv-title { font-family: 'Shippori Mincho', serif; font-size: clamp(1.4rem, 6vw, 2rem); font-weight: 800; line-height: 1.4; margin-bottom: 12px; }
   .mv-title em { color: var(--accent); font-style: normal; }
   .mv-desc { font-size: 0.8rem; color: var(--text-sub); line-height: 1.9; }
-  .page-nav { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 20px 16px; padding: 16px; }
-  .page-nav-title { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 10px; }
-  .page-nav ul { list-style: none; }
-  .page-nav ul li { border-bottom: 1px solid var(--border); }
-  .page-nav ul li:last-child { border-bottom: none; }
-  .page-nav ul li a { display: block; padding: 8px 4px; font-size: 0.82rem; color: var(--text-sub); text-decoration: none; }
-  .page-nav ul li a::before { content: "→ "; color: var(--accent); }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 20px 16px; padding: 16px; }
+  .toc-title { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 10px; }
+  .toc ul { list-style: none; }
+  .toc ul li { border-bottom: 1px solid var(--border); }
+  .toc ul li:last-child { border-bottom: none; }
+  .toc ul li a { display: block; padding: 8px 4px; font-size: 0.82rem; color: var(--text-sub); text-decoration: none; }
+  .toc ul li a::before { content: "→ "; color: var(--accent); }
   .checker-banner { margin: 0 16px 4px; background: linear-gradient(135deg, #1a1508 0%, #0c0c0e 100%); border: 1px solid var(--accent); border-radius: 12px; padding: 16px; text-decoration: none; display: flex; align-items: center; gap: 14px; }
   .checker-banner:active { opacity: 0.85; }
   .cb-icon { font-size: 2rem; flex-shrink: 0; }
@@ -87,7 +87,7 @@
 
 <header>
   <a class="logo" href="index.html">狙い目手帖</a>
-  <a class="header-back" href="index.html">← 機種一覧</a>
+  <a class="header-back" href="index.html">← 機種一覧へ</a>
 </header>
 
 
@@ -108,8 +108,8 @@
   <span class="cb-arr">›</span>
 </a>
 
-<nav class="page-nav">
-  <div class="page-nav-title">CONTENTS</div>
+<nav class="toc">
+  <div class="toc-title">▶ 目次</div>
   <ul>
     <li><a href="#spec">基本スペック</a></li>
     <li><a href="#abeshi">あべしシステムとは</a></li>
@@ -410,12 +410,13 @@
 </a>
 
 <footer>
-  <a class="back-btn" href="index.html">← 機種一覧へ戻る</a>
-  <div class="footer-note">
-    ※掲載データは独自調査・各解析サイト情報をもとにまとめています。実際の遊技は自己責任でお願いします。<br>
-    ©武論尊・原哲夫／コアミックス 1983, ©COAMIX 2007 版権許諾証YJN-815 ©Sammy<br>
-    狙い目手帖 — スマスロ攻略まとめ
+  <div class="footer-logo">狙い目手帖</div>
+  <div class="footer-links">
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="contact.html">お問い合わせ</a>
   </div>
+  <p class="footer-copy">掲載内容は公開情報をもとにした考察です。実際の立ち回りはご自身の判断でお願いします。</p>
+  <p class="footer-copy" style="margin-top:6px;">© 2025 狙い目手帖</p>
 </footer>
 
 </body>
