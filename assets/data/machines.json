@@ -2,127 +2,15 @@
   {
     "slug": "baki",
     "name": "バキ",
-    "article": "baki_article.html",
-    "checker": "baki_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "banchou4",
-    "name": "番長4",
-    "article": "banchou4_article.html",
-    "checker": "banchou4_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "biohazard",
-    "name": "バイオハザード",
-    "article": "biohazard_article.html",
-    "checker": "biohazard_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "chibaryo2",
-    "name": "チバリヨ2",
-    "article": "chibaryo2_article.html",
-    "checker": "chibaryo2_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "dumbbell",
-    "name": "ダンベル",
-    "article": "dumbbell_article.html",
-    "checker": "dumbbell_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "goblin",
-    "name": "ゴブリンスレイヤー",
-    "article": "goblin_article.html",
-    "checker": "goblin_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "godeater",
-    "name": "ゴッドイーター",
-    "article": "godeater_article.html",
-    "checker": "godeater_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "hokuto",
-    "name": "北斗の拳",
-    "article": "hokuto_article.html",
-    "checker": "hokuto_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "hokuto_tensei2",
-    "name": "北斗の拳 転生2",
-    "article": "hokuto_tensei2_article.html",
-    "checker": "hokuto_tensei2_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "kabaneri",
-    "name": "カバネリ",
-    "article": "kabaneri_article.html",
-    "checker": "kabaneri_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "kaguya",
-    "name": "かぐや様",
-    "article": "kaguya_article.html",
-    "checker": "kaguya_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "koukaku",
-    "name": "攻殻機動隊",
-    "article": "koukaku_article.html",
-    "checker": "koukaku_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "monkeyv",
-    "name": "モンキーV",
-    "article": "monkeyv_article.html",
-    "checker": "monkeyv_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "sf5",
-    "name": "ストV",
-    "article": "sf5_article.html",
-    "checker": "sf5_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "tekken6",
-    "name": "鉄拳6",
-    "article": "tekken6_article.html",
-    "checker": "tekken6_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "tensura",
-    "name": "転スラ",
-    "article": "tensura_article.html",
-    "checker": "tensura_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "tokyo_ghoul",
-    "name": "東京喰種",
-    "article": "tokyo_ghoul_article.html",
-    "checker": "tokyo_ghoul_checker.html",
-    "status": "active"
-  },
-  {
-    "slug": "valvrave2",
-    "name": "ヴァルヴレイヴ2",
-    "article": "valvrave2_article.html",
-    "checker": "valvrave2_checker.html",
-    "status": "active"
+    "seo": {
+      "title": "バキ 狙い目"
+    },
+    "info": "スマスロ",
+    "strategy": "400G〜",
+    "checker": {
+      "target": 400,
+      "ok": "狙い目OK",
+      "ng": "まだ打てない"
+    }
   }
 ]
