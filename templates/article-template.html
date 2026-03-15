@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{機種名}} 天井・狙い目まとめ｜やめどき・補足情報も解説</title>
-<meta name="description" content="{{機種名}}の天井・狙い目・やめどきをまとめたテンプレートです。公開前に本文と数値を必ず確認してください。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/article.css">
-<style>
-  /* 必要な固有調整だけここへ追加 */
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{MACHINE_NAME}} 狙い目</title>
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body class="machine-article">
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">狙い目手帖</a>
-    <a href="index.html" class="header-back">← 機種一覧へ</a>
-  </div>
-</header>
-<section class="mv">
-  <div class="mv-label">SLOT GUIDE · {{slug | upper}}</div>
-  <h1 class="mv-title">{{機種名}}<br><em>天井・狙い目・やめどき</em></h1>
-  <p class="mv-desc">ここに機種の要点を2〜3行で記載します。</p>
-</section>
-<div class="toc">
-  <div class="toc-title">CONTENTS</div>
-  <a href="#overview">機種概要</a>
-  <a href="#aim">狙い目</a>
-  <a href="#quit">やめどき</a>
-</div>
-<a href="{{slug}}_checker.html" class="checker-banner">
-  <div class="cb-icon">⚡</div>
-  <div class="cb-body">
-    <div class="cb-label">無料ツール</div>
-    <div class="cb-title">{{機種名}} 狙い目チェッカー</div>
-    <div class="cb-desc">記事だけでなくその場の判断にも使える導線</div>
-  </div>
-  <span class="cb-arr">›</span>
-</a>
-<main class="article">
-  <section class="section" id="overview">
-    <h2 class="section-title"><span class="icon">■</span> 機種概要</h2>
-    <p>概要を記載。</p>
-  </section>
-  <section class="section" id="aim">
-    <h2 class="section-title"><span class="icon">■</span> 狙い目まとめ</h2>
-    <p>狙い目を記載。</p>
-  </section>
-  <section class="section" id="quit">
-    <h2 class="section-title"><span class="icon">■</span> やめどき</h2>
-    <p>やめどきを記載。</p>
-  </section>
-</main>
-<footer class="article-footer">
-  <div class="footer-logo">狙い目手帖</div>
-  <div class="footer-links"><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></div>
-  <p class="footer-copy">掲載内容は参考情報です。最終判断はご自身でお願いいたします。</p>
-</footer>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">狙い目手帳</a>
+      <nav class="header-nav">
+        <a href="index.html">トップ</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">ARTICLE</div>
+      <h1 class="page-title">{{MACHINE_NAME}} 狙い目</h1>
+      <p class="lead">{{LEAD_TEXT}}</p>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="card">
+        <h2>基本情報</h2>
+        <ul class="meta-list">
+          <li>{{POINT_1}}</li>
+          <li>{{POINT_2}}</li>
+          <li>{{POINT_3}}</li>
+        </ul>
+
+        <h2>立ち回りメモ</h2>
+        <ul class="point-list">
+          <li>{{MEMO_1}}</li>
+          <li>{{MEMO_2}}</li>
+          <li>{{MEMO_3}}</li>
+        </ul>
+
+        <div class="cta-row">
+          <a class="btn" href="{{SLUG}}_checker.html">チェッカーを開く</a>
+        </div>
+      </article>
+
+      <aside class="card">
+        <h3>使い方</h3>
+        <p class="lead">{{SIDE_TEXT}}</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">© 狙い目手帳</div>
+  </footer>
 </body>
 </html>

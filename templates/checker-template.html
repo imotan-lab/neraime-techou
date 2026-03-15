@@ -1,127 +1,57 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{機種名}} 狙い目チェッカー</title>
-<meta name="description" content="{{機種名}}の狙い目チェッカー用テンプレートです。数値・判定条件を差し替えて使用してください。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/checker.css">
-<style>
-  .checker-form { display:grid; gap:14px; }
-  .checker-field label { display:block; margin-bottom:6px; font-size:.84rem; color:var(--text-sub); }
-  .checker-field input, .checker-field select {
-    width:100%; min-height:46px; border-radius:10px; border:1px solid var(--border);
-    background:var(--surface2); color:var(--text); padding:0 14px; font-size:1rem;
-  }
-  .checker-output { margin-top:14px; }
-  .checker-result { border-radius:14px; padding:16px; border:1px solid var(--border); }
-  .checker-result-rank { font-size:1.2rem; font-weight:700; margin-bottom:6px; }
-  .checker-result-title { font-size:1rem; font-weight:700; margin-bottom:8px; }
-  .checker-result-message { font-size:.9rem; color:var(--text-sub); }
-  .checker-result-excellent { background:rgba(200,151,42,.12); }
-  .checker-result-good { background:rgba(232,184,74,.08); }
-  .checker-result-caution { background:rgba(255,255,255,.04); }
-  .checker-result-ng { background:rgba(120,120,120,.08); }
-  .checker-result-info { background:rgba(255,255,255,.03); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{MACHINE_NAME}} チェッカー</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/checker-common.js"></script>
 </head>
-<body class="machine-checker">
-<header class="site-header">
-  <a href="index.html" class="logo">狙い目手帖</a>
-  <a href="{{slug}}_article.html" class="header-back">← {{機種名}}記事へ</a>
-</header>
-<div class="mv">
-  <div class="mv-label">FREE TOOL · {{slug | upper}}</div>
-  <h1 class="mv-title">{{機種名}}<br><em>狙い目チェッカー</em></h1>
-  <p class="mv-desc">入力条件をもとに ◎○△× で判定するテンプレートです。</p>
-</div>
-<div class="checker-wrap">
-  <div class="checker-card">
-    <div class="checker-card-title">⚡ 条件を入力してください</div>
-    <form class="checker-form" id="checkerForm">
-      <div class="checker-field">
-        <label for="game">現在のゲーム数</label>
-        <input id="game" name="game" type="number" min="0" step="1" placeholder="例: 520">
+<body onload="loadChecker('{{SLUG}}')">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">狙い目手帳</a>
+      <nav class="header-nav">
+        <a href="index.html">トップ</a>
+        <a href="{{SLUG}}_article.html">記事へ戻る</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">CHECKER</div>
+      <h1 class="page-title">{{MACHINE_NAME}} チェッカー</h1>
+      <p class="lead">{{LEAD_TEXT}}</p>
+    </section>
+
+    <section class="grid grid-2">
+      <div class="card checker-box">
+        <div class="form-row">
+          <label for="gameInput">現在ゲーム数</label>
+          <input id="gameInput" type="number" placeholder="例: {{TARGET_GAME}}">
+        </div>
+
+        <button id="checkBtn" class="btn">判定する</button>
+
+        <div class="result-box">
+          <p id="result" class="result-text">ここに判定結果が表示されます。</p>
+        </div>
       </div>
-      <div class="checker-field">
-        <label for="mode">任意の追加条件</label>
-        <select id="mode" name="mode">
-          <option value="0">通常</option>
-          <option value="1">リセット狙い</option>
-          <option value="2">特殊条件あり</option>
-        </select>
-      </div>
-    </form>
-    <div class="checker-output" id="checkerOutput"></div>
-  </div>
-</div>
-<a href="{{slug}}_article.html" class="article-link">
-  <div class="al-icon">📖</div>
-  <div class="al-body">
-    <div class="al-label">解説記事</div>
-    <div class="al-title">{{機種名}} 天井・狙い目まとめ</div>
-    <div class="al-desc">記事への導線</div>
-  </div>
-  <span class="al-arr">›</span>
-</a>
-<footer>
-  <div class="footer-logo">狙い目手帖</div>
-  <div class="footer-links"><a href="privacy.html">プライバシーポリシー</a><a href="contact.html">お問い合わせ</a></div>
-  <p class="footer-copy">掲載内容は参考情報です。最終判断はご自身でお願いいたします。</p>
-</footer>
-<script src="assets/js/checker-common.js"></script>
-<script>
-  SlotChecker.create({
-    formSelector: '#checkerForm',
-    outputSelector: '#checkerOutput',
-    config: {
-      thresholds: {
-        excellent: 650,
-        good: 500,
-        caution: 350
-      }
-    },
-    judge(values, config) {
-      const game = values.game;
-      const mode = values.mode;
 
-      if (game === null) {
-        return {
-          rank: 'info',
-          badge: '入力待ち',
-          title: '条件を入力してください',
-          message: '最低でもゲーム数を入力すると判定が表示されます。'
-        };
-      }
+      <aside class="card">
+        <h3>補足</h3>
+        <ul class="point-list">
+          <li>{{SIDE_1}}</li>
+          <li>{{SIDE_2}}</li>
+          <li>{{SIDE_3}}</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
 
-      if (mode === 1 && game >= 280) {
-        return {
-          rank: 'good',
-          badge: '○',
-          title: 'リセット狙い条件を加味すると狙い目候補',
-          message: 'この分岐を機種ごとのリセット条件に差し替えて使います。'
-        };
-      }
-
-      const excellent = config.thresholds.excellent;
-      const good = config.thresholds.good;
-      const caution = config.thresholds.caution;
-
-      if (game >= excellent) {
-        return { rank: 'excellent', badge: '◎', title: `${excellent}G以上`, message: '強めの狙い目として扱うテンプレートです。' };
-      }
-      if (game >= good) {
-        return { rank: 'good', badge: '○', title: `${good}G以上`, message: '狙い目候補としてチェックしてください。' };
-      }
-      if (game >= caution) {
-        return { rank: 'caution', badge: '△', title: `${caution}G以上`, message: 'ホール状況次第で判断するラインです。' };
-      }
-      return { rank: 'ng', badge: '×', title: '見送り寄り', message: 'テンプレート基準ではまだ浅めです。' };
-    }
-  });
-</script>
+  <footer class="site-footer">
+    <div class="site-footer-inner">© 狙い目手帳</div>
+  </footer>
 </body>
 </html>
