@@ -1,15 +1,15 @@
-
 (async()=>{
 
 const machine = await getMachine()
 if(!machine)return
 
-document.title = machine.seo.title
+document.title = machine.seo?.title || machine.name
 
-machineTitle.textContent = machine.name
-machineInfo.textContent = machine.info
-strategy.textContent = machine.strategy
+document.getElementById("machine-title").textContent = machine.name
+document.getElementById("machine-info").textContent = machine.info || ""
+document.getElementById("strategy").textContent = machine.strategy || ""
 
-checkerLink.href="checker.html?slug="+machine.slug
+document.getElementById("checker-link").href =
+"checker.html?slug="+machine.slug
 
 })()
