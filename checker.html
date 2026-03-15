@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>チェッカー</title>
-<link rel="stylesheet" href="assets/css/site.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>チェッカー</title>
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">狙い目手帖</a>
+      <nav class="header-nav">
+        <a href="index.html">トップ</a>
+        <a id="articleBackLink" href="machine.html">記事へ戻る</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="container">
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">CHECKER</div>
+      <h1 id="checkerTitle" class="page-title">チェッカー</h1>
+      <p class="lead">現在G数から狙い目を判定します。</p>
+    </section>
 
-<h1 id="checkerTitle"></h1>
+    <section class="grid">
+      <article class="card checker-box">
+        <div class="form-row">
+          <label for="gameInput">現在G数</label>
+          <input id="gameInput" type="number" placeholder="例: 400">
+        </div>
+        <button id="checkBtn" class="btn" type="button">判定する</button>
+      </article>
 
-<div class="checker-box">
-<label>現在G数</label>
-<input id="gameInput" type="number">
-<button id="checkBtn" class="btn">判定</button>
-</div>
+      <article class="card">
+        <h2>判定結果</h2>
+        <div id="result" class="result-box">ここに結果が表示されます。</div>
+      </article>
+    </section>
+  </main>
 
-<div id="result" class="checker-result"></div>
+  <footer class="site-footer">
+    <div class="site-footer-inner">© 狙い目手帖</div>
+  </footer>
 
-</div>
-
-<script src="assets/js/machine-data.js"></script>
-<script src="assets/js/checker-page.js"></script>
-
+  <script src="assets/js/machine-data.js"></script>
+  <script src="assets/js/checker-page.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const slug = params.get("slug");
+      const back = document.getElementById("articleBackLink");
+      if (back && slug) back.href = "machine.html?slug=" + slug;
+    })();
+  </script>
 </body>
 </html>
