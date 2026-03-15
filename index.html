@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>狙い目手帖｜スロット機種別の狙い目・天井・チェッカー</title>
-<meta name="description" content="スロット・スマスロの機種ごとの狙い目、天井、やめどき、チェッカーをまとめたサイトです。気になる機種を選んで、立ち回りの判断に役立ててください。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>狙い目手帳 | 機種一覧</title>
+  <meta name="description" content="スロット機種ごとの狙い目記事とチェッカーを一覧で確認できます。">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/index.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">狙い目手帖</a>
-    <nav class="header-links">
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="contact.html">お問い合わせ</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero-shell page-intro">
-  <div class="page-label">SLOT GUIDE & CHECKER</div>
-  <h1 class="page-title">機種別の狙い目・天井・チェッカーを<br>まとめて確認できるサイト</h1>
-  <p class="page-desc">スマスロ・パチスロの機種ごとに、狙い目、天井、やめどき、チェッカーを整理しています。掲載機種は <strong id="machineCount">読み込み中...</strong>。機種追加は assets/data/machines.json とテンプレートを基準に進められる構成へ整理しました。</p>
-  <div class="notice">一覧は HTML 直書きではなく JSON から描画する方式へ変更しています。新機種を増やすときは templates フォルダのテンプレートを複製し、assets/data/machines.json に1件追加するだけでトップの一覧も更新できます。</div>
-</section>
-
-<section class="section-shell">
-  <div class="section-head">
-    <h2 class="section-title">掲載機種一覧</h2>
-    <p class="section-note">トップ更新は自動反映</p>
-  </div>
-  <div class="machine-grid" id="machineGrid">
-    <div class="empty-state">機種一覧を読み込み中です…</div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-logo">狙い目手帖</div>
-    <div class="footer-links">
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="contact.html">お問い合わせ</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">狙い目手帳</a>
+      <nav class="header-nav">
+        <a href="index.html">トップ</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="privacy.html">プライバシーポリシー</a>
+      </nav>
     </div>
-    <p class="footer-copy">掲載内容は公開情報をもとにした考察です。実際の立ち回りはご自身の判断でお願いします。</p>
-  </div>
-</footer>
-<script src="assets/js/index.js"></script>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">INDEX</div>
+      <h1 class="page-title">機種一覧</h1>
+      <p class="lead">記事とチェッカーを機種ごとにまとめています。新機種は machines.json に追加すると一覧へ自動反映されます。</p>
+    </section>
+
+    <section class="card index-toolbar">
+      <div>
+        <h2 class="section-title">掲載機種</h2>
+        <p class="lead-inline">現在の掲載数: <strong id="machineCount">読み込み中...</strong></p>
+      </div>
+      <div class="search-wrap">
+        <label class="search-label" for="machineSearch">機種名検索</label>
+        <input id="machineSearch" type="search" class="search-input" placeholder="例: 北斗 / godeater / バキ">
+      </div>
+    </section>
+
+    <section id="machineList" class="machine-grid" aria-live="polite"></section>
+    <p id="machineEmpty" class="empty-message card" hidden>該当する機種がありません。</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">© 狙い目手帳</div>
+  </footer>
 </body>
 </html>

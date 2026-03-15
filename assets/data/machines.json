@@ -1,145 +1,128 @@
 [
   {
-    "slug": "hokuto_tensei2",
-    "name": "北斗の拳 転生の章2",
-    "mode": "integrated",
-    "sub": "新方式 / 記事＋チェッカー一体型",
-    "url": "hokuto_tensei2.html"
-  },
-  {
     "slug": "baki",
     "name": "バキ",
-    "mode": "separated",
-    "sub": "新方式サンプル / 記事＋共通チェッカー対応",
     "article": "baki_article.html",
-    "checker": "baki_checker.html"
+    "checker": "baki_checker.html",
+    "status": "active"
   },
   {
     "slug": "banchou4",
     "name": "番長4",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "banchou4_article.html",
-    "checker": "banchou4_checker.html"
+    "checker": "banchou4_checker.html",
+    "status": "active"
   },
   {
     "slug": "biohazard",
     "name": "バイオハザード",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "biohazard_article.html",
-    "checker": "biohazard_checker.html"
+    "checker": "biohazard_checker.html",
+    "status": "active"
   },
   {
     "slug": "chibaryo2",
     "name": "チバリヨ2",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "chibaryo2_article.html",
-    "checker": "chibaryo2_checker.html"
+    "checker": "chibaryo2_checker.html",
+    "status": "active"
   },
   {
     "slug": "dumbbell",
-    "name": "ダンベル何キロ持てる？",
-    "mode": "separated",
-    "sub": "既存構成",
+    "name": "ダンベル",
     "article": "dumbbell_article.html",
-    "checker": "dumbbell_checker.html"
+    "checker": "dumbbell_checker.html",
+    "status": "active"
   },
   {
     "slug": "goblin",
     "name": "ゴブリンスレイヤー",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "goblin_article.html",
-    "checker": "goblin_checker.html"
+    "checker": "goblin_checker.html",
+    "status": "active"
   },
   {
     "slug": "godeater",
     "name": "ゴッドイーター",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "godeater_article.html",
-    "checker": "godeater_checker.html"
+    "checker": "godeater_checker.html",
+    "status": "active"
   },
   {
     "slug": "hokuto",
     "name": "北斗の拳",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "hokuto_article.html",
-    "checker": "hokuto_checker.html"
+    "checker": "hokuto_checker.html",
+    "status": "active"
+  },
+  {
+    "slug": "hokuto_tensei2",
+    "name": "北斗の拳 転生2",
+    "article": "hokuto_tensei2_article.html",
+    "checker": "hokuto_tensei2_checker.html",
+    "status": "active"
   },
   {
     "slug": "kabaneri",
-    "name": "甲鉄城のカバネリ",
-    "mode": "separated",
-    "sub": "既存構成",
+    "name": "カバネリ",
     "article": "kabaneri_article.html",
-    "checker": "kabaneri_checker.html"
+    "checker": "kabaneri_checker.html",
+    "status": "active"
   },
   {
     "slug": "kaguya",
-    "name": "かぐや様は告らせたい",
-    "mode": "separated",
-    "sub": "既存構成",
+    "name": "かぐや様",
     "article": "kaguya_article.html",
-    "checker": "kaguya_checker.html"
+    "checker": "kaguya_checker.html",
+    "status": "active"
   },
   {
     "slug": "koukaku",
     "name": "攻殻機動隊",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "koukaku_article.html",
-    "checker": "koukaku_checker.html"
+    "checker": "koukaku_checker.html",
+    "status": "active"
   },
   {
     "slug": "monkeyv",
-    "name": "モンキーターンV",
-    "mode": "separated",
-    "sub": "既存構成",
+    "name": "モンキーV",
     "article": "monkeyv_article.html",
-    "checker": "monkeyv_checker.html"
+    "checker": "monkeyv_checker.html",
+    "status": "active"
   },
   {
     "slug": "sf5",
-    "name": "ストリートファイター5",
-    "mode": "separated",
-    "sub": "既存構成",
+    "name": "ストV",
     "article": "sf5_article.html",
-    "checker": "sf5_checker.html"
+    "checker": "sf5_checker.html",
+    "status": "active"
   },
   {
     "slug": "tekken6",
     "name": "鉄拳6",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "tekken6_article.html",
-    "checker": "tekken6_checker.html"
+    "checker": "tekken6_checker.html",
+    "status": "active"
   },
   {
     "slug": "tensura",
-    "name": "転生したらスライムだった件",
-    "mode": "separated",
-    "sub": "既存構成",
+    "name": "転スラ",
     "article": "tensura_article.html",
-    "checker": "tensura_checker.html"
+    "checker": "tensura_checker.html",
+    "status": "active"
   },
   {
     "slug": "tokyo_ghoul",
     "name": "東京喰種",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "tokyo_ghoul_article.html",
-    "checker": "tokyo_ghoul_checker.html"
+    "checker": "tokyo_ghoul_checker.html",
+    "status": "active"
   },
   {
     "slug": "valvrave2",
     "name": "ヴァルヴレイヴ2",
-    "mode": "separated",
-    "sub": "既存構成",
     "article": "valvrave2_article.html",
-    "checker": "valvrave2_checker.html"
+    "checker": "valvrave2_checker.html",
+    "status": "active"
   }
 ]
