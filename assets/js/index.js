@@ -13,8 +13,8 @@ async function loadMachines() {
       const q = keyword.trim().toLowerCase();
       const filtered = machines.filter((m) => {
         return (
-          m.name.toLowerCase().includes(q) ||
-          m.slug.toLowerCase().includes(q)
+          (m.name || "").toLowerCase().includes(q) ||
+          (m.slug || "").toLowerCase().includes(q)
         );
       });
 
@@ -32,6 +32,9 @@ async function loadMachines() {
         const card = document.createElement("article");
         card.className = "machine-card";
 
+        const articleUrl = `machine.html?slug=${m.slug}`;
+        const checkerUrl = `checker.html?slug=${m.slug}`;
+
         card.innerHTML = `
           <div class="machine-card-head">
             <span class="machine-badge">MACHINE</span>
@@ -39,8 +42,8 @@ async function loadMachines() {
           </div>
           <p class="machine-slug">${m.slug}</p>
           <div class="machine-links">
-            <a class="btn" href="${m.article}">記事を見る</a>
-            <a class="btn btn-sub" href="${m.checker}">チェッカー</a>
+            <a class="btn" href="${articleUrl}">記事を見る</a>
+            <a class="btn btn-sub" href="${checkerUrl}">チェッカー</a>
           </div>
         `;
 
