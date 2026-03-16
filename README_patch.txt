@@ -1,1 +1,0 @@
-Upload these files over the repo. Machine pages now use machine.html?slug=xxx
