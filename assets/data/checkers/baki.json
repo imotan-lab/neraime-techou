@@ -1,9 +1,7 @@
 {
-  "gameThreshold": 400,
-  "resetThreshold": 200,
+  "gameThreshold": 0,
+  "resetThreshold": 0,
   "notes": [
-    "通常時は400G〜を目安",
-    "リセット後は200G〜を仮基準",
-    "前兆中や高確示唆があれば少し様子見"
+    "準備中"
   ]
 }
