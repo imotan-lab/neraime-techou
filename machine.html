@@ -17,41 +17,104 @@
     </div>
   </header>
 
-  <main class="wrap article-wrap">
+  <main class="wrap article-wrap article-wrap--priority-checker">
     <div class="article-main">
+      <section class="article-card checker-hero-card">
+        <div class="checker-hero-card__head">
+          <div>
+            <p class="section-kicker">このページの使い方</p>
+            <h2>まずはチェッカーで今の台を判定</h2>
+            <p id="checkerLead" class="checker-hero-lead">ホールで見ながらすぐ判断できるように、先にチェッカーを使う流れを基準にしています。</p>
+          </div>
+          <a class="btn btn-main checker-hero-btn" id="checkerLinkHero" href="#">狙い目チェッカーを開く</a>
+        </div>
+        <div id="quickSummary" class="summary-badges"></div>
+      </section>
+
+      <section class="article-card article-card--compact">
+        <p class="section-kicker">最初に結論</p>
+        <h2>北斗の立ち回り早見表</h2>
+        <div id="quickCards" class="quick-card-grid"></div>
+      </section>
+
       <section class="article-card">
-        <h2>概要</h2>
+        <p class="section-kicker">機種概要</p>
+        <h2>この機種の見方</h2>
         <p id="overview">読み込み中...</p>
       </section>
 
-      <section class="article-card article-grid">
-        <article class="mini-card">
+      <section class="article-card article-grid article-grid--emphasis">
+        <article class="mini-card mini-card--key">
+          <p class="mini-card__kicker">基準</p>
           <h2>天井</h2>
           <p id="tenjo">読み込み中...</p>
         </article>
-        <article class="mini-card">
-          <h2>狙い目</h2>
+        <article class="mini-card mini-card--key">
+          <p class="mini-card__kicker">基準</p>
+          <h2>天井恩恵</h2>
+          <p id="tenjoBenefit">読み込み中...</p>
+        </article>
+        <article class="mini-card mini-card--key">
+          <p class="mini-card__kicker">基準</p>
+          <h2>通常狙い目</h2>
           <p id="strategy">読み込み中...</p>
         </article>
-        <article class="mini-card">
-          <h2>やめどき</h2>
-          <p id="yametoki">読み込み中...</p>
-        </article>
-        <article class="mini-card">
-          <h2>リセット</h2>
+        <article class="mini-card mini-card--key">
+          <p class="mini-card__kicker">基準</p>
+          <h2>リセット狙い目</h2>
           <p id="reset">読み込み中...</p>
         </article>
       </section>
 
+      <section id="modeSection" class="article-card optional-section" hidden>
+        <p class="section-kicker">モード</p>
+        <h2>モード別の見方</h2>
+        <div id="modeGrid" class="info-list-grid"></div>
+      </section>
+
+      <section id="zoneSection" class="article-card optional-section" hidden>
+        <p class="section-kicker">ゾーン</p>
+        <h2>意識したいゾーン</h2>
+        <div id="zoneGrid" class="info-list-grid"></div>
+      </section>
+
+      <section class="article-card article-grid">
+        <article class="mini-card">
+          <p class="mini-card__kicker">実戦用</p>
+          <h2>やめどき</h2>
+          <p id="yametoki">読み込み中...</p>
+        </article>
+        <article class="mini-card">
+          <p class="mini-card__kicker">朝イチ</p>
+          <h2>有利区間・リセット仕様</h2>
+          <p id="resetSpec">読み込み中...</p>
+        </article>
+      </section>
+
+      <section class="article-card">
+        <p class="section-kicker">根拠</p>
+        <h2>この狙い目にしている理由</h2>
+        <p id="reason">読み込み中...</p>
+      </section>
+
       <section class="article-card caution-card">
+        <p class="section-kicker">注意</p>
         <h2>注意点</h2>
         <p id="caution">読み込み中...</p>
+      </section>
+
+      <section id="reviewSection" class="article-card optional-section" hidden>
+        <p class="section-kicker">実戦レビュー</p>
+        <h2>ユーザー傾向まとめ</h2>
+        <div id="reviewGrid" class="review-grid"></div>
       </section>
     </div>
 
     <aside class="article-side">
-      <section class="side-card">
-        <h2>関連リンク</h2>
+      <section class="side-card side-card--primary">
+        <p class="section-kicker">最優先</p>
+        <h2>ホールでの使い方</h2>
+        <div id="checkerSteps" class="step-list"></div>
         <div class="side-actions">
           <a class="btn btn-main btn-block" id="checkerLink" href="#">狙い目チェッカーへ</a>
           <a class="btn btn-sub btn-block" href="./">掲載機種一覧へ</a>
@@ -62,8 +125,86 @@
 
   <script>
     const slug = new URLSearchParams(location.search).get('slug');
-    const fillText = (id, value) => {
-      document.getElementById(id).textContent = value || '準備中';
+
+    const fillText = (id, value, fallback = '準備中') => {
+      document.getElementById(id).textContent = value || fallback;
+    };
+
+    const renderQuickCards = (cards) => {
+      const root = document.getElementById('quickCards');
+      const items = Array.isArray(cards) ? cards : [];
+      if (!items.length) {
+        root.innerHTML = '<article class="quick-card"><h3>通常狙い目</h3><p>準備中</p></article>';
+        return;
+      }
+      root.innerHTML = items.map(card => `
+        <article class="quick-card">
+          <p class="quick-card__label">${card.label || ''}</p>
+          <h3>${card.value || '準備中'}</h3>
+          <p>${card.note || ''}</p>
+        </article>
+      `).join('');
+    };
+
+    const renderSummaryBadges = (items) => {
+      const root = document.getElementById('quickSummary');
+      const badges = Array.isArray(items) ? items : [];
+      root.innerHTML = badges.map(item => `
+        <div class="summary-badge">
+          <span class="summary-badge__label">${item.label || ''}</span>
+          <strong>${item.value || ''}</strong>
+        </div>
+      `).join('');
+    };
+
+    const renderSteps = (items) => {
+      const root = document.getElementById('checkerSteps');
+      const steps = Array.isArray(items) ? items : [];
+      if (!steps.length) {
+        root.innerHTML = '<div class="step-item"><strong>1</strong><p>チェッカーでゲーム数を確認</p></div>';
+        return;
+      }
+      root.innerHTML = steps.map((text, index) => `
+        <div class="step-item">
+          <strong>${index + 1}</strong>
+          <p>${text}</p>
+        </div>
+      `).join('');
+    };
+
+    const renderInfoGrid = (sectionId, gridId, items) => {
+      const section = document.getElementById(sectionId);
+      const grid = document.getElementById(gridId);
+      const data = Array.isArray(items) ? items.filter(item => item && (item.title || item.name)) : [];
+      if (!data.length) {
+        section.hidden = true;
+        return;
+      }
+      section.hidden = false;
+      grid.innerHTML = data.map(item => `
+        <article class="info-card">
+          <h3>${item.title || item.name}</h3>
+          ${item.point ? `<p class="info-card__point">${item.point}</p>` : ''}
+          ${item.detail ? `<p>${item.detail}</p>` : ''}
+        </article>
+      `).join('');
+    };
+
+    const renderReviews = (items) => {
+      const section = document.getElementById('reviewSection');
+      const grid = document.getElementById('reviewGrid');
+      const data = Array.isArray(items) ? items.filter(item => item && item.title) : [];
+      if (!data.length) {
+        section.hidden = true;
+        return;
+      }
+      section.hidden = false;
+      grid.innerHTML = data.map(item => `
+        <article class="review-card">
+          <p class="review-card__label">${item.title}</p>
+          <p>${item.text || ''}</p>
+        </article>
+      `).join('');
     };
 
     Promise.all([
@@ -81,13 +222,25 @@
       document.getElementById('pageInfo').textContent = machine.info || '機種情報';
       document.getElementById('pageStrategy').textContent = '現在の狙い目：' + (machine.strategy || '準備中');
       document.getElementById('checkerLink').href = 'checker.html?slug=' + machine.slug;
+      document.getElementById('checkerLinkHero').href = 'checker.html?slug=' + machine.slug;
 
+      fillText('checkerLead', details.checkerLead, 'ホールで見ながらすぐ判断できるように、先にチェッカーを使う流れを基準にしています。');
       fillText('overview', details.overview);
       fillText('tenjo', details.tenjo);
+      fillText('tenjoBenefit', details.tenjoBenefit);
       fillText('strategy', details.strategy || machine.strategy);
       fillText('yametoki', details.yametoki);
       fillText('reset', details.reset);
+      fillText('resetSpec', details.resetSpec);
+      fillText('reason', details.reason);
       fillText('caution', details.caution);
+
+      renderQuickCards(details.quickCards);
+      renderSummaryBadges(details.summaryBadges);
+      renderSteps(details.checkerSteps);
+      renderInfoGrid('modeSection', 'modeGrid', details.modes);
+      renderInfoGrid('zoneSection', 'zoneGrid', details.zones);
+      renderReviews(details.reviews);
     }).catch(() => {
       document.getElementById('pageTitle').textContent = '読み込みに失敗しました';
     });

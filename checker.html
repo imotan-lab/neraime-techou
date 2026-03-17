@@ -13,32 +13,58 @@
       <a class="back-link" href="./">← 一覧に戻る</a>
       <p class="page-eyebrow">狙い目チェッカー</p>
       <h1 id="checkerTitle" class="page-title">読み込み中...</h1>
-      <p class="page-strategy">現在のゲーム数を入力して簡易判定できます。</p>
+      <p class="page-strategy">現在のゲーム数を入力して、ホールで見ながらすぐ判定できます。</p>
     </div>
   </header>
 
-  <main class="wrap checker-wrap">
-    <section class="checker-card">
-      <h2>通常時チェック</h2>
+  <main class="wrap checker-wrap checker-wrap--enhanced">
+    <section class="checker-card checker-card--hero">
+      <div class="checker-card__intro">
+        <div>
+          <p class="section-kicker">1秒判定</p>
+          <h2>現在のゲーム数で判定</h2>
+        </div>
+        <p id="checkerCatch" class="checker-catch">大きい記号で結論を先に表示し、下に短い理由を出します。</p>
+      </div>
       <label class="field-label" for="currentGame">現在のゲーム数</label>
-      <div class="checker-form">
-        <input id="currentGame" class="input" type="number" min="0" step="1" placeholder="例：420">
+      <div class="checker-form checker-form--stack-mobile">
+        <input id="currentGame" class="input" type="number" min="0" step="1" placeholder="例：620">
         <button id="judgeBtn" class="btn btn-main" type="button">判定する</button>
       </div>
-      <div id="judgeResult" class="judge-panel judge-panel--muted">数値を入れて判定してください。</div>
+      <div id="judgeResult" class="judge-panel judge-panel--muted">
+        <div class="judge-mark">-</div>
+        <div>
+          <p class="judge-title">数値を入れて判定してください。</p>
+          <p class="judge-reason">現在のG数から、打てるかどうかを簡易表示します。</p>
+        </div>
+      </div>
     </section>
 
-    <section class="checker-card checker-meta-grid">
+    <section class="checker-card article-card--compact">
+      <p class="section-kicker">結論早見表</p>
+      <h2>狙い目ライン</h2>
+      <div id="checkerSummary" class="quick-card-grid"></div>
+    </section>
+
+    <section class="checker-card checker-meta-grid checker-meta-grid--wide">
       <article class="mini-card">
+        <p class="mini-card__kicker">通常時</p>
         <h2>通常狙い目</h2>
         <p id="normalThreshold">準備中</p>
       </article>
       <article class="mini-card">
+        <p class="mini-card__kicker">朝イチ</p>
         <h2>リセット狙い目</h2>
         <p id="resetThreshold">準備中</p>
       </article>
+      <article class="mini-card">
+        <p class="mini-card__kicker">補足</p>
+        <h2>モード・判定基準</h2>
+        <ul id="modeNotes" class="notes-list"></ul>
+      </article>
       <article class="mini-card checker-notes">
-        <h2>メモ</h2>
+        <p class="mini-card__kicker">メモ</p>
+        <h2>実戦メモ</h2>
         <ul id="notesList" class="notes-list"></ul>
       </article>
     </section>
@@ -52,9 +78,42 @@
       return value && Number(value) > 0 ? value + 'G〜' : '準備中';
     };
 
-    const getThresholdText = (checker, key, textKey) => {
-      if (checker && checker[textKey]) return checker[textKey];
-      return setThresholdText(checker ? checker[key] : 0);
+    const renderList = (targetId, items, fallback = '準備中') => {
+      const root = document.getElementById(targetId);
+      const list = Array.isArray(items) ? items : [];
+      if (!list.length) {
+        root.innerHTML = '<li>' + fallback + '</li>';
+        return;
+      }
+      root.innerHTML = list.map(note => '<li>' + note + '</li>').join('');
+    };
+
+    const renderSummary = (items) => {
+      const root = document.getElementById('checkerSummary');
+      const list = Array.isArray(items) ? items : [];
+      if (!list.length) {
+        root.innerHTML = '<article class="quick-card"><h3>通常狙い目</h3><p>準備中</p></article>';
+        return;
+      }
+      root.innerHTML = list.map(item => `
+        <article class="quick-card quick-card--compact">
+          <p class="quick-card__label">${item.label || ''}</p>
+          <h3>${item.value || ''}</h3>
+          <p>${item.note || ''}</p>
+        </article>
+      `).join('');
+    };
+
+    const setJudgeResult = (state, mark, title, reason) => {
+      const result = document.getElementById('judgeResult');
+      result.className = 'judge-panel ' + state;
+      result.innerHTML = `
+        <div class="judge-mark">${mark}</div>
+        <div>
+          <p class="judge-title">${title}</p>
+          <p class="judge-reason">${reason}</p>
+        </div>
+      `;
     };
 
     Promise.all([
@@ -66,55 +125,59 @@
 
       document.getElementById('checkerTitle').textContent = machineData ? machineData.name : 'チェッカー';
       document.title = (machineData ? machineData.name + ' ' : '') + '狙い目チェッカー | 狙い目手帖';
+      document.getElementById('checkerCatch').textContent = checker.catchCopy || '大きい記号で結論を先に表示し、下に短い理由を出します。';
 
-      document.getElementById('normalThreshold').textContent = getThresholdText(checker, 'gameThreshold', 'gameThresholdText');
-      document.getElementById('resetThreshold').textContent = getThresholdText(checker, 'resetThreshold', 'resetThresholdText');
+      document.getElementById('normalThreshold').textContent = setThresholdText(checker.gameThreshold);
+      document.getElementById('resetThreshold').textContent = setThresholdText(checker.resetThreshold);
 
-      const notesList = document.getElementById('notesList');
-      const notes = Array.isArray(checker.notes) ? checker.notes : [];
-      if (!notes.length) {
-        notesList.innerHTML = '<li>準備中</li>';
-      } else {
-        notesList.innerHTML = notes.map(note => '<li>' + note + '</li>').join('');
-      }
+      renderList('notesList', checker.notes);
+      renderList('modeNotes', checker.modeNotes);
+      renderSummary(checker.summaryCards);
     }).catch(() => {
       document.getElementById('checkerTitle').textContent = '読み込みに失敗しました';
-      document.getElementById('judgeResult').textContent = 'チェッカーデータの読み込みに失敗しました。';
+      setJudgeResult('judge-panel--muted', '-', 'チェッカーデータの読み込みに失敗しました。', '時間を置いて再度お試しください。');
     });
 
     document.getElementById('judgeBtn').addEventListener('click', () => {
       const input = document.getElementById('currentGame');
-      const result = document.getElementById('judgeResult');
       const value = Number(input.value);
 
       if (!checkerData) {
-        result.className = 'judge-panel judge-panel--muted';
-        result.textContent = 'データ読み込み後にもう一度お試しください。';
+        setJudgeResult('judge-panel--muted', '-', 'データ読み込み後にもう一度お試しください。', '通信完了後に判定できます。');
         return;
       }
 
       if (!input.value) {
-        result.className = 'judge-panel judge-panel--muted';
-        result.textContent = 'ゲーム数を入力してください。';
+        setJudgeResult('judge-panel--muted', '-', 'ゲーム数を入力してください。', '例：620 のように入力してください。');
         return;
       }
 
       if (!checkerData.gameThreshold || Number(checkerData.gameThreshold) <= 0) {
-        result.className = 'judge-panel judge-panel--muted';
-        result.textContent = checkerData.gameThresholdText === '天井非搭載'
-          ? 'この機種はゲーム数天井の簡易判定対象外です。'
-          : 'この機種の通常時狙い目はまだ準備中です。';
+        setJudgeResult('judge-panel--muted', '-', 'この機種の通常時狙い目はまだ準備中です。', '別機種のチェッカーをお試しください。');
         return;
       }
 
-      if (value >= Number(checkerData.gameThreshold)) {
-        result.className = 'judge-panel judge-panel--ok';
-        result.textContent = '狙い目ライン到達です。候補としてチェックしてください。';
-      } else {
-        const diff = Number(checkerData.gameThreshold) - value;
-        result.className = 'judge-panel judge-panel--ng';
-        result.textContent = 'まだ浅めです。目安まであと' + diff + 'Gです。';
+      const threshold = Number(checkerData.gameThreshold);
+      const diff = threshold - value;
+      const heavyLine = Number(checkerData.recommendedThreshold || threshold);
+      const cautionLine = Number(checkerData.cautionThreshold || Math.max(0, threshold - 150));
+
+      if (value >= heavyLine) {
+        setJudgeResult('judge-panel--excellent', '◎', 'かなり狙いやすい水準です。', '天井までの距離が短く、通常狙い目をしっかり超えています。');
+        return;
       }
+
+      if (value >= threshold) {
+        setJudgeResult('judge-panel--ok', '○', '狙い目ラインです。', '通常狙い目に到達しているため、候補として打てる水準です。');
+        return;
+      }
+
+      if (value >= cautionLine) {
+        setJudgeResult('judge-panel--caution', '△', 'あと少しで候補です。', '通常狙い目まであと' + diff + 'Gです。店内を見ながら他候補と比較してください。');
+        return;
+      }
+
+      setJudgeResult('judge-panel--ng', '×', 'まだ浅めです。', '通常狙い目まであと' + diff + 'Gあるため、基本は見送り寄りです。');
     });
   </script>
 </body>
