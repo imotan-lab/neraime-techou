@@ -2,20 +2,114 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>チェッカー</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>狙い目チェッカー | 狙い目手帖</title>
+  <meta name="description" content="現在のゲーム数から狙い目かどうかを簡易判定するチェッカーです。">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <main class="wrap">
-    <h1>狙い目チェッカー</h1>
-    <pre id="out"></pre>
+  <header class="page-header">
+    <div class="wrap">
+      <a class="back-link" href="./">← 一覧に戻る</a>
+      <p class="page-eyebrow">狙い目チェッカー</p>
+      <h1 id="checkerTitle" class="page-title">読み込み中...</h1>
+      <p class="page-strategy">現在のゲーム数を入力して簡易判定できます。</p>
+    </div>
+  </header>
+
+  <main class="wrap checker-wrap">
+    <section class="checker-card">
+      <h2>通常時チェック</h2>
+      <label class="field-label" for="currentGame">現在のゲーム数</label>
+      <div class="checker-form">
+        <input id="currentGame" class="input" type="number" min="0" step="1" placeholder="例：420">
+        <button id="judgeBtn" class="btn btn-main" type="button">判定する</button>
+      </div>
+      <div id="judgeResult" class="judge-panel judge-panel--muted">数値を入れて判定してください。</div>
+    </section>
+
+    <section class="checker-card checker-meta-grid">
+      <article class="mini-card">
+        <h2>通常狙い目</h2>
+        <p id="normalThreshold">準備中</p>
+      </article>
+      <article class="mini-card">
+        <h2>リセット狙い目</h2>
+        <p id="resetThreshold">準備中</p>
+      </article>
+      <article class="mini-card checker-notes">
+        <h2>メモ</h2>
+        <ul id="notesList" class="notes-list"></ul>
+      </article>
+    </section>
   </main>
-<script>
-const slug = new URLSearchParams(location.search).get('slug');
-fetch('assets/data/checkers/'+slug+'.json').then(r=>r.json()).then(d=>{
-  document.getElementById('out').textContent = JSON.stringify(d,null,2);
-});
-</script>
+
+  <script>
+    const slug = new URLSearchParams(location.search).get('slug');
+    let checkerData = null;
+    let machineData = null;
+
+    const setThresholdText = (value) => {
+      return value && Number(value) > 0 ? value + 'G〜' : '準備中';
+    };
+
+    Promise.all([
+      fetch('assets/data/machines.json').then(r => r.json()),
+      fetch('assets/data/checkers/' + slug + '.json').then(r => r.json())
+    ]).then(([machines, checker]) => {
+      checkerData = checker;
+      machineData = machines.find(x => x.slug === slug);
+
+      document.getElementById('checkerTitle').textContent = machineData ? machineData.name : 'チェッカー';
+      document.title = (machineData ? machineData.name + ' ' : '') + '狙い目チェッカー | 狙い目手帖';
+
+      document.getElementById('normalThreshold').textContent = setThresholdText(checker.gameThreshold);
+      document.getElementById('resetThreshold').textContent = setThresholdText(checker.resetThreshold);
+
+      const notesList = document.getElementById('notesList');
+      const notes = Array.isArray(checker.notes) ? checker.notes : [];
+      if (!notes.length) {
+        notesList.innerHTML = '<li>準備中</li>';
+      } else {
+        notesList.innerHTML = notes.map(note => '<li>' + note + '</li>').join('');
+      }
+    }).catch(() => {
+      document.getElementById('checkerTitle').textContent = '読み込みに失敗しました';
+      document.getElementById('judgeResult').textContent = 'チェッカーデータの読み込みに失敗しました。';
+    });
+
+    document.getElementById('judgeBtn').addEventListener('click', () => {
+      const input = document.getElementById('currentGame');
+      const result = document.getElementById('judgeResult');
+      const value = Number(input.value);
+
+      if (!checkerData) {
+        result.className = 'judge-panel judge-panel--muted';
+        result.textContent = 'データ読み込み後にもう一度お試しください。';
+        return;
+      }
+
+      if (!input.value) {
+        result.className = 'judge-panel judge-panel--muted';
+        result.textContent = 'ゲーム数を入力してください。';
+        return;
+      }
+
+      if (!checkerData.gameThreshold || Number(checkerData.gameThreshold) <= 0) {
+        result.className = 'judge-panel judge-panel--muted';
+        result.textContent = 'この機種の通常時狙い目はまだ準備中です。';
+        return;
+      }
+
+      if (value >= Number(checkerData.gameThreshold)) {
+        result.className = 'judge-panel judge-panel--ok';
+        result.textContent = '狙い目ライン到達です。候補としてチェックしてください。';
+      } else {
+        const diff = Number(checkerData.gameThreshold) - value;
+        result.className = 'judge-panel judge-panel--ng';
+        result.textContent = 'まだ浅めです。目安まであと' + diff + 'Gです。';
+      }
+    });
+  </script>
 </body>
 </html>

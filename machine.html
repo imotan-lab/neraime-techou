@@ -2,33 +2,97 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>機種ページ</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>機種ページ | 狙い目手帖</title>
+  <meta name="description" content="機種ごとの狙い目・やめどき・リセット情報を掲載。">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <main class="wrap">
-    <h1 id="title"></h1>
-    <div id="content" class="content"></div>
+  <header class="page-header">
+    <div class="wrap">
+      <a class="back-link" href="./">← 一覧に戻る</a>
+      <p id="pageInfo" class="page-eyebrow">機種情報</p>
+      <h1 id="pageTitle" class="page-title">読み込み中...</h1>
+      <p id="pageStrategy" class="page-strategy"></p>
+    </div>
+  </header>
+
+  <main class="wrap article-wrap">
+    <div class="article-main">
+      <section class="article-card">
+        <h2>概要</h2>
+        <p id="overview">読み込み中...</p>
+      </section>
+
+      <section class="article-card article-grid">
+        <article class="mini-card">
+          <h2>天井</h2>
+          <p id="tenjo">読み込み中...</p>
+        </article>
+        <article class="mini-card">
+          <h2>狙い目</h2>
+          <p id="strategy">読み込み中...</p>
+        </article>
+        <article class="mini-card">
+          <h2>やめどき</h2>
+          <p id="yametoki">読み込み中...</p>
+        </article>
+        <article class="mini-card">
+          <h2>リセット</h2>
+          <p id="reset">読み込み中...</p>
+        </article>
+      </section>
+
+      <section class="article-card caution-card">
+        <h2>注意点</h2>
+        <p id="caution">読み込み中...</p>
+      </section>
+    </div>
+
+    <aside class="article-side">
+      <section class="side-card">
+        <h2>関連リンク</h2>
+        <div class="side-actions">
+          <a class="btn btn-main btn-block" id="checkerLink" href="#">狙い目チェッカーへ</a>
+          <a class="btn btn-sub btn-block" href="./">掲載機種一覧へ</a>
+        </div>
+      </section>
+    </aside>
   </main>
-<script>
-const slug = new URLSearchParams(location.search).get('slug');
 
-fetch('assets/data/machines.json').then(r=>r.json()).then(list=>{
-  const m = list.find(x=>x.slug===slug);
-  if(m){ document.getElementById('title').textContent = m.name; }
-});
+  <script>
+    const slug = new URLSearchParams(location.search).get('slug');
 
-fetch('assets/data/machine-details/'+slug+'.json').then(r=>r.json()).then(d=>{
-  const el = document.getElementById('content');
-  el.innerHTML = `
-    <h2>概要</h2><p>${d.overview}</p>
-    <h2>天井</h2><p>${d.tenjo}</p>
-    <h2>狙い目</h2><p>${d.strategy}</p>
-    <h2>やめどき</h2><p>${d.yametoki}</p>
-    <h2>リセット</h2><p>${d.reset}</p>
-    <h2>注意点</h2><p>${d.caution}</p>`;
-});
-</script>
+    const fillText = (id, value) => {
+      document.getElementById(id).textContent = value || '準備中';
+    };
+
+    Promise.all([
+      fetch('assets/data/machines.json').then(r => r.json()),
+      fetch('assets/data/machine-details/' + slug + '.json').then(r => r.json())
+    ]).then(([machines, details]) => {
+      const machine = machines.find(x => x.slug === slug);
+
+      if (!machine) {
+        document.getElementById('pageTitle').textContent = '機種が見つかりません';
+        return;
+      }
+
+      document.title = machine.name + ' | 狙い目手帖';
+      document.getElementById('pageTitle').textContent = machine.name;
+      document.getElementById('pageInfo').textContent = machine.info || '機種情報';
+      document.getElementById('pageStrategy').textContent = '現在の狙い目：' + (machine.strategy || '準備中');
+      document.getElementById('checkerLink').href = 'checker.html?slug=' + machine.slug;
+
+      fillText('overview', details.overview);
+      fillText('tenjo', details.tenjo);
+      fillText('strategy', details.strategy || machine.strategy);
+      fillText('yametoki', details.yametoki);
+      fillText('reset', details.reset);
+      fillText('caution', details.caution);
+    }).catch(() => {
+      document.getElementById('pageTitle').textContent = '読み込みに失敗しました';
+    });
+  </script>
 </body>
 </html>
