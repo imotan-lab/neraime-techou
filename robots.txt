@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://imotan-lab.github.io/neraime-techou/sitemap.xml
