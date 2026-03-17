@@ -5,327 +5,146 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>機種ページ | 狙い目手帖</title>
   <meta name="description" content="機種ごとの狙い目・やめどき・リセット情報を掲載しています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <div class="nav-backdrop" id="navBackdrop"></div>
-  <nav class="site-nav" id="siteNav" aria-hidden="true">
-    <button class="nav-close" id="navClose" aria-label="メニューを閉じる">×</button>
-    <div class="nav-search-wrap">
-      <div class="search-shell search-shell--nav">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 1 5.14-12.96A7.5 7.5 0 0 1 10.5 18Zm0 0 7 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <input id="navSearchInput" class="search-input" type="search" placeholder="機種名・略称で検索">
-      </div>
-    </div>
-    <div class="nav-links">
-      <a class="nav-link" href="./"><span>トップ</span></a>
-      <a class="nav-link" id="navCheckerLink" href="#"><span>チェッカー</span></a>
-      <a class="nav-link" href="./contact.html"><span>お問い合わせ</span></a>
-      <a class="nav-link" href="./privacy.html"><span>プライバシーポリシー</span></a>
-    </div>
-    <section class="nav-machine-section">
-      <h2 class="nav-section-title">機種一覧</h2>
-      <div id="navMachineList" class="nav-machine-list"></div>
-      <p id="navMachineEmpty" class="machine-empty u-hidden">一致する機種がありません。</p>
-    </section>
-  </nav>
-
   <header class="page-header">
-    <div class="wrap">
-      <div class="header-top">
-        <div class="brand-lockup">
-          <a class="back-link" href="./">← 一覧に戻る</a>
-          <p id="pageInfo" class="page-kicker">Machine Page</p>
-          <h1 id="pageTitle" class="page-title">読み込み中...</h1>
-          <p id="pageStrategy" class="page-strategy"></p>
-        </div>
-        <div class="header-actions">
-          <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く"><span></span></button>
-        </div>
-      </div>
+    <div class="wrap header-inner">
+      <a class="brand" href="./">
+        <p id="pageInfo" class="page-eyebrow">Machine Guide</p>
+        <h1 class="site-title">狙い目手帖</h1>
+      </a>
+      <a class="back-link" href="./">← 一覧へ戻る</a>
     </div>
   </header>
 
-  <main class="wrap article-wrap">
-    <div class="article-main">
-      <section class="page-hero">
-        <div class="page-hero-grid">
-          <div class="page-hero-card">
-            <p class="page-kicker">Strategy Article</p>
-            <h2 id="heroTitle" class="page-title">読み込み中...</h2>
-            <p id="overviewLead" class="hero-desc"></p>
-            <div id="pageTags" class="page-tags"></div>
+  <main class="wrap">
+    <section class="page-hero">
+      <div class="page-summary">
+        <section class="lead-card article-card">
+          <h1 id="pageTitle" class="page-title">読み込み中...</h1>
+          <p id="pageStrategy" class="page-strategy"></p>
+          <div class="quick-points">
+            <div class="quick-point"><strong id="quickTenjo">-</strong><span>天井</span></div>
+            <div class="quick-point"><strong id="quickAim">-</strong><span>通常狙い</span></div>
+            <div class="quick-point"><strong id="quickReset">-</strong><span>リセット</span></div>
           </div>
-          <aside class="checker-entry-card">
-            <h2 class="page-mini-title">狙い目チェッカー</h2>
-            <p id="checkerLead" class="checker-hero-lead"></p>
-            <a class="btn btn-main" id="checkerLinkHero" href="#">チェッカーへ</a>
-          </aside>
-        </div>
-      </section>
-
-      <section class="toc-card article-section">
-        <h2 class="toc-title">目次</h2>
-        <nav>
-          <ul class="toc-list" id="tocList"></ul>
-        </nav>
-      </section>
-
-      <section class="article-section" id="quick-guide">
-        <h2 class="section-title">立ち回り早見表</h2>
-        <div id="quickCards" class="quick-grid"></div>
-      </section>
-
-      <section class="article-section" id="overview-section">
-        <h2 class="section-title">機種概要</h2>
-        <p id="overview" class="section-text">読み込み中...</p>
-      </section>
-
-      <section class="article-section" id="basic-data">
-        <h2 class="table-title">天井・狙い目</h2>
-        <table class="info-table">
-          <tbody>
-            <tr><th>通常天井</th><td id="tenjo">読み込み中...</td></tr>
-            <tr><th>天井恩恵</th><td id="tenjoBenefit">読み込み中...</td></tr>
-            <tr><th>通常狙い目</th><td id="strategy">読み込み中...</td></tr>
-            <tr><th>設定変更時</th><td id="reset">読み込み中...</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="modeSection" class="article-section optional-section" hidden>
-        <h2 class="table-title">モード</h2>
-        <div id="modeGrid"></div>
-      </section>
-
-      <section id="zoneSection" class="article-section optional-section" hidden>
-        <h2 class="table-title">ゾーン</h2>
-        <div id="zoneGrid"></div>
-      </section>
-
-      <section class="article-section" id="play-tips">
-        <h2 class="table-title">やめどき・リセット</h2>
-        <table class="info-table">
-          <tbody>
-            <tr><th>やめどき</th><td id="yametoki">読み込み中...</td></tr>
-            <tr><th>有利区間・リセット仕様</th><td id="resetSpec">読み込み中...</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="article-section" id="reason-section">
-        <h2 class="section-title">狙い目の理由</h2>
-        <p id="reason" class="section-text">読み込み中...</p>
-      </section>
-
-      <section class="article-section" id="caution-section">
-        <h2 class="section-title">注意点</h2>
-        <p id="caution" class="section-text">読み込み中...</p>
-      </section>
-
-      <section id="reviewSection" class="article-section optional-section" hidden>
-        <h2 class="section-title">ユーザー傾向まとめ</h2>
-        <div id="reviewGrid" class="stack-list"></div>
-      </section>
-    </div>
-
-    <aside class="article-side">
-      <div class="top-action-card">
-        <h2 class="menu-group__title">移動</h2>
-        <div class="menu-links">
-          <a id="sideCheckerLink" href="#"><span>狙い目チェッカー</span><small>Checker</small></a>
-          <a href="./"><span>機種一覧</span><small>Top</small></a>
-        </div>
+        </section>
+        <aside class="toc-card">
+          <h2>目次</h2>
+          <nav>
+            <a href="#overviewSec">概要</a>
+            <a href="#tableSec">要点早見表</a>
+            <a href="#detailSec">補足</a>
+          </nav>
+        </aside>
       </div>
-    </aside>
+    </section>
+
+    <div class="article-wrap">
+      <div class="article-main">
+        <section id="overviewSec" class="article-card">
+          <h2>概要</h2>
+          <p id="overview">読み込み中...</p>
+        </section>
+
+        <section id="tableSec" class="article-card">
+          <h2>要点早見表</h2>
+          <div class="info-table" id="summaryTable"></div>
+          <p class="note">まずは表で全体像を確認し、細かい補足はその下で読む形にしています。</p>
+        </section>
+
+        <section id="detailSec" class="article-grid">
+          <article class="mini-card">
+            <h3>狙い目</h3>
+            <p id="strategy">読み込み中...</p>
+          </article>
+          <article class="mini-card">
+            <h3>やめどき</h3>
+            <p id="yametoki">読み込み中...</p>
+          </article>
+          <article class="mini-card">
+            <h3>リセット</h3>
+            <p id="reset">読み込み中...</p>
+          </article>
+          <article class="mini-card">
+            <h3>注意点</h3>
+            <p id="caution">読み込み中...</p>
+          </article>
+        </section>
+      </div>
+
+      <aside class="article-side">
+        <section class="side-card">
+          <h2>すぐ確認する</h2>
+          <p>現在G数の確認が必要なら、右下のボタンからチェッカーへ移動できます。</p>
+          <div class="side-actions">
+            <a class="btn btn-main btn-block" id="checkerLink" href="#">狙い目チェッカーへ</a>
+            <a class="btn btn-sub btn-block" href="./">機種一覧へ</a>
+          </div>
+        </section>
+      </aside>
+    </div>
   </main>
-
-  <footer>
-    <div class="wrap footer-wrap">
-      <div class="footer-logo">狙い目手帖</div>
-      <div class="footer-links">
-        <a href="privacy.html">プライバシーポリシー</a>
-        <a href="contact.html">お問い合わせ</a>
-      </div>
-      <div class="footer-copy">掲載内容は公開情報をもとに整理したものです。実際の立ち回りはご自身の判断でお願いいたします。</div>
-    </div>
-  </footer>
 
   <script>
     const slug = new URLSearchParams(location.search).get('slug');
-    const aliasMap = {
-      baki: ['刃牙','ばき','baki'], banchou4: ['番長','番長4','ばんちょう'], biohazard: ['バイオ','ばいお'],
-      chibaryo2: ['チバリヨ','ちばりよ','ちば'], dumbbell: ['ダンベル','だんべる'], goblin: ['ゴブスレ','ごぶすれ'],
-      godeater: ['ゴッドイーター','ごっどいーたー'], hokuto: ['北斗','ほくと'], hokuto_tensei2: ['転生2','てんせい2'],
-      kabaneri: ['カバネリ','かばねり','かば'], kaguya: ['かぐや','かぐや様'], koukaku: ['攻殻','こうかく'],
-      monkeyv: ['モンキー','もんきー'], sf5: ['スト5','ストV','すと5'], tekken6: ['鉄拳','てっけん'],
-      tensura: ['転スラ','てんすら'], tokyo_ghoul: ['喰種','グール','ぐーる'], valvrave2: ['ヴヴヴ','ゔゔゔ','ヴァルヴレイヴ']
-    };
-    const hiraToKata = (value) => String(value || '').replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
-    const normalize = (value) => hiraToKata(String(value || '').toLowerCase()).replace(/[\s　・\-ー_！？!?,.]/g, '');
-    let machinesList = [];
 
-    const machineLabel = (machine) => String(machine?.name || '').replace(/^スマスロ\s*/, '');
-
-    const enrichText = (value) => {
-      if (!value) return '準備中';
-      return String(value)
-        .replace(/(◎|○|△|×)/g, (_, mark) => {
-          const cls = ({ '◎': 'rank-mark rank-mark--excellent', '○': 'rank-mark rank-mark--ok', '△': 'rank-mark rank-mark--caution', '×': 'rank-mark rank-mark--ng' })[mark] || 'rank-mark';
-          return '<span class="' + cls + '">' + mark + '</span>';
-        })
-        .replace(/(\d+[G枚%]\/\d+|\d+G\+α|\d+G|\d+枚|\d+%|\d+pt|\d+あべし)/g, '<span class="u-num">$1</span>')
-        .replace(/(重要|高期待|要注意|即ヤメ|天国|本前兆|通常A|通常B|地獄)/g, '<strong class="u-line">$1</strong>');
+    const fillText = (id, value) => {
+      document.getElementById(id).textContent = value || '準備中';
     };
 
-    const fillHTML = (id, value, fallback = '準備中') => {
-      document.getElementById(id).innerHTML = enrichText(value || fallback);
-    };
-
-    const buildTags = (details, machine) => {
-      const raw = [machineLabel(machine), details.strategy, details.reset, details.yametoki]
-        .filter(Boolean)
-        .join(' / ');
-      const tags = [];
-      const candidates = ['天井','狙い目','やめどき','リセット','モード','ゾーン'];
-      candidates.forEach(tag => { if (raw.includes(tag)) tags.push(tag); });
-      if (!tags.length) tags.push('狙い目','やめどき');
-      return tags.slice(0, 6);
-    };
-
-    const renderQuickCards = (cards) => {
-      const root = document.getElementById('quickCards');
-      const items = Array.isArray(cards) ? cards : [];
-      root.innerHTML = items.length ? items.map(card => `
-        <article class="quick-item">
-          <span class="quick-item__label">${card.label || ''}</span>
-          <h3 class="quick-item__value">${enrichText(card.value || '準備中')}</h3>
-          <p class="quick-item__note">${enrichText(card.note || '')}</p>
-        </article>
-      `).join('') : '<article class="quick-item"><h3 class="quick-item__value">準備中</h3></article>';
-    };
-
-    const renderInfoGrid = (sectionId, gridId, items) => {
-      const section = document.getElementById(sectionId);
-      const grid = document.getElementById(gridId);
-      const data = Array.isArray(items) ? items.filter(item => item && (item.title || item.name)) : [];
-      if (!data.length) { section.hidden = true; return; }
-      section.hidden = false;
-      grid.innerHTML = `
-        <table class="info-table">
-          <tbody>
-            ${data.map(item => `
-              <tr>
-                <th>${item.title || item.name}</th>
-                <td>${item.point ? `<p>${enrichText(item.point)}</p>` : ''}${item.detail ? `<p class="table-cell-note">${enrichText(item.detail)}</p>` : ''}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      `;
-    };
-
-    const renderReviews = (items) => {
-      const section = document.getElementById('reviewSection');
-      const grid = document.getElementById('reviewGrid');
-      const data = Array.isArray(items) ? items.filter(item => item && item.title) : [];
-      if (!data.length) { section.hidden = true; return; }
-      section.hidden = false;
-      grid.innerHTML = data.map(item => `<article class="stack-item"><h3>${item.title}</h3><p>${enrichText(item.text || '')}</p></article>`).join('');
-    };
-
-    const buildToc = () => {
-      const tocItems = [
-        ['quick-guide', '立ち回り早見表'], ['overview-section', '機種概要'], ['basic-data', '天井・狙い目'],
-        ['modeSection', 'モード'], ['zoneSection', 'ゾーン'], ['play-tips', 'やめどき・リセット'],
-        ['reason-section', '狙い目の理由'], ['caution-section', '注意点'], ['reviewSection', 'ユーザー傾向まとめ']
-      ];
-      const visible = tocItems.filter(([id]) => {
-        const el = document.getElementById(id);
-        return el && !el.hidden;
-      });
-      document.getElementById('tocList').innerHTML = visible.map(([id, label], index) => `
-        <li><a class="toc-link" href="#${id}"><span>${label}</span><span>${String(index + 1).padStart(2, '0')}</span></a></li>
-      `).join('');
-    };
-
-    const renderNavMachines = (query='') => {
-      const q = normalize(query);
-      const filtered = machinesList.filter(machine => {
-        if (!q) return true;
-        const aliases = aliasMap[machine.slug] || [];
-        const corpus = [machine.name, machine.slug, ...aliases].map(normalize).join('|');
-        return corpus.includes(q);
-      });
-      const root = document.getElementById('navMachineList');
-      const empty = document.getElementById('navMachineEmpty');
-      root.innerHTML = filtered.map(machine => `<div class="nav-machine-item"><a class="nav-machine-link" href="machine.html?slug=${machine.slug}">${machineLabel(machine)}</a><a class="nav-machine-checker" href="checker.html?slug=${machine.slug}">判定</a></div>`).join('');
-      empty.classList.toggle('u-hidden', filtered.length > 0);
-    };
+    function pickStartNumber(text) {
+      const m = String(text || '').match(/\d+[A-Za-zぁ-んァ-ヶ一-龠\+〜~]*/);
+      return m ? m[0] : '確認中';
+    }
 
     Promise.all([
       fetch('assets/data/machines.json').then(r => r.json()),
-      fetch('assets/data/machine-details/' + slug + '.json').then(r => r.json())
-    ]).then(([machines, details]) => {
-      machinesList = Array.isArray(machines) ? machines : [];
-      const machine = machinesList.find(x => x.slug === slug);
-      renderNavMachines('');
+      fetch('assets/data/machine-details/' + slug + '.json').then(r => r.json()),
+      fetch('assets/data/checkers/' + slug + '.json').then(r => r.json()).catch(() => null)
+    ]).then(([machines, details, checker]) => {
+      const machine = machines.find(x => x.slug === slug);
       if (!machine) {
         document.getElementById('pageTitle').textContent = '機種が見つかりません';
-        document.getElementById('heroTitle').textContent = '機種が見つかりません';
-        document.getElementById('pageStrategy').classList.add('is-empty');
         return;
       }
 
-      const label = machineLabel(machine);
-      document.title = label + ' | 狙い目手帖';
-      document.getElementById('pageTitle').textContent = label;
-      document.getElementById('heroTitle').textContent = label;
-      const strategy = machine.strategy ? '狙い目：' + machine.strategy : '';
-      if (strategy) document.getElementById('pageStrategy').innerHTML = enrichText(strategy);
-      else document.getElementById('pageStrategy').classList.add('is-empty');
+      document.title = machine.name + ' | 狙い目手帖';
+      document.getElementById('pageTitle').textContent = machine.name;
+      document.getElementById('pageInfo').textContent = machine.info || 'Machine Guide';
+      document.getElementById('pageStrategy').textContent = machine.strategy ? '現在の通常狙い目の目安：' + machine.strategy : '狙い目は確認中です。';
+      document.getElementById('checkerLink').href = 'checker.html?slug=' + machine.slug;
 
-      document.getElementById('checkerLead').textContent = details.checkerLead || '気になる台を先に判定できます。';
-      document.getElementById('overviewLead').textContent = details.overview || '';
-      document.getElementById('pageTags').innerHTML = buildTags(details, machine).map(tag => `<span class="tag">${tag}</span>`).join('');
-      fillHTML('overview', details.overview);
-      fillHTML('tenjo', details.tenjo);
-      fillHTML('tenjoBenefit', details.tenjoBenefit);
-      fillHTML('strategy', details.strategy);
-      fillHTML('reset', details.reset);
-      fillHTML('yametoki', details.yametoki);
-      fillHTML('resetSpec', details.resetSpec);
-      fillHTML('reason', details.reason);
-      fillHTML('caution', details.caution);
-      renderQuickCards(details.quickCards);
-      renderInfoGrid('modeSection', 'modeGrid', details.modes);
-      renderInfoGrid('zoneSection', 'zoneGrid', details.zones);
-      renderReviews(details.reviews);
-      buildToc();
-      const checkerHref = 'checker.html?slug=' + machine.slug;
-      document.getElementById('checkerLinkHero').href = checkerHref;
-      document.getElementById('sideCheckerLink').href = checkerHref;
-      document.getElementById('navCheckerLink').href = checkerHref;
+      fillText('overview', details.overview);
+      fillText('strategy', details.strategy || machine.strategy);
+      fillText('yametoki', details.yametoki);
+      fillText('reset', details.reset);
+      fillText('caution', details.caution);
+
+      document.getElementById('quickTenjo').textContent = pickStartNumber(details.tenjo);
+      document.getElementById('quickAim').textContent = checker && checker.gameThreshold ? checker.gameThreshold + 'G〜' : (machine.strategy || '確認中');
+      document.getElementById('quickReset').textContent = checker && checker.resetThreshold ? checker.resetThreshold + 'G〜' : '確認中';
+
+      const rows = [
+        ['天井', details.tenjo || '準備中'],
+        ['通常狙い目', details.strategy || machine.strategy || '準備中'],
+        ['やめどき', details.yametoki || '準備中'],
+        ['リセット', details.reset || '準備中'],
+        ['注意点', details.caution || '準備中']
+      ];
+      document.getElementById('summaryTable').innerHTML = rows.map(([label, value]) => `
+        <div class="info-row">
+          <div class="info-label">${label}</div>
+          <div class="info-value">${value}</div>
+        </div>
+      `).join('');
     }).catch(() => {
       document.getElementById('pageTitle').textContent = '読み込みに失敗しました';
-      document.getElementById('heroTitle').textContent = '読み込みに失敗しました';
     });
-
-    document.getElementById('navSearchInput').addEventListener('input', (e) => renderNavMachines(e.target.value));
-
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('siteNav');
-    const navBackdrop = document.getElementById('navBackdrop');
-    const navClose = document.getElementById('navClose');
-    const setMenu = (open) => {
-      nav.classList.toggle('is-open', open);
-      navBackdrop.classList.toggle('is-open', open);
-      menuToggle.classList.toggle('is-open', open);
-      nav.setAttribute('aria-hidden', open ? 'false' : 'true');
-    };
-    menuToggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-    navClose.addEventListener('click', () => setMenu(false));
-    navBackdrop.addEventListener('click', () => setMenu(false));
   </script>
 </body>
 </html>

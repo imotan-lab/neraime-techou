@@ -1,37 +1,9 @@
 {
-  "gameThreshold": 600,
-  "recommendedThreshold": 700,
-  "cautionThreshold": 520,
-  "resetThreshold": 0,
-  "resetRecommendedThreshold": 0,
-  "resetCautionThreshold": 0,
-  "resetLabel": "0G〜",
-  "catchCopy": "",
-  "summaryCards": [
-    {
-      "label": "通常時",
-      "value": "600G〜 ○",
-      "note": "等価の実戦ライン寄り。まずはここから候補です。"
-    },
-    {
-      "label": "強め",
-      "value": "700G〜 ◎",
-      "note": "交換率や投資条件まで踏まえると、より優先しやすいラインです。"
-    },
-    {
-      "label": "リセット時",
-      "value": "0G〜 ◎",
-      "note": "天井短縮の影響で、等価なら0Gから期待値が見込める目安です。"
-    }
-  ],
-  "modeNotes": [
-    "内部モードは 地獄＜通常＜天国＜本前兆 の順で期待度アップ",
-    "ジャギステージは天国期待、ラオウステージは本前兆期待として優先確認",
-    "シン・サウザー滞在で強い示唆がないなら、まずはG数基準を優先"
-  ],
+  "gameThreshold": 450,
+  "resetThreshold": 250,
   "notes": [
-    "通常時は600G〜を基準、700G〜はより優先して狙いたいライン",
-    "リセット時は天井短縮を踏まえて通常時より浅めから見やすい",
-    "BB終了後はボイス・ステージ・前兆感を見て、弱ければ引っ張りすぎない"
+    "通常時は450G〜を目安",
+    "リセット後は250G〜を仮基準",
+    "前兆中や高モード示唆があれば少し様子見"
   ]
 }

@@ -5,186 +5,132 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>狙い目チェッカー | 狙い目手帖</title>
   <meta name="description" content="現在のゲーム数から狙い目かどうかを簡易判定するチェッカーです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <div class="nav-backdrop" id="navBackdrop"></div>
-  <nav class="site-nav" id="siteNav" aria-hidden="true">
-    <button class="nav-close" id="navClose" aria-label="メニューを閉じる">×</button>
-    <div class="nav-search-wrap">
-      <div class="search-shell search-shell--nav">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 1 5.14-12.96A7.5 7.5 0 0 1 10.5 18Zm0 0 7 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <input id="navSearchInput" class="search-input" type="search" placeholder="機種名・略称で検索">
-      </div>
-    </div>
-    <div class="nav-links">
-      <a class="nav-link" href="./"><span>トップ</span></a>
-      <a class="nav-link" id="navArticleLink" href="#"><span>記事ページ</span></a>
-      <a class="nav-link" href="./contact.html"><span>お問い合わせ</span></a>
-      <a class="nav-link" href="./privacy.html"><span>プライバシーポリシー</span></a>
-    </div>
-    <section class="nav-machine-section">
-      <h2 class="nav-section-title">機種一覧</h2>
-      <div id="navMachineList" class="nav-machine-list"></div>
-      <p id="navMachineEmpty" class="machine-empty u-hidden">一致する機種がありません。</p>
-    </section>
-  </nav>
-
   <header class="page-header">
-    <div class="wrap">
-      <div class="header-top">
-        <div class="brand-lockup">
-          <a class="back-link" href="./">← 一覧に戻る</a>
-          <p class="page-kicker">Checker</p>
-          <h1 id="checkerTitle" class="page-title">読み込み中...</h1>
-        </div>
-        <div class="header-actions">
-          <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く"><span></span></button>
-        </div>
-      </div>
+    <div class="wrap header-inner">
+      <a class="brand" href="./">
+        <p class="page-eyebrow">Checker Tool</p>
+        <h1 class="site-title">狙い目手帖</h1>
+      </a>
+      <a id="articleBack" class="back-link" href="./">← 記事へ戻る</a>
     </div>
   </header>
 
-  <main class="wrap checker-wrap">
-    <section class="checker-card">
-      <div class="checker-title-row">
-        <div>
-          <h2 class="page-mini-title">狙い目チェッカー</h2>
-          <p class="checker-copy">状態を選んでゲーム数を入れるだけで自動判定します。</p>
-        </div>
-      </div>
-      <div class="checker-input-row">
-        <div class="checker-state-switch" id="stateSwitch">
-          <button type="button" class="state-btn is-active" data-state="normal">通常</button>
-          <button type="button" class="state-btn" data-state="reset">リセット</button>
-        </div>
-        <input id="currentGame" class="input" type="number" min="0" step="1" inputmode="numeric" placeholder="ゲーム数を入力">
-      </div>
-      <div id="judgeResult" class="judge-panel judge-panel--muted">
-        <div class="judge-mark judge-mark--cross">×</div>
-        <div>
-          <p class="judge-title">入力待ち</p>
-          <p class="judge-reason"></p>
-        </div>
+  <main class="wrap">
+    <section class="page-hero">
+      <div class="page-summary">
+        <section class="lead-card article-card">
+          <h1 id="checkerTitle" class="page-title">読み込み中...</h1>
+          <p class="page-strategy">現在のゲーム数と台の状態を入れると、自動で簡易判定します。</p>
+        </section>
+        <aside class="toc-card">
+          <h2>入力項目</h2>
+          <nav>
+            <a href="#checkerMain">通常 / リセット</a>
+            <a href="#checkerMain">現在のゲーム数</a>
+            <a href="#checkerMain">判定結果</a>
+          </nav>
+        </aside>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="wrap footer-wrap">
-      <div class="footer-logo">狙い目手帖</div>
-      <div class="footer-links">
-        <a href="privacy.html">プライバシーポリシー</a>
-        <a href="contact.html">お問い合わせ</a>
-      </div>
-      <div class="footer-copy">掲載内容は公開情報をもとに整理したものです。実際の立ち回りはご自身の判断でお願いいたします。</div>
+    <div class="checker-wrap">
+      <section id="checkerMain" class="checker-card">
+        <h2>狙い目チェッカー</h2>
+        <div class="checker-form">
+          <div>
+            <label class="field-label" for="stateSelect">台の状態</label>
+            <div class="inline-fields">
+              <select id="stateSelect" class="select">
+                <option value="normal">通常</option>
+                <option value="reset">リセット</option>
+              </select>
+              <input id="currentGame" class="input" type="number" min="0" step="1" placeholder="現在のゲーム数を入力">
+            </div>
+          </div>
+        </div>
+
+        <div id="judgeResult" class="judge-panel judge-panel--muted">
+          <p class="judge-rank">-</p>
+          <p class="judge-title">数値を入力するとここに判定が出ます</p>
+          <p class="judge-text">記事ページで基準を見ながら、最後の確認として使う想定です。</p>
+        </div>
+      </section>
+
+      <aside class="side-card">
+        <h2>判定の見方</h2>
+        <div class="info-table">
+          <div class="info-row"><div class="info-label">◎</div><div class="info-value">狙い目ライン到達</div></div>
+          <div class="info-row"><div class="info-label">○</div><div class="info-value">あと少しで狙い目</div></div>
+          <div class="info-row"><div class="info-label">×</div><div class="info-value">まだ浅め</div></div>
+        </div>
+        <p class="note">機種ごとの補足は記事ページで確認し、このページは最終判断に絞っています。</p>
+      </aside>
     </div>
-  </footer>
+  </main>
 
   <script>
     const slug = new URLSearchParams(location.search).get('slug');
     let checkerData = null;
-    let currentState = 'normal';
-    let machinesList = [];
-    const aliasMap = {
-      baki: ['刃牙','ばき'], banchou4: ['番長','ばんちょう'], biohazard: ['バイオ','ばいお'], chibaryo2: ['チバリヨ','ちばりよ','ちば'],
-      dumbbell: ['ダンベル','だんべる'], goblin: ['ゴブスレ','ごぶすれ'], godeater: ['ゴッドイーター','ごっどいーたー'], hokuto: ['北斗','ほくと'],
-      hokuto_tensei2: ['転生2','てんせい2'], kabaneri: ['カバネリ','かばねり','かば'], kaguya: ['かぐや'], koukaku: ['攻殻','こうかく'],
-      monkeyv: ['モンキー','もんきー'], sf5: ['スト5','ストV','すと5'], tekken6: ['鉄拳','てっけん'], tensura: ['転スラ','てんすら'],
-      tokyo_ghoul: ['喰種','グール','ぐーる'], valvrave2: ['ヴヴヴ','ゔゔゔ','ヴァルヴレイヴ']
-    };
-    const hiraToKata = (value) => String(value || '').replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
-    const normalize = (value) => hiraToKata(String(value || '').toLowerCase()).replace(/[\s　・\-ー_！？!?,.]/g, '');
-    const machineLabel = (machine) => String(machine?.name || '').replace(/^スマスロ\s*/, '');
+    let machineData = null;
 
-    const renderNavMachines = (query='') => {
-      const q = normalize(query);
-      const filtered = machinesList.filter(machine => {
-        if (!q) return true;
-        const aliases = aliasMap[machine.slug] || [];
-        const corpus = [machine.name, machine.slug, ...aliases].map(normalize).join('|');
-        return corpus.includes(q);
-      });
-      const root = document.getElementById('navMachineList');
-      const empty = document.getElementById('navMachineEmpty');
-      root.innerHTML = filtered.map(machine => `<div class="nav-machine-item"><a class="nav-machine-link" href="machine.html?slug=${machine.slug}">${machineLabel(machine)}</a><a class="nav-machine-checker" href="checker.html?slug=${machine.slug}">判定</a></div>`).join('');
-      empty.classList.toggle('u-hidden', filtered.length > 0);
-    };
-
-    const setJudgeResult = (state, mark, title, reason = '') => {
+    function renderResult(mode, value) {
       const result = document.getElementById('judgeResult');
-      const markClass = mark === '×' ? 'judge-mark judge-mark--cross' : 'judge-mark';
-      result.className = 'judge-panel ' + state;
-      result.innerHTML = `<div class="${markClass}">${mark || '×'}</div><div><p class="judge-title">${title}</p><p class="judge-reason">${reason}</p></div>`;
-    };
-
-    const getThresholdConfig = () => {
-      const normal = Number(checkerData?.gameThreshold || 0);
-      const recommended = Number(checkerData?.recommendedThreshold || normal || 0);
-      const caution = Number(checkerData?.cautionThreshold || Math.max(0, normal - 150));
-      const reset = Number(checkerData?.resetThreshold || 0);
-      if (currentState === 'reset') {
-        return { threshold: reset, recommended: Number(checkerData?.resetRecommendedThreshold ?? reset), caution: Math.max(0, Number(checkerData?.resetCautionThreshold ?? reset)) };
+      if (!checkerData) {
+        result.className = 'judge-panel judge-panel--muted';
+        result.innerHTML = '<p class="judge-rank">-</p><p class="judge-title">データ読み込み中です</p><p class="judge-text">少し待ってからもう一度確認してください。</p>';
+        return;
       }
-      return { threshold: normal, recommended, caution };
-    };
-
-    const runJudge = () => {
-      const raw = document.getElementById('currentGame').value.trim();
-      if (!checkerData) return setJudgeResult('judge-panel--muted', '×', '読み込み中');
-      if (!raw) return setJudgeResult('judge-panel--muted', '×', '入力待ち');
-      const value = Number(raw);
-      if (!Number.isFinite(value) || value < 0) return setJudgeResult('judge-panel--muted', '×', '入力エラー');
-      const config = getThresholdConfig();
-      const resetZeroAllowed = currentState === 'reset' && Number(checkerData?.resetThreshold) === 0;
-      if ((!resetZeroAllowed && !config.threshold) || config.threshold < 0) return setJudgeResult('judge-panel--muted', '×', '判定対象外');
-      const diff = Math.max(0, config.threshold - value);
-      if (value >= config.recommended) return setJudgeResult('judge-panel--excellent', '◎', '狙い目', '基準をしっかり超えています');
-      if (value >= config.threshold) return setJudgeResult('judge-panel--ok', '○', '候補', '基準ラインに到達しています');
-      if (value >= config.caution) return setJudgeResult('judge-panel--caution', '△', '様子見', 'あと' + diff + 'G');
-      return setJudgeResult('judge-panel--ng', '×', '見送り', 'あと' + diff + 'G');
-    };
+      if (!value && value !== 0) {
+        result.className = 'judge-panel judge-panel--muted';
+        result.innerHTML = '<p class="judge-rank">-</p><p class="judge-title">数値を入力すると判定します</p><p class="judge-text">記事ページで基準を確認しながら最後の判断に使う想定です。</p>';
+        return;
+      }
+      const threshold = mode === 'reset' ? Number(checkerData.resetThreshold || 0) : Number(checkerData.gameThreshold || 0);
+      if (!threshold) {
+        result.className = 'judge-panel judge-panel--muted';
+        result.innerHTML = '<p class="judge-rank">-</p><p class="judge-title">この機種の基準は確認中です</p><p class="judge-text">詳細は記事ページでご確認ください。</p>';
+        return;
+      }
+      const diff = threshold - value;
+      if (value >= threshold) {
+        result.className = 'judge-panel judge-panel--ok';
+        result.innerHTML = `<p class="judge-rank">◎</p><p class="judge-title">狙い目ラインに到達しています</p><p class="judge-text">${mode === 'reset' ? 'リセット時' : '通常時'}の目安 ${threshold}G〜 を満たしています。` + (machineData && machineData.strategy ? `記事の基準は ${machineData.strategy} です。` : '') + '</p>';
+      } else if (diff <= 100) {
+        result.className = 'judge-panel judge-panel--warn';
+        result.innerHTML = `<p class="judge-rank">○</p><p class="judge-title">あと少しで狙い目ラインです</p><p class="judge-text">${mode === 'reset' ? 'リセット時' : '通常時'}の目安 ${threshold}G〜 まであと ${diff}G です。</p>`;
+      } else {
+        result.className = 'judge-panel judge-panel--ng';
+        result.innerHTML = `<p class="judge-rank">×</p><p class="judge-title">まだ浅めです</p><p class="judge-text">${mode === 'reset' ? 'リセット時' : '通常時'}の目安 ${threshold}G〜 まであと ${diff}G あります。</p>`;
+      }
+    }
 
     Promise.all([
       fetch('assets/data/machines.json').then(r => r.json()),
       fetch('assets/data/checkers/' + slug + '.json').then(r => r.json())
     ]).then(([machines, checker]) => {
-      machinesList = Array.isArray(machines) ? machines : [];
-      renderNavMachines('');
       checkerData = checker;
-      const machineData = machinesList.find(x => x.slug === slug);
-      document.getElementById('checkerTitle').textContent = machineData ? machineLabel(machineData) + ' チェッカー' : 'チェッカー';
-      document.title = (machineData ? machineLabel(machineData) + ' ' : '') + '狙い目チェッカー | 狙い目手帖';
-      document.getElementById('navArticleLink').href = machineData ? ('machine.html?slug=' + machineData.slug) : './';
-      runJudge();
+      machineData = machines.find(x => x.slug === slug);
+      document.getElementById('checkerTitle').textContent = machineData ? machineData.name + ' チェッカー' : '狙い目チェッカー';
+      document.getElementById('articleBack').href = machineData ? 'machine.html?slug=' + machineData.slug : './';
+      document.title = (machineData ? machineData.name + ' ' : '') + '狙い目チェッカー | 狙い目手帖';
+      renderResult(document.getElementById('stateSelect').value, Number(document.getElementById('currentGame').value));
     }).catch(() => {
       document.getElementById('checkerTitle').textContent = '読み込みに失敗しました';
-      setJudgeResult('judge-panel--muted', '×', '読み込み失敗');
     });
 
-    document.getElementById('currentGame').addEventListener('input', runJudge);
-    document.getElementById('navSearchInput').addEventListener('input', (e) => renderNavMachines(e.target.value));
-    document.getElementById('stateSwitch').addEventListener('click', (event) => {
-      const button = event.target.closest('.state-btn');
-      if (!button) return;
-      currentState = button.dataset.state || 'normal';
-      document.querySelectorAll('.state-btn').forEach(btn => btn.classList.toggle('is-active', btn === button));
-      runJudge();
+    document.getElementById('stateSelect').addEventListener('change', () => {
+      renderResult(document.getElementById('stateSelect').value, Number(document.getElementById('currentGame').value));
     });
-
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('siteNav');
-    const navBackdrop = document.getElementById('navBackdrop');
-    const navClose = document.getElementById('navClose');
-    const setMenu = (open) => {
-      nav.classList.toggle('is-open', open);
-      navBackdrop.classList.toggle('is-open', open);
-      menuToggle.classList.toggle('is-open', open);
-      nav.setAttribute('aria-hidden', open ? 'false' : 'true');
-    };
-    menuToggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-    navClose.addEventListener('click', () => setMenu(false));
-    navBackdrop.addEventListener('click', () => setMenu(false));
+    document.getElementById('currentGame').addEventListener('input', (e) => {
+      const raw = e.target.value;
+      renderResult(document.getElementById('stateSelect').value, raw === '' ? null : Number(raw));
+    });
   </script>
 </body>
 </html>

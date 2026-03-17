@@ -3,220 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>狙い目手帖 | スロット天井・狙い目まとめ</title>
-  <meta name="description" content="スロットの天井・狙い目・やめどきと、ホールでそのまま使える狙い目チェッカーをまとめています。">
+  <title>狙い目手帖</title>
+  <meta name="description" content="スロットの狙い目・やめどき・リセット情報を機種別に確認できる狙い目情報サイトです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <div class="nav-backdrop" id="navBackdrop"></div>
-  <nav class="site-nav" id="siteNav" aria-hidden="true">
-    <button class="nav-close" id="navClose" aria-label="メニューを閉じる">×</button>
-    <div class="nav-search-wrap">
-      <div class="search-shell search-shell--nav">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 1 5.14-12.96A7.5 7.5 0 0 1 10.5 18Zm0 0 7 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <input id="navSearchInput" class="search-input" type="search" placeholder="機種名・略称で検索">
-      </div>
-    </div>
-    <div class="nav-links">
-      <a class="nav-link" href="./"><span>トップ</span></a>
-      <a class="nav-link" href="./#machine-search"><span>機種一覧</span></a>
-      <a class="nav-link" href="./contact.html"><span>お問い合わせ</span></a>
-      <a class="nav-link" href="./privacy.html"><span>プライバシーポリシー</span></a>
-    </div>
-    <section class="nav-machine-section">
-      <h2 class="nav-section-title">機種一覧</h2>
-      <div id="navMachineList" class="nav-machine-list"></div>
-      <p id="navMachineEmpty" class="machine-empty u-hidden">一致する機種がありません。</p>
-    </section>
-  </nav>
-
   <header class="site-header">
-    <div class="wrap">
-      <div class="header-top">
-        <div class="brand-lockup">
-          <p class="site-kicker">Slot Strategy Guide</p>
-          <h1 class="site-title">狙い目手帖</h1>
-          <p class="site-lead">ホールで迷わず見られるように、記事とチェッカーをすぐ開ける形で整理したスロット攻略メモです。</p>
-        </div>
-        <div class="header-actions">
-          <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く"><span></span></button>
-        </div>
-      </div>
+    <div class="wrap header-inner">
+      <a class="brand" href="./">
+        <p class="site-eyebrow">Slot Strategy Guide</p>
+        <h1 class="site-title">狙い目手帖</h1>
+      </a>
+      <nav class="top-nav">
+        <a href="#machines">機種一覧</a>
+        <a href="machine.html?slug=hokuto">北斗の記事</a>
+        <a href="checker.html?slug=hokuto">北斗チェッカー</a>
+      </nav>
     </div>
   </header>
 
-  <main class="wrap top-layout">
-    <div class="top-main">
-      <section class="hero-block">
-        <div class="hero-grid">
-          <div class="hero-copy-card">
-            <p class="site-kicker">Mobile First</p>
-            <h2 class="site-title">記事と<br><span style="color:var(--gold)">チェッカー</span>を一画面で</h2>
-            <p class="hero-desc">天井・やめどき・モード・ゾーンを記事で確認しつつ、右側ボタンからすぐチェッカーへ移動できます。まずは機種名を探して、その場で判定する流れを想定しています。</p>
-            <div class="hero-tags">
-              <span class="tag">天井</span>
-              <span class="tag">狙い目</span>
-              <span class="tag">やめどき</span>
-              <span class="tag">リセット</span>
-              <span class="tag">スマホ向け</span>
-            </div>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <section class="hero-card">
+          <div class="hero-copy">
+            <p class="hero-lead">Play smarter, check faster.</p>
+            <h2 class="hero-headline">狙い目を<span>すぐ判断。</span></h2>
+            <p class="hero-text">ホールで迷わないための、機種別まとめと狙い目チェッカー。まずは機種名で探して、記事で確認、チェッカーで最終判断できる形にしています。</p>
+            <ul class="hero-points">
+              <li>記事とチェッカーを往復しやすい</li>
+              <li>スマホで見やすい黒基調</li>
+              <li>機種名検索ですぐ絞り込み</li>
+            </ul>
           </div>
-          <aside class="hero-side-card">
-            <h2>このサイトで見ること</h2>
-            <p>機種ごとの記事は表を中心に整理し、チェッカーは最低限の入力だけで直感的に使える形にしています。</p>
-          </aside>
-        </div>
-      </section>
-
-      <section class="search-panel" id="machine-search">
-        <div class="search-shell">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10.5 18a7.5 7.5 0 1 1 5.14-12.96A7.5 7.5 0 0 1 10.5 18Zm0 0 7 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <input id="searchInput" class="search-input" type="search" placeholder="機種名・略称で検索">
-        </div>
-      </section>
-
-      <section class="machine-list" aria-labelledby="machineListTitle">
-        <div class="machine-list__bar">
-          <h2 id="machineListTitle" class="section-title">機種一覧</h2>
-          <p class="machine-list__count"><span id="machineCount">0</span>機種</p>
-        </div>
-        <div class="machine-list__shell">
-          <div class="machine-list__head">
-            <div>機種名</div>
-            <div>チェッカー</div>
+        </section>
+        <aside class="hero-side">
+          <div>
+            <h2>このサイトの使い方</h2>
+            <p>気になる機種を検索して記事を開く → 天井や狙い目を確認 → 右側のチェッカーボタンから現在G数を入力、という流れを基本にしています。</p>
           </div>
-          <div id="machineList"></div>
-        </div>
-        <p id="machineEmpty" class="machine-empty u-hidden">一致する機種がありません。</p>
-      </section>
-    </div>
+          <div class="side-kpis">
+            <div class="kpi"><strong>18</strong><span>掲載機種</span></div>
+            <div class="kpi"><strong>1秒</strong><span>チェッカー判定</span></div>
+            <div class="kpi"><strong>記事</strong><span>基準を確認</span></div>
+            <div class="kpi"><strong>表</strong><span>要点を整理</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-    <aside class="top-side">
-      <div class="menu-card">
-        <h2 class="menu-group__title">サイト案内</h2>
-        <div class="menu-links">
-          <a href="./#machine-search"><span>機種一覧</span><small>記事とチェッカー</small></a>
-          <a href="./privacy.html"><span>プライバシーポリシー</span><small>Policy</small></a>
-          <a href="./contact.html"><span>お問い合わせ</span><small>Contact</small></a>
+    <section id="machines" class="section">
+      <div class="section-head">
+        <div>
+          <h2>機種一覧</h2>
+          <p>機種名をタップで記事、右側ボタンからチェッカーへ移動できます。</p>
         </div>
       </div>
-    </aside>
+
+      <label class="search-bar" aria-label="機種検索">
+        <span>🔎</span>
+        <input id="machineSearch" type="search" placeholder="機種名で検索">
+      </label>
+
+      <div class="machine-table">
+        <div class="machine-table__head">
+          <div>機種名</div>
+          <div>記事</div>
+          <div>チェッカー</div>
+        </div>
+        <div id="machineRows"></div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-wrap">
-      <div class="footer-logo">狙い目手帖</div>
-      <div class="footer-links">
-        <a href="privacy.html">プライバシーポリシー</a>
-        <a href="contact.html">お問い合わせ</a>
-      </div>
-      <div class="footer-copy">掲載内容は公開情報をもとに整理したものです。実際の立ち回りはご自身の判断でお願いいたします。</div>
-    </div>
+  <footer class="footer wrap">
+    記事で基準を確認し、最後はチェッカーで現在のG数をチェックする使い方を想定しています。
   </footer>
 
   <script>
-    const aliasMap = {
-      baki: ['刃牙','ばき','baki'],
-      banchou4: ['番長','番長4','ばんちょう','ばんちょう4','bancho'],
-      biohazard: ['バイオ','ばいお','bio'],
-      chibaryo2: ['チバリヨ','ちばりよ','ちばりよ2','チバ2'],
-      dumbbell: ['ダンベル','だんべる','だんべる何キロ持てる'],
-      goblin: ['ゴブスレ','ごぶすれ','ゴブリン'],
-      godeater: ['ゴッドイーター','ごっどいーたー','ゴッド','god eater','ge'],
-      hokuto: ['北斗','ほくと','hokuto'],
-      hokuto_tensei2: ['転生2','てんせい2','北斗転生'],
-      kabaneri: ['カバネリ','かばねり','かば','甲鉄城'],
-      kaguya: ['かぐや','かぐや様','カグヤ'],
-      koukaku: ['攻殻','こうかく','攻殻機動隊'],
-      monkeyv: ['モンキー','もんきー','モンキー5','monkey'],
-      sf5: ['スト5','ストV','すと5','すとV','ストファイ'],
-      tekken6: ['鉄拳','てっけん','tekken'],
-      tensura: ['転スラ','てんすら','スライム'],
-      tokyo_ghoul: ['喰種','ぐーる','グール','東京グール'],
-      valvrave2: ['ヴヴヴ','ゔゔゔ','vvv','ヴァルヴ','ゔぁるゔ','ヴァルヴレイヴ']
-    };
-
-    const hiraToKata = (value) => String(value || '').replace(/[ぁ-ゖ]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60));
-    const normalize = (value) => hiraToKata(String(value || '').toLowerCase()).replace(/[\s　・\-ー_！？!?,.]/g, '');
     let machineList = [];
 
-    const machineLabel = (machine) => machine.name.replace(/^スマスロ\s*/, '');
+    function toHira(str) {
+      return (str || '').replace(/[\u30A1-\u30F6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+    }
 
-    const renderMachines = (items, rootId, emptyId, countId, isNav = false) => {
-      const root = document.getElementById(rootId);
-      const empty = document.getElementById(emptyId);
-      if (!root || !empty) return;
-      if (countId && document.getElementById(countId)) document.getElementById(countId).textContent = items.length;
-      if (!items.length) {
-        root.innerHTML = '';
-        empty.classList.remove('u-hidden');
+    function normalize(str) {
+      return toHira(String(str || '').toLowerCase()).replace(/\s+/g, '');
+    }
+
+    const aliases = {
+      hokuto: 'ほくとのけん けん',
+      hokuto_tensei2: 'ほくとてんせい てんせい あべし',
+      kabaneri: 'かばねり かば',
+      valvrave2: 'ゔゔゔ vvv ばるぶれいぶ ヴヴヴ',
+      sf5: 'すと5 すとふぁい すとりーとふぁいたー',
+      monkeyv: 'もんきー',
+      kaguya: 'かぐや',
+      goblin: 'ごぶすれ',
+      godeater: 'ごっどいーたー',
+      tokyo_ghoul: 'ぐーる',
+      banchou4: 'ばんちょう',
+      baki: 'ばき',
+      biohazard: 'ばいお',
+      chibaryo2: 'ちばりよ',
+      dumbbell: 'だんべる',
+      koukaku: 'こうかく',
+      tekken6: 'てっけん',
+      tensura: 'てんすら'
+    };
+
+    function renderRows(list) {
+      const wrap = document.getElementById('machineRows');
+      if (!list.length) {
+        wrap.innerHTML = '<div class="machine-row"><div class="machine-main"><strong class="machine-name">該当する機種が見つかりません</strong><span class="machine-info">別のキーワードでもお試しください。</span></div></div>';
         return;
       }
-      empty.classList.add('u-hidden');
-      root.innerHTML = items.map(machine => isNav ? `
-        <div class="nav-machine-item">
-          <a class="nav-machine-link" href="machine.html?slug=${machine.slug}">${machineLabel(machine)}</a>
-          <a class="nav-machine-checker" href="checker.html?slug=${machine.slug}">判定</a>
-        </div>
-      ` : `
-        <article class="machine-list__row">
-          <div class="machine-list__primary">
-            <a class="machine-list__name machine-list__name--link" href="machine.html?slug=${machine.slug}">${machineLabel(machine)}</a>
+      wrap.innerHTML = list.map(machine => `
+        <div class="machine-row">
+          <div class="machine-main">
+            <a class="machine-name" href="machine.html?slug=${machine.slug}">${machine.name}</a>
+            <span class="machine-info">${machine.info || 'スロット'}${machine.strategy ? ' / 狙い目 ' + machine.strategy : ''}</span>
           </div>
-          <div class="machine-list__actions"><a class="btn btn-main btn-block" href="checker.html?slug=${machine.slug}">チェッカー</a></div>
-        </article>
+          <div class="machine-actions"><a class="btn btn-ghost" href="machine.html?slug=${machine.slug}">記事を見る</a></div>
+          <div class="machine-actions"><a class="btn btn-main" href="checker.html?slug=${machine.slug}">チェッカー</a></div>
+        </div>
       `).join('');
-    };
+    }
 
-    const filterMachines = (query = '') => {
-      const q = normalize(query);
-      if (!q) return machineList;
-      return machineList.filter(machine => {
-        const aliases = aliasMap[machine.slug] || [];
-        const corpus = [machine.name, machine.slug, ...aliases].map(normalize).join('|');
-        return corpus.includes(q);
+    function filterRows() {
+      const q = normalize(document.getElementById('machineSearch').value);
+      if (!q) {
+        renderRows(machineList);
+        return;
+      }
+      const filtered = machineList.filter(machine => {
+        const target = normalize(machine.name + ' ' + (machine.info || '') + ' ' + (aliases[machine.slug] || ''));
+        return target.includes(q);
       });
-    };
-
-    const syncRender = (query = '') => {
-      const filtered = filterMachines(query);
-      renderMachines(filtered, 'machineList', 'machineEmpty', 'machineCount', false);
-      renderMachines(filtered, 'navMachineList', 'navMachineEmpty', null, true);
-    };
+      renderRows(filtered);
+    }
 
     fetch('assets/data/machines.json')
       .then(r => r.json())
       .then(list => {
-        machineList = Array.isArray(list) ? list : [];
-        syncRender('');
+        machineList = list;
+        renderRows(machineList);
+        document.getElementById('machineSearch').addEventListener('input', filterRows);
       })
       .catch(() => {
-        document.getElementById('machineList').innerHTML = '<p class="notice">機種データの読み込みに失敗しました。</p>';
+        document.getElementById('machineRows').innerHTML = '<div class="machine-row"><div class="machine-main"><strong class="machine-name">機種データの読み込みに失敗しました</strong></div></div>';
       });
-
-    ['searchInput','navSearchInput'].forEach(id => {
-      const input = document.getElementById(id);
-      if (!input) return;
-      input.addEventListener('input', (event) => {
-        const value = event.target.value;
-        document.querySelectorAll('#searchInput, #navSearchInput').forEach(el => { if (el !== event.target) el.value = value; });
-        syncRender(value);
-      });
-    });
-
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('siteNav');
-    const navBackdrop = document.getElementById('navBackdrop');
-    const navClose = document.getElementById('navClose');
-    const setMenu = (open) => {
-      nav.classList.toggle('is-open', open);
-      navBackdrop.classList.toggle('is-open', open);
-      menuToggle.classList.toggle('is-open', open);
-      nav.setAttribute('aria-hidden', open ? 'false' : 'true');
-    };
-    menuToggle.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-    navClose.addEventListener('click', () => setMenu(false));
-    navBackdrop.addEventListener('click', () => setMenu(false));
   </script>
 </body>
 </html>
