@@ -21,3 +21,6 @@ GitHub Pages 用の静的サイトです。
 
 
 2026-03-17 更新: GitHub上で差分検知しやすいようにUI微調整と文言更新を反映。
+
+
+更新メモ: hokuto-v3-checker-auto-reset

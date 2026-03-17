@@ -20,23 +20,12 @@
 
 <main class="site-main">
   <section class="hero-panel">
-    <p class="eyebrow">CHECKER</p>
     <h1 id="checkerTitle" class="page-title">チェッカー</h1>
-    <p id="checkerLead" class="hero-sub">通常 / リセットを選んで現在G数を入力してください。</p>
-    <div class="hero-meta">
-      <div class="meta-chip"><span class="meta-label">入力</span><span id="checkerUnit" class="meta-value">G数</span></div>
-      <div class="meta-chip"><span class="meta-label">判定</span><span class="meta-value">◎ ◯ △ ×</span></div>
-      <div class="meta-chip"><span class="meta-label">基準</span><span id="checkerTargetView" class="meta-value">読込中</span></div>
-    </div>
   </section>
 
   <section class="section-stack">
-    <article class="top-cta-bar">
-      <p class="top-cta-copy"><strong>通常かリセットかを先に選択</strong>入力はG数だけ。判定記号と基準表を上下で見比べやすくしています。</p>
-      <a id="articleLinkTop" class="btn-sub" href="machine.html">記事を見る</a>
-    </article>
     <article class="checker-card">
-      <h2 class="section-title">入力</h2>
+      
       <div class="control-grid">
         <div>
           <div class="mode-toggle">
@@ -51,7 +40,6 @@
             <label class="visually-hidden" for="game">現在G数</label>
             <input id="game" class="game-input" inputmode="numeric" type="number" placeholder="現在G数">
           </div>
-          <button id="judgeBtn" class="btn-main" type="button">判定する</button>
         </div>
         <p id="hintText" class="hint-text">データが通常 / リセット別に未設定の機種は、共通基準で判定します。</p>
       </div>
@@ -62,24 +50,8 @@
         <p id="resultTitle" class="result-title">判定待ち</p>
         <div id="resultBadge" class="result-badge result-mid">△</div>
       </div>
-      <p id="resultCopy" class="result-copy">G数を入力して判定してください。</p>
+      <p id="resultCopy" class="result-copy">入力中に自動で判定します。</p>
       <p id="resultNote" class="result-note">最終判断は液晶・示唆・当日状況を優先してください。</p>
-    </article>
-
-    <article class="surface-card table-card compact-table">
-      <h2 class="section-title">基準表</h2>
-      <div class="summary-strip">
-        <div class="summary-box"><span class="summary-head">通常基準</span><span id="summaryNormal" class="summary-body">-</span></div>
-        <div class="summary-box"><span class="summary-head">リセット基準</span><span id="summaryReset" class="summary-body">-</span></div>
-        <div class="summary-box"><span class="summary-head">補足</span><span id="summaryMemo" class="summary-body muted-strong">液晶示唆優先</span></div>
-      </div>
-      <table class="info-table">
-        <tbody>
-          <tr><th>通常</th><td id="tableNormal">-</td></tr>
-          <tr><th>リセット</th><td id="tableReset">-</td></tr>
-          <tr><th>共通メモ</th><td id="tableMemo">簡易チェッカー</td></tr>
-        </tbody>
-      </table>
     </article>
 
     <article class="surface-card">
@@ -133,23 +105,14 @@ function evaluate(game, config, unit){
   const params = new URLSearchParams(location.search);
   const slug = params.get("slug");
   const titleEl = document.getElementById("checkerTitle");
-  const leadEl = document.getElementById("checkerLead");
-  const targetViewEl = document.getElementById("checkerTargetView");
   const articleLinkNav = document.getElementById("articleLinkNav");
   const articleLinkCard = document.getElementById("articleLinkCard");
-  const articleLinkTop = document.getElementById("articleLinkTop");
   const resultTitle = document.getElementById("resultTitle");
   const resultBadge = document.getElementById("resultBadge");
   const resultCopy = document.getElementById("resultCopy");
   const resultNote = document.getElementById("resultNote");
-  const tableNormal = document.getElementById("tableNormal");
-  const tableReset = document.getElementById("tableReset");
-  const tableMemo = document.getElementById("tableMemo");
   const gameInput = document.getElementById("game");
-  const judgeBtn = document.getElementById("judgeBtn");
   const hintText = document.getElementById("hintText");
-  const checkerUnit = document.getElementById("checkerUnit");
-  const summaryMemo = document.getElementById("summaryMemo");
   let currentMachine = null;
   function applyResult(result){
     resultTitle.textContent = result.title;
@@ -168,7 +131,6 @@ function evaluate(game, config, unit){
     const config = readModeConfig(currentMachine, mode);
     const game = Number(gameInput.value);
     applyResult(evaluate(game, config, unit));
-    targetViewEl.textContent = thresholdText(config, unit);
     resultNote.textContent = config.note || "最終判断は液晶・示唆・当日状況を優先してください。";
     hintText.textContent = config.note || "データが通常 / リセット別に未設定の機種は、共通基準で判定します。";
   }
@@ -179,38 +141,22 @@ function evaluate(game, config, unit){
       if (!currentMachine) throw new Error("not found");
       const articleHref = "machine.html?slug=" + currentMachine.slug;
       articleLinkNav.href = articleHref;
-      articleLinkTop.href = articleHref;
       articleLinkCard.href = articleHref;
       document.title = currentMachine.name + " チェッカー | 狙い目手帖";
       titleEl.textContent = currentMachine.name + " チェッカー";
-      leadEl.textContent = currentMachine.strategy && currentMachine.strategy !== "準備中" ? "通常 / リセットを選んで現在G数を入力してください。" : "この機種は現在データ調整中です。";
       const checker = currentMachine.checker || {};
-      const unit = checker.unit || "G";
-      checkerUnit.textContent = unit;
       const normalConfig = readModeConfig(currentMachine, "normal");
       const resetConfig = readModeConfig(currentMachine, "reset");
-      tableNormal.textContent = thresholdText(normalConfig, unit);
-      tableReset.textContent = thresholdText(resetConfig, unit);
-      document.getElementById("summaryNormal").textContent = tableNormal.textContent;
-      document.getElementById("summaryReset").textContent = tableReset.textContent;
-      tableMemo.textContent = currentMachine.strategy || "簡易チェッカー";
-      summaryMemo.textContent = "液晶示唆優先";
+      hintText.textContent = `通常: ${thresholdText(normalConfig, "G")} / リセット: ${thresholdText(resetConfig, "G")}`;
       judge();
     })
     .catch(() => {
       titleEl.textContent = "機種が見つかりません";
-      leadEl.textContent = "一覧から選び直してください。";
-      targetViewEl.textContent = "-";
-      tableNormal.textContent = "-";
-      tableReset.textContent = "-";
-      document.getElementById("summaryNormal").textContent = "-";
-      document.getElementById("summaryReset").textContent = "-";
-      tableMemo.textContent = "-";
+      hintText.textContent = "-";
       applyResult({ symbol:"×", title:"エラー", copy:"機種データを読み込めませんでした。", className:"result-ng" });
-      judgeBtn.disabled = true;
       gameInput.disabled = true;
     });
-  judgeBtn.addEventListener("click", judge);
+  gameInput.addEventListener("input", judge);
   gameInput.addEventListener("keydown", event => { if (event.key === "Enter") judge(); });
   document.querySelectorAll('input[name="mode"]').forEach(input => input.addEventListener("change", judge));
 })();
