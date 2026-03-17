@@ -31,6 +31,10 @@
   </section>
 
   <section class="section-stack">
+    <article class="top-cta-bar">
+      <p class="top-cta-copy"><strong>通常かリセットかを先に選択</strong>入力はG数だけ。判定記号と基準表を上下で見比べやすくしています。</p>
+      <a id="articleLinkTop" class="btn-sub" href="machine.html">記事を見る</a>
+    </article>
     <article class="checker-card">
       <h2 class="section-title">入力</h2>
       <div class="control-grid">
@@ -62,8 +66,13 @@
       <p id="resultNote" class="result-note">最終判断は液晶・示唆・当日状況を優先してください。</p>
     </article>
 
-    <article class="surface-card table-card">
+    <article class="surface-card table-card compact-table">
       <h2 class="section-title">基準表</h2>
+      <div class="summary-strip">
+        <div class="summary-box"><span class="summary-head">通常基準</span><span id="summaryNormal" class="summary-body">-</span></div>
+        <div class="summary-box"><span class="summary-head">リセット基準</span><span id="summaryReset" class="summary-body">-</span></div>
+        <div class="summary-box"><span class="summary-head">補足</span><span class="summary-body muted-strong">液晶示唆優先</span></div>
+      </div>
       <table class="info-table">
         <tbody>
           <tr><th>通常</th><td id="tableNormal">-</td></tr>
@@ -123,6 +132,7 @@ function evaluate(game, target){
   const targetViewEl = document.getElementById("checkerTargetView");
   const articleLinkNav = document.getElementById("articleLinkNav");
   const articleLinkCard = document.getElementById("articleLinkCard");
+  const articleLinkTop = document.getElementById("articleLinkTop");
   const resultTitle = document.getElementById("resultTitle");
   const resultBadge = document.getElementById("resultBadge");
   const resultCopy = document.getElementById("resultCopy");
@@ -165,6 +175,7 @@ function evaluate(game, target){
 
       const articleHref = "machine.html?slug=" + currentMachine.slug;
       articleLinkNav.href = articleHref;
+      articleLinkTop.href = articleHref;
       articleLinkCard.href = articleHref;
       document.title = currentMachine.name + " チェッカー | 狙い目手帖";
       titleEl.textContent = currentMachine.name + " チェッカー";
@@ -176,6 +187,8 @@ function evaluate(game, target){
       const resetTarget = getThreshold(currentMachine, "reset");
       tableNormal.textContent = normalTarget === null || normalTarget >= 99999999 ? "準備中" : normalTarget + "G〜";
       tableReset.textContent = resetTarget === null || resetTarget >= 99999999 ? (normalTarget === null || normalTarget >= 99999999 ? "準備中" : "通常と同じ") : resetTarget + "G〜";
+      document.getElementById("summaryNormal").textContent = tableNormal.textContent;
+      document.getElementById("summaryReset").textContent = tableReset.textContent;
       tableMemo.textContent = currentMachine.strategy || "簡易チェッカー";
       judge();
     })
@@ -185,6 +198,8 @@ function evaluate(game, target){
       targetViewEl.textContent = "-";
       tableNormal.textContent = "-";
       tableReset.textContent = "-";
+      document.getElementById("summaryNormal").textContent = "-";
+      document.getElementById("summaryReset").textContent = "-";
       tableMemo.textContent = "-";
       applyResult({ symbol:"×", title:"エラー", copy:"機種データを読み込めませんでした。", className:"result-ng" });
       judgeBtn.disabled = true;

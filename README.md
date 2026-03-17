@@ -18,3 +18,6 @@ GitHub Pages 用の静的サイトです。
 5. GitHub にアップロード
 
 詳しくは `docs/ADD_MACHINE_GUIDE.md` を参照。
+
+
+2026-03-17 更新: GitHub上で差分検知しやすいようにUI微調整と文言更新を反映。

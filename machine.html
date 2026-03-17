@@ -32,7 +32,12 @@
   </section>
 
   <section class="section-stack">
-    <article class="surface-card table-card">
+
+    <article class="top-cta-bar">
+      <p class="top-cta-copy"><strong>まずはチェッカーで即判定</strong>空き台の現在G数が分かるなら、記事を読む前にそのまま判定できます。</p>
+      <a class="btn-main" id="checkerLinkTop" href="checker.html">今すぐ判定</a>
+    </article>
+    <article class="surface-card table-card compact-table">
       <h2 class="section-title">結論</h2>
       <div class="quick-grid">
         <div class="quick-card">
@@ -48,6 +53,11 @@
 
     <article class="surface-card table-card">
       <h2 class="section-title">要点表</h2>
+      <div class="summary-strip">
+        <div class="summary-box"><span class="summary-head">狙い目</span><span id="summaryStrategy" class="summary-body">-</span></div>
+        <div class="summary-box"><span class="summary-head">天井確認</span><span class="summary-body muted-strong">詳細反映中</span></div>
+        <div class="summary-box"><span class="summary-head">推奨導線</span><span class="summary-body muted-strong">先にチェッカー</span></div>
+      </div>
       <table class="info-table">
         <tbody>
           <tr><th>機種名</th><td id="infoName">-</td></tr>
@@ -96,11 +106,13 @@
     document.getElementById("heroType").textContent = info;
     document.getElementById("quickStrategy").textContent = strategy;
     document.getElementById("quickType").textContent = info;
+    document.getElementById("summaryStrategy").textContent = strategy;
     document.getElementById("infoName").textContent = machine.name;
     document.getElementById("infoType").textContent = info;
     document.getElementById("infoStrategy").textContent = strategy;
     document.getElementById("infoMemo").textContent = strategy === "準備中" ? "詳細作成中" : "通常 / リセットを選んでG数判定";
     document.getElementById("checkerLinkNav").href = href;
+    document.getElementById("checkerLinkTop").href = href;
     document.getElementById("checkerLinkCard").href = href;
   } catch (error) {
     document.body.innerHTML = '<div class="simple-center"><div class="simple-box"><h1>読み込み失敗</h1><p>データの取得に失敗しました。</p><p><a class="btn-main" href="index.html">機種一覧へ戻る</a></p></div></div>';
