@@ -24,7 +24,7 @@
     <h1 id="checkerTitle" class="page-title">チェッカー</h1>
     <p id="checkerLead" class="hero-sub">通常 / リセットを選んで現在G数を入力してください。</p>
     <div class="hero-meta">
-      <div class="meta-chip"><span class="meta-label">入力</span><span class="meta-value">G数</span></div>
+      <div class="meta-chip"><span class="meta-label">入力</span><span id="checkerUnit" class="meta-value">G数</span></div>
       <div class="meta-chip"><span class="meta-label">判定</span><span class="meta-value">◎ ◯ △ ×</span></div>
       <div class="meta-chip"><span class="meta-label">基準</span><span id="checkerTargetView" class="meta-value">読込中</span></div>
     </div>
@@ -53,7 +53,7 @@
           </div>
           <button id="judgeBtn" class="btn-main" type="button">判定する</button>
         </div>
-        <p class="hint-text">データが通常 / リセット別に未設定の機種は、共通基準で判定します。</p>
+        <p id="hintText" class="hint-text">データが通常 / リセット別に未設定の機種は、共通基準で判定します。</p>
       </div>
     </article>
 
@@ -71,7 +71,7 @@
       <div class="summary-strip">
         <div class="summary-box"><span class="summary-head">通常基準</span><span id="summaryNormal" class="summary-body">-</span></div>
         <div class="summary-box"><span class="summary-head">リセット基準</span><span id="summaryReset" class="summary-body">-</span></div>
-        <div class="summary-box"><span class="summary-head">補足</span><span class="summary-body muted-strong">液晶示唆優先</span></div>
+        <div class="summary-box"><span class="summary-head">補足</span><span id="summaryMemo" class="summary-body muted-strong">液晶示唆優先</span></div>
       </div>
       <table class="info-table">
         <tbody>
@@ -97,33 +97,38 @@
 </footer>
 
 <script>
-function getThreshold(machine, mode){
+function readModeConfig(machine, mode){
   const checker = machine.checker || {};
-  if (typeof checker[mode] === "number") return checker[mode];
-  if (checker[mode] && typeof checker[mode].target === "number") return checker[mode].target;
-  if (typeof checker.target === "number") return checker.target;
-  return null;
+  if (checker[mode] && typeof checker[mode] === "object") return checker[mode];
+  return checker;
 }
-
-function evaluate(game, target){
-  if (target === null || !Number.isFinite(target) || target >= 99999999) {
+function thresholdText(config, unit){
+  if (!config || (!Number.isFinite(config.caution) && !Number.isFinite(config.target))) return "準備中";
+  if (Number.isFinite(config.excellent) && Number.isFinite(config.good) && Number.isFinite(config.caution)) {
+    return `${config.caution}${unit}〜 △ / ${config.good}${unit}〜 ◯ / ${config.excellent}${unit}〜 ◎`;
+  }
+  if (Number.isFinite(config.target)) return `${config.target}${unit}〜`;
+  return "準備中";
+}
+function evaluate(game, config, unit){
+  if (!config || (!Number.isFinite(config.caution) && !Number.isFinite(config.target))) {
     return { symbol:"△", title:"準備中", copy:"この機種はまだ詳細設定前です。", className:"result-mid" };
   }
   if (!Number.isFinite(game) || game < 0) {
-    return { symbol:"△", title:"入力待ち", copy:"現在G数を正しく入力してください。", className:"result-mid" };
+    return { symbol:"△", title:"入力待ち", copy:`現在${unit === "G" ? "G数" : unit}を正しく入力してください。`, className:"result-mid" };
   }
-  if (game >= target + 100) {
-    return { symbol:"◎", title:"強め", copy:`${target}G基準を大きく超えています。`, className:"result-ok" };
+  if (Number.isFinite(config.excellent) && game >= config.excellent) {
+    return { symbol:"◎", title:"優先して確認", copy:`${config.excellent}${unit}以上です。かなり打ちやすいラインです。`, className:"result-ok" };
   }
-  if (game >= target) {
-    return { symbol:"◯", title:"狙い目", copy:`${target}G基準に到達しています。`, className:"result-ok" };
+  if (Number.isFinite(config.good) && game >= config.good) {
+    return { symbol:"◯", title:"狙い目", copy:`${config.good}${unit}以上です。候補として見られます。`, className:"result-ok" };
   }
-  if (game >= Math.max(target - 50, 0)) {
-    return { symbol:"△", title:"もう少し", copy:`基準の ${target}G まであと少しです。`, className:"result-caution" };
+  const caution = Number.isFinite(config.caution) ? config.caution : config.target;
+  if (Number.isFinite(caution) && game >= caution) {
+    return { symbol:"△", title:"条件次第", copy:`${caution}${unit}以上です。交換率や状況しだいで候補です。`, className:"result-caution" };
   }
-  return { symbol:"×", title:"まだ早い", copy:`現状は ${target}G からを基準にしてください。`, className:"result-ng" };
+  return { symbol:"×", title:"まだ早い", copy:`現状は${caution}${unit}以上を目安にしてください。`, className:"result-ng" };
 }
-
 (function(){
   const params = new URLSearchParams(location.search);
   const slug = params.get("slug");
@@ -136,60 +141,60 @@ function evaluate(game, target){
   const resultTitle = document.getElementById("resultTitle");
   const resultBadge = document.getElementById("resultBadge");
   const resultCopy = document.getElementById("resultCopy");
+  const resultNote = document.getElementById("resultNote");
   const tableNormal = document.getElementById("tableNormal");
   const tableReset = document.getElementById("tableReset");
   const tableMemo = document.getElementById("tableMemo");
   const gameInput = document.getElementById("game");
   const judgeBtn = document.getElementById("judgeBtn");
-
+  const hintText = document.getElementById("hintText");
+  const checkerUnit = document.getElementById("checkerUnit");
+  const summaryMemo = document.getElementById("summaryMemo");
   let currentMachine = null;
-
   function applyResult(result){
     resultTitle.textContent = result.title;
     resultCopy.textContent = result.copy;
     resultBadge.textContent = result.symbol;
     resultBadge.className = "result-badge " + result.className;
   }
-
   function currentMode(){
     return document.querySelector('input[name="mode"]:checked').value;
   }
-
   function judge(){
     if (!currentMachine) return;
     const mode = currentMode();
-    const target = getThreshold(currentMachine, mode);
+    const checker = currentMachine.checker || {};
+    const unit = checker.unit || "G";
+    const config = readModeConfig(currentMachine, mode);
     const game = Number(gameInput.value);
-    applyResult(evaluate(game, target));
-    targetViewEl.textContent = target === null || target >= 99999999 ? "準備中" : `${mode === "reset" ? "R" : "通"} ${target}G`;
+    applyResult(evaluate(game, config, unit));
+    targetViewEl.textContent = thresholdText(config, unit);
+    resultNote.textContent = config.note || "最終判断は液晶・示唆・当日状況を優先してください。";
+    hintText.textContent = config.note || "データが通常 / リセット別に未設定の機種は、共通基準で判定します。";
   }
-
   fetch("assets/data/machines.json")
-    .then(res => {
-      if (!res.ok) throw new Error("load failed");
-      return res.json();
-    })
+    .then(res => { if (!res.ok) throw new Error("load failed"); return res.json(); })
     .then(machines => {
       currentMachine = machines.find(machine => machine.slug === slug);
       if (!currentMachine) throw new Error("not found");
-
       const articleHref = "machine.html?slug=" + currentMachine.slug;
       articleLinkNav.href = articleHref;
       articleLinkTop.href = articleHref;
       articleLinkCard.href = articleHref;
       document.title = currentMachine.name + " チェッカー | 狙い目手帖";
       titleEl.textContent = currentMachine.name + " チェッカー";
-      leadEl.textContent = currentMachine.strategy && currentMachine.strategy !== "準備中"
-        ? "通常 / リセットを選んで現在G数を入力してください。"
-        : "この機種は現在データ調整中です。";
-
-      const normalTarget = getThreshold(currentMachine, "normal");
-      const resetTarget = getThreshold(currentMachine, "reset");
-      tableNormal.textContent = normalTarget === null || normalTarget >= 99999999 ? "準備中" : normalTarget + "G〜";
-      tableReset.textContent = resetTarget === null || resetTarget >= 99999999 ? (normalTarget === null || normalTarget >= 99999999 ? "準備中" : "通常と同じ") : resetTarget + "G〜";
+      leadEl.textContent = currentMachine.strategy && currentMachine.strategy !== "準備中" ? "通常 / リセットを選んで現在G数を入力してください。" : "この機種は現在データ調整中です。";
+      const checker = currentMachine.checker || {};
+      const unit = checker.unit || "G";
+      checkerUnit.textContent = unit;
+      const normalConfig = readModeConfig(currentMachine, "normal");
+      const resetConfig = readModeConfig(currentMachine, "reset");
+      tableNormal.textContent = thresholdText(normalConfig, unit);
+      tableReset.textContent = thresholdText(resetConfig, unit);
       document.getElementById("summaryNormal").textContent = tableNormal.textContent;
       document.getElementById("summaryReset").textContent = tableReset.textContent;
       tableMemo.textContent = currentMachine.strategy || "簡易チェッカー";
+      summaryMemo.textContent = "液晶示唆優先";
       judge();
     })
     .catch(() => {
@@ -205,11 +210,8 @@ function evaluate(game, target){
       judgeBtn.disabled = true;
       gameInput.disabled = true;
     });
-
   judgeBtn.addEventListener("click", judge);
-  gameInput.addEventListener("keydown", event => {
-    if (event.key === "Enter") judge();
-  });
+  gameInput.addEventListener("keydown", event => { if (event.key === "Enter") judge(); });
   document.querySelectorAll('input[name="mode"]').forEach(input => input.addEventListener("change", judge));
 })();
 </script>

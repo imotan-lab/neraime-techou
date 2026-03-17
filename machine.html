@@ -20,23 +20,23 @@
 </header>
 
 <main class="site-main">
-  <section class="hero-panel">
+  <section class="hero-panel article-hero">
     <p class="eyebrow">ARTICLE</p>
     <h1 id="machineTitle" class="page-title">機種名</h1>
     <p id="heroSub" class="hero-sub">結論を先に確認できます。</p>
     <div class="hero-meta">
       <div class="meta-chip"><span class="meta-label">結論</span><span id="heroStrategy" class="meta-value">読込中</span></div>
       <div class="meta-chip"><span class="meta-label">タイプ</span><span id="heroType" class="meta-value">読込中</span></div>
-      <div class="meta-chip"><span class="meta-label">判定</span><span class="meta-value">チェッカーあり</span></div>
+      <div class="meta-chip"><span class="meta-label">更新</span><span id="heroUpdated" class="meta-value">読込中</span></div>
     </div>
   </section>
 
   <section class="section-stack">
-
     <article class="top-cta-bar">
       <p class="top-cta-copy"><strong>まずはチェッカーで即判定</strong>空き台の現在G数が分かるなら、記事を読む前にそのまま判定できます。</p>
       <a class="btn-main" id="checkerLinkTop" href="checker.html">今すぐ判定</a>
     </article>
+
     <article class="surface-card table-card compact-table">
       <h2 class="section-title">結論</h2>
       <div class="quick-grid">
@@ -52,21 +52,40 @@
     </article>
 
     <article class="surface-card table-card">
-      <h2 class="section-title">要点表</h2>
-      <div class="summary-strip">
-        <div class="summary-box"><span class="summary-head">狙い目</span><span id="summaryStrategy" class="summary-body">-</span></div>
-        <div class="summary-box"><span class="summary-head">天井確認</span><span class="summary-body muted-strong">詳細反映中</span></div>
-        <div class="summary-box"><span class="summary-head">推奨導線</span><span class="summary-body muted-strong">先にチェッカー</span></div>
-      </div>
+      <h2 class="section-title">要点BOX</h2>
+      <div id="summaryStrip" class="summary-strip"></div>
+    </article>
+
+    <article class="surface-card table-card">
+      <h2 class="section-title">基本情報</h2>
       <table class="info-table">
-        <tbody>
-          <tr><th>機種名</th><td id="infoName">-</td></tr>
-          <tr><th>タイプ</th><td id="infoType">-</td></tr>
-          <tr><th>狙い目</th><td id="infoStrategy">-</td></tr>
-          <tr><th>メモ</th><td id="infoMemo">チェッカーで現在G数を入れて確認</td></tr>
-        </tbody>
+        <tbody id="infoTableBody"></tbody>
       </table>
     </article>
+
+    <article class="surface-card table-card">
+      <h2 class="section-title">狙い目ライン</h2>
+      <table class="judge-table">
+        <thead>
+          <tr><th>現在G数</th><th>通常</th><th>リセット</th><th>メモ</th></tr>
+        </thead>
+        <tbody id="judgementBody"></tbody>
+      </table>
+      <p class="helper-note">リセットの最終判断は前日最終ゲーム数や店傾向も併用してください。</p>
+    </article>
+
+    <article class="surface-card table-card">
+      <h2 class="section-title">最大天井までの目安</h2>
+      <table class="judge-table">
+        <thead>
+          <tr><th>打ち始め</th><th>投資枚数</th><th>時間</th></tr>
+        </thead>
+        <tbody id="investBody"></tbody>
+      </table>
+      <p class="helper-note">投資枚数・時間は前兆分を含めた目安として使ってください。</p>
+    </article>
+
+    <div id="articleSections" class="article-sections"></div>
 
     <article class="surface-card">
       <h2 class="section-title">移動</h2>
@@ -83,39 +102,109 @@
 </footer>
 
 <script>
+async function loadJson(path){
+  const res = await fetch(path);
+  if (!res.ok) return null;
+  return res.json();
+}
+function appendSummary(boxes){
+  const strip = document.getElementById("summaryStrip");
+  strip.innerHTML = "";
+  (boxes || []).forEach(box => {
+    const el = document.createElement("div");
+    el.className = "summary-box";
+    el.innerHTML = `<span class="summary-head">${box.label}</span><span class="summary-body">${box.value}</span>`;
+    strip.appendChild(el);
+  });
+}
+function appendInfo(rows){
+  const body = document.getElementById("infoTableBody");
+  body.innerHTML = "";
+  rows.forEach(([th, td]) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<th>${th}</th><td>${td}</td>`;
+    body.appendChild(tr);
+  });
+}
+function badgeClass(symbol){
+  if (symbol === "◎") return "mark-best";
+  if (symbol === "◯") return "mark-good";
+  if (symbol === "△") return "mark-caution";
+  return "mark-bad";
+}
+function appendJudgements(rows){
+  const body = document.getElementById("judgementBody");
+  body.innerHTML = "";
+  rows.forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td data-label="現在G数">${row.range}</td>
+      <td data-label="通常"><span class="judge-mark ${badgeClass(row.normal)}">${row.normal}</span></td>
+      <td data-label="リセット"><span class="judge-mark ${badgeClass(row.reset)}">${row.reset}</span></td>
+      <td data-label="メモ">${row.note}</td>
+    `;
+    body.appendChild(tr);
+  });
+}
+function appendInvest(rows){
+  const body = document.getElementById("investBody");
+  body.innerHTML = "";
+  rows.forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td data-label="打ち始め">${row[0]}</td><td data-label="投資枚数">${row[1]}</td><td data-label="時間">${row[2]}</td>`;
+    body.appendChild(tr);
+  });
+}
+function appendSections(sections){
+  const wrap = document.getElementById("articleSections");
+  wrap.innerHTML = "";
+  sections.forEach(section => {
+    const article = document.createElement("article");
+    article.className = "surface-card article-section";
+    const bodyHtml = (section.body || []).map(text => `<p>${text}</p>`).join("");
+    article.innerHTML = `<h2 class="section-title section-title-line">${section.title}</h2>${bodyHtml}`;
+    wrap.appendChild(article);
+  });
+}
 (async () => {
   const slug = new URLSearchParams(location.search).get("slug");
-  try {
-    const res = await fetch("assets/data/machines.json");
-    if (!res.ok) throw new Error("load failed");
-    const machines = await res.json();
-    const machine = machines.find(m => m.slug === slug);
-    if (!machine) {
-      document.body.innerHTML = '<div class="simple-center"><div class="simple-box"><h1>機種が見つかりません</h1><p>一覧から選び直してください。</p><p><a class="btn-main" href="index.html">機種一覧へ戻る</a></p></div></div>';
-      return;
-    }
-
-    const strategy = machine.strategy || "準備中";
-    const info = machine.info || "未設定";
-    const href = "checker.html?slug=" + machine.slug;
-
-    document.title = ((machine.seo && machine.seo.title) || machine.name) + " | 狙い目手帖";
-    document.getElementById("machineTitle").textContent = machine.name;
-    document.getElementById("heroSub").textContent = strategy === "準備中" ? "この機種は現在調整中です。" : "記事より先に結論とチェッカー導線を確認できます。";
-    document.getElementById("heroStrategy").textContent = strategy;
-    document.getElementById("heroType").textContent = info;
-    document.getElementById("quickStrategy").textContent = strategy;
-    document.getElementById("quickType").textContent = info;
-    document.getElementById("summaryStrategy").textContent = strategy;
-    document.getElementById("infoName").textContent = machine.name;
-    document.getElementById("infoType").textContent = info;
-    document.getElementById("infoStrategy").textContent = strategy;
-    document.getElementById("infoMemo").textContent = strategy === "準備中" ? "詳細作成中" : "通常 / リセットを選んでG数判定";
-    document.getElementById("checkerLinkNav").href = href;
-    document.getElementById("checkerLinkTop").href = href;
-    document.getElementById("checkerLinkCard").href = href;
-  } catch (error) {
+  const machines = await loadJson("assets/data/machines.json");
+  if (!machines) {
     document.body.innerHTML = '<div class="simple-center"><div class="simple-box"><h1>読み込み失敗</h1><p>データの取得に失敗しました。</p><p><a class="btn-main" href="index.html">機種一覧へ戻る</a></p></div></div>';
+    return;
+  }
+  const machine = machines.find(m => m.slug === slug);
+  if (!machine) {
+    document.body.innerHTML = '<div class="simple-center"><div class="simple-box"><h1>機種が見つかりません</h1><p>一覧から選び直してください。</p><p><a class="btn-main" href="index.html">機種一覧へ戻る</a></p></div></div>';
+    return;
+  }
+  const detail = await loadJson(`assets/data/machine-details/${slug}.json`);
+  const strategy = machine.strategy || "準備中";
+  const info = machine.info || "未設定";
+  const href = "checker.html?slug=" + machine.slug;
+  document.title = ((machine.seo && machine.seo.title) || machine.name) + " | 狙い目手帖";
+  document.getElementById("machineTitle").textContent = machine.name;
+  document.getElementById("heroSub").textContent = detail?.lead || (strategy === "準備中" ? "この機種は現在調整中です。" : "記事より先に結論とチェッカー導線を確認できます。");
+  document.getElementById("heroStrategy").textContent = strategy;
+  document.getElementById("heroType").textContent = info;
+  document.getElementById("heroUpdated").textContent = detail?.updated || "調整中";
+  document.getElementById("quickStrategy").textContent = strategy;
+  document.getElementById("quickType").textContent = info;
+  document.getElementById("checkerLinkNav").href = href;
+  document.getElementById("checkerLinkTop").href = href;
+  document.getElementById("checkerLinkCard").href = href;
+  if (detail) {
+    appendSummary(detail.summaryBoxes || []);
+    appendInfo(detail.factTable || [["機種名", machine.name], ["タイプ", info], ["狙い目", strategy]]);
+    appendJudgements(detail.judgementRows || []);
+    appendInvest(detail.investTable || []);
+    appendSections(detail.sections || []);
+  } else {
+    appendSummary([{ label:"狙い目", value:strategy }, { label:"機種区分", value:info }, { label:"状態", value:"詳細反映中" }]);
+    appendInfo([["機種名", machine.name], ["タイプ", info], ["狙い目", strategy], ["メモ", "詳細作成中"]]);
+    appendJudgements([]);
+    appendInvest([]);
+    appendSections([{ title:"メモ", body:["この機種は現在、記事本文の詳細調整中です。"] }]);
   }
 })();
 </script>
