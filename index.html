@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>狙い目手帖</title>
-  <meta name="description" content="スマホで見やすいスロット狙い目サイト。機種記事とチェッカーをすぐ開けます。">
+  <title>狙い目手帖 | スロット天井・狙い目まとめ</title>
+  <meta name="description" content="スロットの天井・狙い目・やめどきと、ホールでそのまま使える狙い目チェッカーをまとめています。">
   <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -34,23 +34,38 @@
     <div class="wrap">
       <div class="header-top">
         <div class="brand-lockup">
+          <p class="site-kicker">Slot Strategy Guide</p>
           <h1 class="site-title">狙い目手帖</h1>
+          <p class="site-lead">ホールで迷わず見られるように、記事とチェッカーをすぐ開ける形で整理したスロット攻略メモです。</p>
         </div>
         <div class="header-actions">
           <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く"><span></span></button>
         </div>
       </div>
-      <div class="hero-copy">
-        <p class="site-lead">ホールで迷わず使えるように、記事とチェッカーをすぐ開ける形でまとめています。</p>
-      </div>
     </div>
   </header>
 
-  <main class="wrap top-layout top-layout--single">
+  <main class="wrap top-layout">
     <div class="top-main">
-      <section class="intro-section">
-        <h2 class="section-title">このサイトについて</h2>
-        <p class="intro-copy">各機種の記事ページに天井・モード・ゾーン・やめどきをまとめ、右側のチェッカーボタンからすぐ判定へ進める構成です。</p>
+      <section class="hero-block">
+        <div class="hero-grid">
+          <div class="hero-copy-card">
+            <p class="site-kicker">Mobile First</p>
+            <h2 class="site-title">記事と<br><span style="color:var(--gold)">チェッカー</span>を一画面で</h2>
+            <p class="hero-desc">天井・やめどき・モード・ゾーンを記事で確認しつつ、右側ボタンからすぐチェッカーへ移動できます。まずは機種名を探して、その場で判定する流れを想定しています。</p>
+            <div class="hero-tags">
+              <span class="tag">天井</span>
+              <span class="tag">狙い目</span>
+              <span class="tag">やめどき</span>
+              <span class="tag">リセット</span>
+              <span class="tag">スマホ向け</span>
+            </div>
+          </div>
+          <aside class="hero-side-card">
+            <h2>このサイトで見ること</h2>
+            <p>機種ごとの記事は表を中心に整理し、チェッカーは最低限の入力だけで直感的に使える形にしています。</p>
+          </aside>
+        </div>
       </section>
 
       <section class="search-panel" id="machine-search">
@@ -60,13 +75,13 @@
         </div>
       </section>
 
-      <section class="machine-list machine-list--table" aria-labelledby="machineListTitle">
+      <section class="machine-list" aria-labelledby="machineListTitle">
         <div class="machine-list__bar">
           <h2 id="machineListTitle" class="section-title">機種一覧</h2>
           <p class="machine-list__count"><span id="machineCount">0</span>機種</p>
         </div>
         <div class="machine-list__shell">
-          <div class="machine-list__head machine-list__head--simple">
+          <div class="machine-list__head">
             <div>機種名</div>
             <div>チェッカー</div>
           </div>
@@ -75,7 +90,29 @@
         <p id="machineEmpty" class="machine-empty u-hidden">一致する機種がありません。</p>
       </section>
     </div>
+
+    <aside class="top-side">
+      <div class="menu-card">
+        <h2 class="menu-group__title">サイト案内</h2>
+        <div class="menu-links">
+          <a href="./#machine-search"><span>機種一覧</span><small>記事とチェッカー</small></a>
+          <a href="./privacy.html"><span>プライバシーポリシー</span><small>Policy</small></a>
+          <a href="./contact.html"><span>お問い合わせ</span><small>Contact</small></a>
+        </div>
+      </div>
+    </aside>
   </main>
+
+  <footer>
+    <div class="wrap footer-wrap">
+      <div class="footer-logo">狙い目手帖</div>
+      <div class="footer-links">
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+      <div class="footer-copy">掲載内容は公開情報をもとに整理したものです。実際の立ち回りはご自身の判断でお願いいたします。</div>
+    </div>
+  </footer>
 
   <script>
     const aliasMap = {
@@ -103,7 +140,7 @@
     const normalize = (value) => hiraToKata(String(value || '').toLowerCase()).replace(/[\s　・\-ー_！？!?,.]/g, '');
     let machineList = [];
 
-    const machineLabel = (machine) => machine.name.replace(/^スマスロ\s*/,'');
+    const machineLabel = (machine) => machine.name.replace(/^スマスロ\s*/, '');
 
     const renderMachines = (items, rootId, emptyId, countId, isNav = false) => {
       const root = document.getElementById(rootId);
@@ -122,11 +159,11 @@
           <a class="nav-machine-checker" href="checker.html?slug=${machine.slug}">判定</a>
         </div>
       ` : `
-        <article class="machine-list__row machine-list__row--simple">
+        <article class="machine-list__row">
           <div class="machine-list__primary">
             <a class="machine-list__name machine-list__name--link" href="machine.html?slug=${machine.slug}">${machineLabel(machine)}</a>
           </div>
-          <div class="machine-list__actions machine-list__actions--single"><a class="btn btn-main btn-block" href="checker.html?slug=${machine.slug}">チェッカー</a></div>
+          <div class="machine-list__actions"><a class="btn btn-main btn-block" href="checker.html?slug=${machine.slug}">チェッカー</a></div>
         </article>
       `).join('');
     };
