@@ -314,7 +314,7 @@ button, input, select { font: inherit; }
 
 /* RESPONSIVE */
 @media (max-width: 480px) {
-  .brand img { height: 38px; max-width: 130px; }
+  .brand img { height: 44px; max-width: 220px; }
   .header-search-wrap { max-width: 150px; }
   .summary-grid { gap: 12px; }
   .info-table th { width: 80px; }
