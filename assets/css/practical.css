@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap");
+
 :root {
   --bg: #07090c;
   --bg2: #0c0f14;
@@ -358,7 +362,7 @@ button, input, select { font: inherit; }
 .list-arrow { font-size: 14px; color: var(--muted); }
 
 /* HERO CATCH */
-.hero-catch { font-size: 38px; font-weight: 800; color: var(--text); letter-spacing: -.02em; line-height: 1.1; margin: 0 0 4px; }
+.hero-catch { font-size: 28px; font-weight: 900; font-family: "Orbitron", sans-serif; color: var(--text); letter-spacing: .04em; line-height: 1.1; margin: 0 0 6px; }
 .hero-catch-sub { font-size: 16px; font-weight: 700; color: var(--muted); letter-spacing: .04em; margin: 0 0 20px; }
 .hero-desc { border-left: 2px solid var(--line2); padding: 12px 14px; }
 .hero-desc-lead { font-size: 13px; color: var(--soft); line-height: 1.7; margin: 0 0 10px; }
