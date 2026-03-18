@@ -313,3 +313,17 @@ button, input, select { font: inherit; }
 
 /* HEADER CENTER (トップページ用) */
 .header-inner--center { justify-content: center; }
+
+/* SEARCH INPUT (トップページ用・site.css.appendの#fff上書き) */
+.search-input {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+}
+.search-input::placeholder { color: var(--muted2); }
+.search-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,185,65,.12); }
