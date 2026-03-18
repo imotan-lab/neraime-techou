@@ -86,11 +86,15 @@ function buildKeywords(machine){
     const machines = await res.json();
     const prepared = machines.map(machine => ({ ...machine, __keywords: buildKeywords(machine) }));
 
+    const TOP_COUNT = 10;
+
     function render(keyword = "") {
       const query = normalizeText(keyword);
-      const filtered = prepared.filter(machine => !query || machine.__keywords.includes(query));
-      count.textContent = filtered.length + "機種";
-      heroCount.textContent = filtered.length + "機種";
+      const allFiltered = prepared.filter(machine => !query || machine.__keywords.includes(query));
+      // 検索時は全件、非検索時は上位10機種のみ表示
+      const filtered = query ? allFiltered : allFiltered.slice(0, TOP_COUNT);
+      count.textContent = prepared.length + "機種";
+      heroCount.textContent = prepared.length + "機種";
       list.innerHTML = "";
       if (!filtered.length) {
         empty.style.display = "block";
