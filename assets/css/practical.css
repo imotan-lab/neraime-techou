@@ -56,18 +56,15 @@ button, input, select { font: inherit; }
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 0;
+  gap: 8px;
+  padding: 10px 0;
 }
-.brand { display: block; flex-shrink: 0; }
-.brand img { height: 100px; width: auto; display: block; max-width: 400px; object-fit: contain; }
+.brand { display: block; }
+.brand img { height: 100px; width: auto; display: block; max-width: 100%; object-fit: contain; }
 
 .header-search-wrap {
   position: relative;
-  
-  max-width: 100%;
-  
+  width: 100%;
 }
 .header-search-icon {
   position: absolute;
@@ -131,7 +128,6 @@ button, input, select { font: inherit; }
 }
 .footer-links {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   gap: 24px;
   margin-bottom: 10px;
@@ -231,7 +227,6 @@ button, input, select { font: inherit; }
 .mode-toggle input { display: none; }
 .mode-toggle label {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 46px;
@@ -277,7 +272,6 @@ button, input, select { font: inherit; }
 
 .setting-dummy-link {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   background: var(--bg2);
@@ -315,11 +309,3 @@ button, input, select { font: inherit; }
 /* BACK LINK */
 .back-link { color: var(--muted); font-size: 13px; font-weight: 700; }
 .back-link:hover { color: var(--gold); }
-
-/* RESPONSIVE */
-@media (max-width: 480px) {
-  .brand img { height: 44px; max-width: 300px; }
-  .header-search-wrap { max-width: 150px; }
-  .summary-grid { gap: 12px; }
-  .info-table th { width: 80px; }
-}
