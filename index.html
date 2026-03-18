@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="assets/css/practical.css">
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="index.html">狙い目手帖</a>
     <nav class="nav-links">
-      <a href="index.html">機種一覧</a>
       <a href="contact.html">お問い合わせ</a>
       <a href="privacy.html">ポリシー</a>
     </nav>
@@ -20,20 +20,15 @@
 </header>
 
 <main class="site-main">
-  <section class="hero-panel">
-    <p class="eyebrow">SLOT AIMING TOOL</p>
-    <h1 class="page-title">ホールで即判断。<br>G数を入れるだけ。</h1>
-    <p class="hero-sub">機種を選んでG数を入力するだけで、打っていいか即判定できます。<br>通常・リセット別対応。</p>
-  </section>
 
   <section class="toolbar" aria-label="検索エリア">
     <label class="visually-hidden" for="machineSearch">機種名検索</label>
     <input id="machineSearch" class="search-input" type="search" placeholder="機種名で検索（例: 北斗、バキ、ゴッドイーター）">
-    <div class="count-box"><span id="heroCount">--</span><span id="machineCount" class="visually-hidden">読込中</span><span aria-hidden="true">機種</span></div>
   </section>
 
   <section id="machineList" class="machine-list"></section>
   <div id="machineEmpty" class="empty-card">該当する機種がありません。</div>
+
 </main>
 
 <footer>
@@ -45,7 +40,7 @@ function normalizeText(value){
   return String(value || "")
     .toLowerCase()
     .replace(/[\u3041-\u3096]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60))
-    .replace(/[\s\-_ー]/g, "");
+    .replace(/[\s\-\_ー]/g, "");
 }
 
 function buildKeywords(machine){
@@ -75,8 +70,6 @@ function buildKeywords(machine){
 
 (async function loadMachines(){
   const list = document.getElementById("machineList");
-  const count = document.getElementById("machineCount");
-  const heroCount = document.getElementById("heroCount");
   const search = document.getElementById("machineSearch");
   const empty = document.getElementById("machineEmpty");
 
@@ -84,39 +77,39 @@ function buildKeywords(machine){
     const res = await fetch("assets/data/machines.json");
     if (!res.ok) throw new Error("machines.json load failed");
     const machines = await res.json();
-    const prepared = machines.map(machine => ({ ...machine, __keywords: buildKeywords(machine) }));
+
+    // 準備中を除外（strategy が「準備中」または未設定のものは表示しない）
+    const readyMachines = machines.filter(m => m.strategy && m.strategy !== "準備中");
+
+    const prepared = readyMachines.map(machine => ({ ...machine, __keywords: buildKeywords(machine) }));
 
     function render(keyword = "") {
       const query = normalizeText(keyword);
       const filtered = prepared.filter(machine => !query || machine.__keywords.includes(query));
-      count.textContent = filtered.length + "機種";
-      heroCount.textContent = filtered.length + "機種";
+
       list.innerHTML = "";
 
       if (!filtered.length) {
         empty.style.display = "block";
         return;
       }
-
       empty.style.display = "none";
 
       filtered.forEach(machine => {
-        const isReady = machine.strategy && machine.strategy !== "準備中";
         const row = document.createElement("article");
         row.className = "list-row";
+        row.style.cursor = "pointer";
+        row.addEventListener("click", () => {
+          location.href = "machine.html?slug=" + machine.slug;
+        });
         row.innerHTML = `
           <div class="machine-main">
-            <a class="machine-name-link" href="machine.html?slug=${machine.slug}">
-              <h2 class="machine-name">${machine.name}</h2>
-            </a>
+            <h2 class="machine-name">${machine.name}</h2>
             <div class="machine-sub">
-              <span class="status-chip ${isReady ? "status-ready" : "status-wip"}">${isReady ? "公開中" : "準備中"}</span>
-              <span class="type-chip">${machine.info || "未設定"}</span>
+              <span class="type-chip">${machine.info || ""}</span>
             </div>
           </div>
-          <div class="row-actions">
-            <a class="btn-main" href="checker.html?slug=${machine.slug}">チェッカー</a>
-          </div>
+          <div class="row-arrow">›</div>
         `;
         list.appendChild(row);
       });
@@ -124,15 +117,32 @@ function buildKeywords(machine){
 
     search.addEventListener("input", event => render(event.target.value));
     render();
+
   } catch (error) {
-    count.textContent = "エラー";
-    heroCount.textContent = "エラー";
     empty.style.display = "block";
     empty.textContent = "機種一覧の読み込みに失敗しました。";
   }
 })();
 </script>
+
+<style>
+.toolbar {
+  grid-template-columns: 1fr;
+}
+.list-row {
+  grid-template-columns: 1fr auto;
+}
+.row-arrow {
+  color: var(--gold);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+.machine-name-link {
+  pointer-events: none;
+}
+</style>
+
 </body>
 </html>
-
-<!-- updated v2 -->
