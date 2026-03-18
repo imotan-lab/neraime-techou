@@ -3,41 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>狙い目手帖 | 機種一覧</title>
+<title>うちどころ。| 機種一覧</title>
 <meta name="description" content="スマホで使いやすいスロット狙い目一覧。機種名検索から記事とチェッカーへすぐ移動できます。">
 <link rel="stylesheet" href="assets/css/practical.css">
 </head>
 <body>
 <header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="index.html">狙い目手帖</a>
-    <nav class="nav-links">
-      <a href="index.html">機種一覧</a>
-      <a href="contact.html">お問い合わせ</a>
-      <a href="privacy.html">ポリシー</a>
-    </nav>
+  <div class="header-inner header-inner--center">
+    <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="うちどころ。" style="height:36px;width:auto;display:block;"></a>
   </div>
 </header>
-
 <main class="site-main">
   <section class="hero-panel">
     <p class="eyebrow">SLOT AIMING TOOL</p>
-    <h1 class="page-title">ホールで即判断。<br>G数を入れるだけ。</h1>
+    <h1 class="page-title">ホールで即判断<br>G数を入れるだけ</h1>
     <p class="hero-sub">機種を選んでG数を入力するだけで、打っていいか即判定できます。<br>通常・リセット別対応。</p>
   </section>
 
   <section class="toolbar" aria-label="検索エリア">
     <label class="visually-hidden" for="machineSearch">機種名検索</label>
     <input id="machineSearch" class="search-input" type="search" placeholder="機種名で検索（例: 北斗、バキ、ゴッドイーター）">
-    <div class="count-box"><span id="heroCount">--</span><span id="machineCount" class="visually-hidden">読込中</span><span aria-hidden="true">機種</span></div>
   </section>
 
+  <div id="listHeader" class="list-header">
+    <p class="list-header-title">人気機種 TOP10</p>
+    <p class="list-header-sub">直近7日間のYouTube動画数をもとに毎日自動更新</p>
+  </div>
   <section id="machineList" class="machine-list"></section>
   <div id="machineEmpty" class="empty-card">該当する機種がありません。</div>
+  <div id="showAllWrap" class="show-all-wrap">
+    <button id="showAllBtn" class="btn-show-all">全機種を見る ›</button>
+  </div>
 </main>
 
 <footer>
-  <div class="site-footer-inner">© 2026 狙い目手帖</div>
+  <div class="site-footer-inner">
+    <div class="footer-links">
+      <a href="contact.html">お問い合わせ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+    <p class="footer-copy">© 2026 うちどころ。</p>
+  </div>
 </footer>
 
 <script>
@@ -45,7 +51,7 @@ function normalizeText(value){
   return String(value || "")
     .toLowerCase()
     .replace(/[\u3041-\u3096]/g, ch => String.fromCharCode(ch.charCodeAt(0) + 0x60))
-    .replace(/[\s\-_ー]/g, "");
+    .replace(/[\s\-\_ー]/g, "");
 }
 
 function buildKeywords(machine){
@@ -86,37 +92,51 @@ function buildKeywords(machine){
     const machines = await res.json();
     const prepared = machines.map(machine => ({ ...machine, __keywords: buildKeywords(machine) }));
 
+    const TOP_COUNT = 10;
+    let showAll = false;
+
+    const listHeader = document.getElementById("listHeader");
+    const showAllWrap = document.getElementById("showAllWrap");
+    const showAllBtn = document.getElementById("showAllBtn");
+
+    showAllBtn.addEventListener("click", () => {
+      showAll = true;
+      showAllWrap.style.display = "none";
+      listHeader.querySelector(".list-header-title").textContent = "全機種一覧";
+      listHeader.querySelector(".list-header-sub").textContent = "";
+      render(search.value);
+    });
+
     function render(keyword = "") {
       const query = normalizeText(keyword);
-      const filtered = prepared.filter(machine => !query || machine.__keywords.includes(query));
-      count.textContent = filtered.length + "機種";
-      heroCount.textContent = filtered.length + "機種";
+      const allFiltered = prepared.filter(machine => !query || machine.__keywords.includes(query));
+      // 検索時・全件表示時は全件、それ以外は上位10機種のみ
+      const filtered = (query || showAll) ? allFiltered : allFiltered.slice(0, TOP_COUNT);
+      // 検索中・全件表示中はヘッダーとボタンを制御
+      if (query) {
+        listHeader.querySelector(".list-header-title").textContent = `「${keyword}」の検索結果`;
+        listHeader.querySelector(".list-header-sub").textContent = allFiltered.length + "件";
+        showAllWrap.style.display = "none";
+      } else if (!showAll) {
+        listHeader.querySelector(".list-header-title").textContent = "人気機種 TOP10";
+        listHeader.querySelector(".list-header-sub").textContent = "直近7日間のYouTube動画数をもとに毎日自動更新";
+        showAllWrap.style.display = allFiltered.length > TOP_COUNT ? "block" : "none";
+      }
       list.innerHTML = "";
-
       if (!filtered.length) {
         empty.style.display = "block";
         return;
       }
-
       empty.style.display = "none";
-
-      filtered.forEach(machine => {
-        const isReady = machine.strategy && machine.strategy !== "準備中";
+      filtered.forEach((machine, i) => {
         const row = document.createElement("article");
         row.className = "list-row";
         row.innerHTML = `
-          <div class="machine-main">
-            <a class="machine-name-link" href="machine.html?slug=${machine.slug}">
-              <h2 class="machine-name">${machine.name}</h2>
-            </a>
-            <div class="machine-sub">
-              <span class="status-chip ${isReady ? "status-ready" : "status-wip"}">${isReady ? "公開中" : "準備中"}</span>
-              <span class="type-chip">${machine.info || "未設定"}</span>
-            </div>
-          </div>
-          <div class="row-actions">
-            <a class="btn-main" href="checker.html?slug=${machine.slug}">チェッカー</a>
-          </div>
+          <span class="list-rank">${i + 1}</span>
+          <a class="machine-name-link" href="machine.html?slug=${machine.slug}" style="flex:1;">
+            <span class="machine-name">${machine.name}</span>
+          </a>
+          <span class="list-arrow">›</span>
         `;
         list.appendChild(row);
       });
@@ -124,6 +144,7 @@ function buildKeywords(machine){
 
     search.addEventListener("input", event => render(event.target.value));
     render();
+
   } catch (error) {
     count.textContent = "エラー";
     heroCount.textContent = "エラー";
@@ -134,3 +155,4 @@ function buildKeywords(machine){
 </script>
 </body>
 </html>
+<!-- updated v2 -->
