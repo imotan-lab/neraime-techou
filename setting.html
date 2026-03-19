@@ -318,14 +318,20 @@ if('serviceWorker' in navigator){
   });
 }
 
-// 横向き検知（JS）
+// 横向き検知（JS）- body直接操作で確実に反映
 function checkOrientation(){
   const isLandscape = window.innerWidth > window.innerHeight;
-  document.body.classList.toggle('is-landscape', isLandscape);
+  if(isLandscape){
+    document.body.classList.add('is-landscape');
+  } else {
+    document.body.classList.remove('is-landscape');
+  }
 }
+// 即時実行 + イベント
 checkOrientation();
 window.addEventListener('resize', checkOrientation);
-window.addEventListener('orientationchange', ()=>{ setTimeout(checkOrientation, 100); });
+window.addEventListener('orientationchange', function(){ setTimeout(checkOrientation, 150); });
+document.addEventListener('DOMContentLoaded', checkOrientation);
 </script>
 </body>
 </html>
