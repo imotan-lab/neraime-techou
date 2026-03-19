@@ -42,74 +42,81 @@
       <p class="hint-text" style="margin-bottom:12px;">BB回数は初当たりのみ。小役・共通ベルは通常時のみカウント（BB中は除く）。ページを閉じても同じ端末・ブラウザであればデータが保持されます。</p>
       <div class="setting-input-grid">
         <div class="setting-input-item">
-          <span class="setting-input-label">総ゲーム数</span>
-          <span class="setting-input-sub">通常時の近似値</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">総ゲーム数</span>
+            <span class="setting-input-sub">通常時の近似値</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('totalG')">－</button>
             <input class="setting-num-input" id="totalG" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('totalG')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="totalGDisp"></span>
         </div>
         <div class="setting-input-item">
-          <span class="setting-input-label">BB回数</span>
-          <span class="setting-input-sub">初当たりのみ</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">BB回数</span>
+            <span class="setting-input-sub" id="bbDisp">初当たりのみ</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('bbCount')">－</button>
             <input class="setting-num-input" id="bbCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('bbCount')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="bbDisp"></span>
         </div>
         <div class="setting-input-item">
-          <span class="setting-input-label">中段チェリー</span>
-          <span class="setting-input-sub">通常時のみ</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">中段チェリー</span>
+            <span class="setting-input-sub" id="cherryDisp">通常時のみ</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('cherryCount')">－</button>
             <input class="setting-num-input" id="cherryCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('cherryCount')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="cherryDisp"></span>
         </div>
         <div class="setting-input-item">
-          <span class="setting-input-label">弱スイカ</span>
-          <span class="setting-input-sub">通常時・目押し必須</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">弱スイカ</span>
+            <span class="setting-input-sub" id="weakWmDisp">通常時・目押し必須</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('weakWmCount')">－</button>
             <input class="setting-num-input" id="weakWmCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('weakWmCount')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="weakWmDisp"></span>
         </div>
         <div class="setting-input-item">
-          <span class="setting-input-label">強スイカ</span>
-          <span class="setting-input-sub">通常時・目押し必須</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">強スイカ</span>
+            <span class="setting-input-sub" id="strongWmDisp">通常時・目押し必須</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('strongWmCount')">－</button>
             <input class="setting-num-input" id="strongWmCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('strongWmCount')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="strongWmDisp"></span>
         </div>
         <div class="setting-input-item">
-          <span class="setting-input-label">共通ベル <span style="color:var(--muted2);font-size:10px;">参考値</span></span>
-          <span class="setting-input-sub">通常時・中→右→左</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">共通ベル <span style="color:var(--muted2);font-size:10px;">参考値</span></span>
+            <span class="setting-input-sub" id="bellDisp">通常時・中→右→左</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('bellCount')">－</button>
             <input class="setting-num-input" id="bellCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('bellCount')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="bellDisp"></span>
         </div>
         <div class="setting-input-item">
-          <span class="setting-input-label">リーチ目役</span>
-          <span class="setting-input-sub">通常時のみ</span>
+          <div class="setting-input-label-wrap">
+            <span class="setting-input-label">リーチ目役</span>
+            <span class="setting-input-sub" id="reachDisp">通常時のみ</span>
+          </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('reachCount')">－</button>
             <input class="setting-num-input" id="reachCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('reachCount')">＋</button>
           </div>
-          <span class="setting-calc-disp" id="reachDisp"></span>
         </div>
       </div>
       <button class="setting-reset-btn" onclick="resetAll()">データをリセット</button>
@@ -230,21 +237,22 @@ function poisson(k,lambda){
   for(let i=1;i<=k;i++)logP-=Math.log(i);
   return Math.exp(logP);
 }
-function dispRate(id,totalG,count){
+function dispRate(id,totalG,count,baseSub){
   const el=document.getElementById(id);
-  if(!totalG||!count){el.textContent='';return;}
-  el.textContent='実測: 1/'+Math.round(totalG/count);
+  if(!el)return;
+  if(!totalG||!count){el.textContent=baseSub;return;}
+  el.textContent=baseSub+'　実測: 1/'+Math.round(totalG/count);
 }
 function calcAll(){
   const totalG=val('totalG'),bb=val('bbCount'),cherry=val('cherryCount');
   const weakWm=val('weakWmCount'),strongWm=val('strongWmCount');
   const reach=val('reachCount'),bell=val('bellCount');
-  dispRate('bbDisp',totalG,bb);
-  dispRate('cherryDisp',totalG,cherry);
-  dispRate('weakWmDisp',totalG,weakWm);
-  dispRate('strongWmDisp',totalG,strongWm);
-  dispRate('reachDisp',totalG,reach);
-  dispRate('bellDisp',totalG,bell);
+  dispRate('bbDisp',totalG,bb,'初当たりのみ');
+  dispRate('cherryDisp',totalG,cherry,'通常時のみ');
+  dispRate('weakWmDisp',totalG,weakWm,'通常時・目押し必須');
+  dispRate('strongWmDisp',totalG,strongWm,'通常時・目押し必須');
+  dispRate('reachDisp',totalG,reach,'通常時のみ');
+  dispRate('bellDisp',totalG,bell,'通常時・中→右→左');
   if(!totalG){resetBars();return;}
   let scores={},total=0;
   SETTINGS.forEach(s=>{
