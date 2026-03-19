@@ -37,6 +37,9 @@
   <section class="toolbar" aria-label="検索エリア">
     <label class="visually-hidden" for="machineSearch">機種名検索</label>
     <input id="machineSearch" class="search-input" type="search" placeholder="機種名で検索（例: 北斗、バキ、ゴッドイーター）">
+    <div id="showAllWrapTop" class="show-all-wrap" style="padding:12px 0 0;">
+      <button id="showAllBtnTop" class="btn-show-all">全機種を見る ›</button>
+    </div>
   </section>
 
   <div id="listHeader" class="list-header">
@@ -113,13 +116,20 @@ function buildKeywords(machine){
     const showAllWrap = document.getElementById("showAllWrap");
     const showAllBtn = document.getElementById("showAllBtn");
 
-    showAllBtn.addEventListener("click", () => {
+    const showAllWrapTop = document.getElementById("showAllWrapTop");
+    const showAllBtnTop = document.getElementById("showAllBtnTop");
+
+    function activateShowAll() {
       showAll = true;
       showAllWrap.style.display = "none";
+      if (showAllWrapTop) showAllWrapTop.style.display = "none";
       listHeader.querySelector(".list-header-title").textContent = "全機種一覧";
       listHeader.querySelector(".list-header-sub").textContent = "";
       render(search.value);
-    });
+    }
+
+    showAllBtn.addEventListener("click", activateShowAll);
+    if (showAllBtnTop) showAllBtnTop.addEventListener("click", activateShowAll);
 
     function render(keyword = "") {
       const query = normalizeText(keyword);

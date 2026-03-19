@@ -240,8 +240,8 @@ function poisson(k,lambda){
 function dispRate(id,totalG,count,baseSub){
   const el=document.getElementById(id);
   if(!el)return;
-  if(!totalG||!count){el.textContent=baseSub;return;}
-  el.textContent=baseSub+'　実測: 1/'+Math.round(totalG/count);
+  if(!totalG||!count){el.innerHTML=baseSub;return;}
+  el.innerHTML=baseSub+'<br><span style="color:var(--gold);font-weight:800;">実測: 1/'+Math.round(totalG/count)+'</span>';
 }
 function calcAll(){
   const totalG=val('totalG'),bb=val('bbCount'),cherry=val('cherryCount');
