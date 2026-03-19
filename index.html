@@ -98,8 +98,6 @@ function buildKeywords(machine){
 
 (async function loadMachines(){
   const list = document.getElementById("machineList");
-  const count = document.getElementById("machineCount");
-  const heroCount = document.getElementById("heroCount");
   const search = document.getElementById("machineSearch");
   const empty = document.getElementById("machineEmpty");
 
@@ -172,8 +170,6 @@ function buildKeywords(machine){
     render();
 
   } catch (error) {
-    count.textContent = "エラー";
-    heroCount.textContent = "エラー";
     empty.style.display = "block";
     empty.textContent = "機種一覧の読み込みに失敗しました。";
   }
@@ -189,4 +185,3 @@ if ("serviceWorker" in navigator) {
 </script>
 </body>
 </html>
-<!-- updated v2 -->
