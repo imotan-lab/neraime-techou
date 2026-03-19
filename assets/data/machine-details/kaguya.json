@@ -1,0 +1,33 @@
+{
+  "slug": "kaguya",
+  "updated": "2026-03-20",
+  "lead": "This machine uses normal, reg, suru, and reset. Set the current route first, then read the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep normal, reg, suru, and reset on separate lines." },
+    { "label": "Modes", "value": "normal / reg / suru / reset" },
+    { "label": "Input limit", "value": "999G" },
+    { "label": "Note", "value": "The suru line supports 0 to 7." }
+  ],
+  "factTable": [
+    ["Modes", "normal / reg / suru / reset"],
+    ["Input limit", "999G"],
+    ["Suru count", "0 to 7"],
+    ["Check point", "Do not mix normal, reg, and suru."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "Each route has its own checker line.",
+        "Fix the current route first, then compare the result card and the summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "If the current route is unclear, use the safer line.",
+        "This article only reorganizes the current checker rules."
+      ]
+    }
+  ]
+}

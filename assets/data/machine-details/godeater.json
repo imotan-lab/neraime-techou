@@ -1,0 +1,33 @@
+{
+  "slug": "godeater",
+  "updated": "2026-03-20",
+  "lead": "This machine uses normal, nukete, and reset. Pick the current route first, then use the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep normal, nukete, and reset on separate lines." },
+    { "label": "Modes", "value": "normal / nukete / reset" },
+    { "label": "Input limit", "value": "999G" },
+    { "label": "Note", "value": "Use the nukete line only when it matches the current state." }
+  ],
+  "factTable": [
+    ["Modes", "normal / nukete / reset"],
+    ["Input limit", "999G"],
+    ["Use", "Judge after the route is identified."],
+    ["Check point", "Do not mix normal and nukete."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "The selected route changes the checker output.",
+        "Use the matching route first, then compare the result card and the summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "When the current state is vague, stay on the safer line.",
+        "This page follows the current checker structure."
+      ]
+    }
+  ]
+}

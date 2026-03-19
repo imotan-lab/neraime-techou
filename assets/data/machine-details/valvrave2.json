@@ -1,0 +1,33 @@
+{
+  "slug": "valvrave2",
+  "updated": "2026-03-20",
+  "lead": "This machine uses cz, bonus, suru, and reset. Pick the current route first, then read the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep cz, bonus, suru, and reset on separate lines." },
+    { "label": "Modes", "value": "cz / bonus / suru / reset" },
+    { "label": "Input limit", "value": "1500G" },
+    { "label": "Note", "value": "The suru line supports 0 to 3." }
+  ],
+  "factTable": [
+    ["Modes", "cz / bonus / suru / reset"],
+    ["Input limit", "1500G"],
+    ["Suru count", "0 to 3"],
+    ["Check point", "Do not mix the four routes."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "The selected route changes the checker output.",
+        "Fix the route first, then compare the result card and the summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "This machine has many entry points, so vague reading causes the biggest error.",
+        "When the route is unclear, stay on the safer side."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "hokuto_tensei2",
+  "updated": "2026-03-20",
+  "lead": "Use the checker after you decide whether the current table should be viewed as normal or reset.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Check normal first, then compare with reset when needed." },
+    { "label": "Modes", "value": "normal / reset" },
+    { "label": "Input limit", "value": "1268G" },
+    { "label": "Note", "value": "Pick the matching mode before reading the result." }
+  ],
+  "factTable": [
+    ["Modes", "normal / reset"],
+    ["Input limit", "1268G"],
+    ["Use", "Separate normal and reset before judging."],
+    ["Check point", "Do not mix the two routes."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "This page keeps the current checker rules in a readable format.",
+        "Choose the route first, then compare the result card and the summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "When the route is unclear, use the safer side and avoid a shallow start.",
+        "This article stays close to the current checker structure."
+      ]
+    }
+  ]
+}

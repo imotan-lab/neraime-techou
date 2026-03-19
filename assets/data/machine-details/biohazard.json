@@ -1,0 +1,33 @@
+{
+  "slug": "biohazard",
+  "updated": "2026-03-20",
+  "lead": "This machine uses normal, tenkoku, and reset. Pick the current route first, then use the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep normal, tenkoku, and reset on separate lines." },
+    { "label": "Modes", "value": "normal / tenkoku / reset" },
+    { "label": "Input limit", "value": "999G" },
+    { "label": "Note", "value": "Use the tenkoku line only when it matches the current state." }
+  ],
+  "factTable": [
+    ["Modes", "normal / tenkoku / reset"],
+    ["Input limit", "999G"],
+    ["Use", "Judge after the route is identified."],
+    ["Check point", "Do not mix normal and tenkoku."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "The selected route changes the checker output.",
+        "Use the matching route first, then compare the result card and the summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "When the current state is vague, stay on the safer line.",
+        "This page follows the current checker structure."
+      ]
+    }
+  ]
+}

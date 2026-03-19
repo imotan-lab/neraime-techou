@@ -1,0 +1,33 @@
+{
+  "slug": "kabaneri",
+  "updated": "2026-03-20",
+  "lead": "This machine uses separate lines for normal and reset. Select the route first, then read the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Normal route and reset route are handled separately." },
+    { "label": "Modes", "value": "normal / reset" },
+    { "label": "Input limit", "value": "650G" },
+    { "label": "Note", "value": "Read the result only after the route is fixed." }
+  ],
+  "factTable": [
+    ["Modes", "normal / reset"],
+    ["Input limit", "650G"],
+    ["Use", "Split the table into normal and reset."],
+    ["Check point", "Do not mix the two routes."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "The checker is built around two entry points.",
+        "Choose the matching route first, then confirm the result card and summary table together."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "If the current state is not clear, stay on the safer side.",
+        "This page only reorganizes the current checker rules."
+      ]
+    }
+  ]
+}

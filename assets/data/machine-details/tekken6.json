@@ -1,0 +1,33 @@
+{
+  "slug": "tekken6",
+  "updated": "2026-03-20",
+  "lead": "This machine uses normal, suru, and reset. Set the suru count when you read the suru line.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep normal, suru, and reset on separate lines." },
+    { "label": "Modes", "value": "normal / suru / reset" },
+    { "label": "Input limit", "value": "1500G" },
+    { "label": "Note", "value": "The suru line supports 0 to 3." }
+  ],
+  "factTable": [
+    ["Modes", "normal / suru / reset"],
+    ["Input limit", "1500G"],
+    ["Suru count", "0 to 3"],
+    ["Check point", "Fix route and suru count first."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "Use normal when the table should be read without suru count.",
+        "Use suru only after the current count is set."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "If the count is not clear, do not force the suru line.",
+        "This page keeps the current checker structure in a compact format."
+      ]
+    }
+  ]
+}

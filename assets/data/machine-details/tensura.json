@@ -1,0 +1,33 @@
+{
+  "slug": "tensura",
+  "updated": "2026-03-20",
+  "lead": "Use the checker after you decide whether the current table should be viewed as normal or reset.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Check normal and reset on separate lines." },
+    { "label": "Modes", "value": "normal / reset" },
+    { "label": "Input limit", "value": "1000G" },
+    { "label": "Note", "value": "Fix the route before reading the result." }
+  ],
+  "factTable": [
+    ["Modes", "normal / reset"],
+    ["Input limit", "1000G"],
+    ["Use", "Split the table into normal and reset."],
+    ["Check point", "Judge after the route is fixed."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "This page keeps the current checker rules in a readable format.",
+        "Choose the matching route first, then compare the result card and summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "When the route is not clear, stay on the safer side.",
+        "Avoid a shallow start if the current state is uncertain."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "koukaku",
+  "updated": "2026-03-20",
+  "lead": "This machine has separate lines for cz, at, and reset. Decide the current route first, then use the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep cz, at, and reset on separate lines." },
+    { "label": "Modes", "value": "cz / at / reset" },
+    { "label": "Input limit", "value": "999G" },
+    { "label": "Note", "value": "Do not read cz and at as the same route." }
+  ],
+  "factTable": [
+    ["Modes", "cz / at / reset"],
+    ["Input limit", "999G"],
+    ["Use", "Judge after the current route is identified."],
+    ["Check point", "Separate cz, at, and reset."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "The checker changes with the selected route.",
+        "Pick the route first, then compare the result card and the summary table."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "If the route is unclear, use the safer line.",
+        "This article only reorganizes the current checker rules."
+      ]
+    }
+  ]
+}

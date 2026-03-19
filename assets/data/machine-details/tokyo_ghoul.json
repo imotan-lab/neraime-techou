@@ -1,0 +1,33 @@
+{
+  "slug": "tokyo_ghoul",
+  "updated": "2026-03-20",
+  "lead": "This machine uses cz, at, and reset. The at line also changes with the suru count, so set both before reading the checker.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep cz, at, and reset on separate lines." },
+    { "label": "Modes", "value": "cz / at / reset" },
+    { "label": "Input limit", "value": "1000G" },
+    { "label": "Note", "value": "The at line uses suru count from 0 to 2." }
+  ],
+  "factTable": [
+    ["Modes", "cz / at / reset"],
+    ["Input limit", "1000G"],
+    ["Suru count", "at supports 0 to 2"],
+    ["Check point", "Set both route and suru count first."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "Use cz when the current table should be read as cz.",
+        "Use at only after the suru count is also fixed."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "This machine is easy to misread if the route is vague.",
+        "When the count is unclear, stay on the safer side."
+      ]
+    }
+  ]
+}

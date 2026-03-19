@@ -1,0 +1,33 @@
+{
+  "slug": "sf5",
+  "updated": "2026-03-20",
+  "lead": "This machine is treated as a setting-focused page, not as a normal game-count checker page.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Use the setting tool as the main guide." },
+    { "label": "Modes", "value": "normal" },
+    { "label": "Input limit", "value": "none" },
+    { "label": "Note", "value": "The article page shows guide text instead of a normal checker." }
+  ],
+  "factTable": [
+    ["Modes", "normal"],
+    ["Input limit", "none"],
+    ["Use", "Treat this page as a guide for the setting tool."],
+    ["Check point", "Open the setting tool from the article page."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "This machine does not use the normal game-count checker flow on the article page.",
+        "Use the article page as a guide page and move to the setting tool when needed."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "The current structure keeps this machine separate from the normal checker flow.",
+        "This article follows the current checker and setting-tool roles."
+      ]
+    }
+  ]
+}

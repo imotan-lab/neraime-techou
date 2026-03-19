@@ -1,0 +1,33 @@
+{
+  "slug": "banchou4",
+  "updated": "2026-03-20",
+  "lead": "This machine uses normal, suru, and reset. Set the current suru count before using the suru line.",
+  "summaryBoxes": [
+    { "label": "Base plan", "value": "Keep normal, suru, and reset on separate lines." },
+    { "label": "Modes", "value": "normal / suru / reset" },
+    { "label": "Input limit", "value": "1000G" },
+    { "label": "Note", "value": "The suru line supports 0 to 2." }
+  ],
+  "factTable": [
+    ["Modes", "normal / suru / reset"],
+    ["Input limit", "1000G"],
+    ["Suru count", "0 to 2"],
+    ["Check point", "Set route and count first."]
+  ],
+  "sections": [
+    {
+      "title": "How to use",
+      "body": [
+        "Use the normal line when the suru count is not part of the judgment.",
+        "Use the suru line only after the count is fixed."
+      ]
+    },
+    {
+      "title": "Memo",
+      "body": [
+        "When the count is unclear, use the safer line.",
+        "This article follows the current checker structure."
+      ]
+    }
+  ]
+}
