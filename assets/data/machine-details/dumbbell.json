@@ -1,32 +1,41 @@
 {
   "slug": "dumbbell",
   "updated": "2026-03-20",
-  "lead": "This machine uses cz, suru, and reset. Set the current suru count before using the suru line.",
+  "lead": "この機種は CZ、スルー回数、リセットで基準が分かれます。スルー回数を使うときは、現在の回数まで合わせてからチェッカーを見てください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep cz, suru, and reset on separate lines." },
-    { "label": "Modes", "value": "cz / suru / reset" },
-    { "label": "Input limit", "value": "999G" },
-    { "label": "Note", "value": "The suru line supports 0 to 5." }
+    { "label": "狙い方", "value": "CZ、スルー回数、リセットを分けて確認" },
+    { "label": "対応モード", "value": "cz / suru / reset" },
+    { "label": "入力上限", "value": "999G" },
+    { "label": "補足", "value": "suru は 0 から 5 に対応" },
+    { "label": "使い方", "value": "CZ と suru を混ぜずに現在地で見る" }
   ],
   "factTable": [
-    ["Modes", "cz / suru / reset"],
-    ["Input limit", "999G"],
-    ["Suru count", "0 to 5"],
-    ["Check point", "Set route and count first."]
+    ["対応モード", "cz / suru / reset"],
+    ["入力上限", "999G"],
+    ["スルー回数", "0 から 5 まで対応"],
+    ["基本の見方", "CZ ラインとスルーラインを分ける"],
+    ["注意点", "回数不明の台に suru を当てない"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "Use cz when the current table should be read as cz.",
-        "Use suru only after the current count is fixed."
+        "この機種は cz、suru、reset の3つの入口で見る形です。",
+        "現在の台が CZ で見るべきか、スルー回数込みで見るべきか、リセットで見るべきかを先に決めてから判定してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "スルー回数の見方",
       "body": [
-        "If the count is unclear, do not force the suru line.",
-        "This article follows the current checker structure."
+        "suru モードは 0 から 5 の回数入力に対応しています。回数が分かっている台だけに使うと、現在地に近い見方ができます。",
+        "回数が分からない台は無理に suru を使わず、CZ ラインや安全側の見方を優先した方がズレを減らせます。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "回数ものの機種では、ゲーム数よりも前提の精度が大事になる場面があります。",
+        "チェッカーは入口整理の道具として使い、履歴や周辺の状況も合わせて最終判断してください。"
       ]
     }
   ]

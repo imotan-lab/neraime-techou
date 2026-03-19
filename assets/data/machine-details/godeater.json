@@ -1,32 +1,41 @@
 {
   "slug": "godeater",
   "updated": "2026-03-20",
-  "lead": "This machine uses normal, nukete, and reset. Pick the current route first, then use the checker.",
+  "lead": "この機種は通常、抜け後、リセットで基準が分かれます。いまどの状態を見ている台なのかを決めてから、対応するモードでチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep normal, nukete, and reset on separate lines." },
-    { "label": "Modes", "value": "normal / nukete / reset" },
-    { "label": "Input limit", "value": "999G" },
-    { "label": "Note", "value": "Use the nukete line only when it matches the current state." }
+    { "label": "狙い方", "value": "通常、抜け後、リセットを分けて確認" },
+    { "label": "対応モード", "value": "normal / nukete / reset" },
+    { "label": "入力上限", "value": "999G" },
+    { "label": "使い方", "value": "現在地に近いモードを選んでから判定を見る" },
+    { "label": "見るポイント", "value": "抜け後ラインを使う場面かを先に見る" }
   ],
   "factTable": [
-    ["Modes", "normal / nukete / reset"],
-    ["Input limit", "999G"],
-    ["Use", "Judge after the route is identified."],
-    ["Check point", "Do not mix normal and nukete."]
+    ["対応モード", "normal / nukete / reset"],
+    ["入力上限", "999G"],
+    ["基本の見方", "通常と抜け後とリセットを分けて見る"],
+    ["向いている使い方", "状態をある程度切り分けられる台を確認する"],
+    ["注意点", "通常ラインと抜け後ラインを混ぜない"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "The selected route changes the checker output.",
-        "Use the matching route first, then compare the result card and the summary table."
+        "この機種は normal、nukete、reset の3つの入口で使う構成です。",
+        "現在の台が通常として見る台なのか、抜け後として見る台なのか、リセットとして見る台なのかを先に決めてから結果表示を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "抜け後の見方",
       "body": [
-        "When the current state is vague, stay on the safer line.",
-        "This page follows the current checker structure."
+        "nukete モードは、抜け後として見るべき台かどうかを前提にしたラインです。",
+        "現在の状態が読めない台を無理に抜け後基準で見るよりも、通常ラインで保守的に見る方がズレを減らせます。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "状態切り替えを伴う機種では、ゲーム数だけでなく前提の切り分けが大事です。",
+        "チェッカーは入口整理に使い、最終判断は履歴や当日の状況も合わせて行ってください。"
       ]
     }
   ]

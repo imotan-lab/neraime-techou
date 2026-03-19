@@ -1,32 +1,41 @@
 {
   "slug": "tekken6",
   "updated": "2026-03-20",
-  "lead": "This machine uses normal, suru, and reset. Set the suru count when you read the suru line.",
+  "lead": "この機種は通常、スルー回数、リセットで基準が分かれます。スルー回数を使う場面では、現在の回数も合わせてからチェッカーを見てください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep normal, suru, and reset on separate lines." },
-    { "label": "Modes", "value": "normal / suru / reset" },
-    { "label": "Input limit", "value": "1500G" },
-    { "label": "Note", "value": "The suru line supports 0 to 3." }
+    { "label": "狙い方", "value": "通常基準、スルー回数基準、リセット基準を分けて確認" },
+    { "label": "対応モード", "value": "normal / suru / reset" },
+    { "label": "入力上限", "value": "1500G" },
+    { "label": "補足", "value": "suru は 0 から 3 に対応" },
+    { "label": "使い方", "value": "回数を使うときは必ず現在値を合わせる" }
   ],
   "factTable": [
-    ["Modes", "normal / suru / reset"],
-    ["Input limit", "1500G"],
-    ["Suru count", "0 to 3"],
-    ["Check point", "Fix route and suru count first."]
+    ["対応モード", "normal / suru / reset"],
+    ["入力上限", "1500G"],
+    ["スルー回数", "0 から 3 まで対応"],
+    ["基本の見方", "通常とスルー回数狙いを別のラインで見る"],
+    ["注意点", "回数不明の台に suru を当てない"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "Use normal when the table should be read without suru count.",
-        "Use suru only after the current count is set."
+        "この機種は normal、suru、reset の3つの入口でチェッカーを使う形です。",
+        "通常ラインで見るのか、スルー回数まで含めて見るのかを先に決めて、その前提のまま結果表示と早見表を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "スルー回数の扱い",
       "body": [
-        "If the count is not clear, do not force the suru line.",
-        "This page keeps the current checker structure in a compact format."
+        "suru モードは回数入力が前提です。0 から 3 のどこにいるかを合わせてから見ることで、現在の条件に近い判定になります。",
+        "回数が分からない台を無理に suru で見るよりも、通常ラインで保守的に見る方がズレを減らしやすいです。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "回数ものの機種は、ゲーム数だけではなく前提の精度が大事です。",
+        "はっきり読める台だけを積極的に確認し、読めない台は深いラインまで待つ方が使いやすくなります。"
       ]
     }
   ]

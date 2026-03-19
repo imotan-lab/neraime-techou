@@ -1,32 +1,41 @@
 {
   "slug": "koukaku",
   "updated": "2026-03-20",
-  "lead": "This machine has separate lines for cz, at, and reset. Decide the current route first, then use the checker.",
+  "lead": "この機種は CZ、AT、リセットで基準が分かれます。いまどの状態を見ている台なのかを決めてから、対応するモードでチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep cz, at, and reset on separate lines." },
-    { "label": "Modes", "value": "cz / at / reset" },
-    { "label": "Input limit", "value": "999G" },
-    { "label": "Note", "value": "Do not read cz and at as the same route." }
+    { "label": "狙い方", "value": "CZ基準、AT基準、リセット基準を分けて確認" },
+    { "label": "対応モード", "value": "cz / at / reset" },
+    { "label": "入力上限", "value": "999G" },
+    { "label": "使い方", "value": "現在地に合うモードを選んでから判定を見る" },
+    { "label": "見るポイント", "value": "CZとATを同じ線で見ない" }
   ],
   "factTable": [
-    ["Modes", "cz / at / reset"],
-    ["Input limit", "999G"],
-    ["Use", "Judge after the current route is identified."],
-    ["Check point", "Separate cz, at, and reset."]
+    ["対応モード", "cz / at / reset"],
+    ["入力上限", "999G"],
+    ["基本の見方", "CZ、AT、リセットを別々の基準で見る"],
+    ["向いている使い方", "現在の状態を切り分けられる台を確認する"],
+    ["注意点", "入口を混同すると判定が大きくずれる"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "The checker changes with the selected route.",
-        "Pick the route first, then compare the result card and the summary table."
+        "この機種は入口が複数あるため、最初のモード選択がそのまま判定の前提になります。",
+        "CZ間で見る台なのか、AT間で見る台なのか、リセットとして見る台なのかを先に決めてから、結果表示と早見表を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "モードの使い分け",
       "body": [
-        "If the route is unclear, use the safer line.",
-        "This article only reorganizes the current checker rules."
+        "cz と at は別モードとして用意されています。現在地がどちらかをはっきりさせてから使うのが基本です。",
+        "状態があいまいな台を複数のモードで都合よく読むとズレやすいので、ひとつの前提に固定して見る方が安全です。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "複数モード機種では、ゲーム数だけでなく今の状態の切り分けが大事です。",
+        "迷ったときは浅い基準を採用するのではなく、安全側の見方で判定する方が使いやすくなります。"
       ]
     }
   ]

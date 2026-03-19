@@ -1,32 +1,41 @@
 {
   "slug": "monkeyv",
   "updated": "2026-03-20",
-  "lead": "Use the checker after you decide whether the current table should be viewed as normal or reset.",
+  "lead": "この機種は通常時とリセット時で狙い目の見方を分ける構成です。まずは現在の台をどちらの前提で見るかを決めてから、上のチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Check normal and reset on separate lines." },
-    { "label": "Modes", "value": "normal / reset" },
-    { "label": "Input limit", "value": "1280G" },
-    { "label": "Note", "value": "Fix the route before reading the result." }
+    { "label": "狙い方", "value": "通常狙いとリセット狙いを分けて確認" },
+    { "label": "対応モード", "value": "normal / reset" },
+    { "label": "入力上限", "value": "1280G" },
+    { "label": "使い方", "value": "モード選択後に結果と早見表を確認" },
+    { "label": "見るポイント", "value": "前提が読めない台は安全側で見る" }
   ],
   "factTable": [
-    ["Modes", "normal / reset"],
-    ["Input limit", "1280G"],
-    ["Use", "Read normal and reset independently."],
-    ["Check point", "Judge after the route is fixed."]
+    ["対応モード", "normal / reset"],
+    ["入力上限", "1280G"],
+    ["基本の見方", "通常時とリセット時の基準を分ける"],
+    ["向いている使い方", "状態がある程度読める台を確認する"],
+    ["注意点", "モード選択を誤ると基準がずれる"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "This page stays close to the current checker structure.",
-        "Select the route first, then compare the result card and the summary box."
+        "このページは machines.json の現在のチェッカー条件を見やすく整理した記事データです。",
+        "最初に normal か reset を選び、そのまま同じ前提で結果表示と早見表を読む使い方を想定しています。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "通常とリセットの分け方",
       "body": [
-        "When the route is not clear, use the safer line.",
-        "Avoid a shallow start if the current state is uncertain."
+        "この機種では通常時とリセット時で見るラインが分かれます。今の台をどちらで見るかを先に決めるのが重要です。",
+        "履歴や当日の状況が弱く、どちらの前提か読みにくい台は、浅い基準で無理に見るよりも安全側で確認した方が使いやすいです。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "チェッカーは現在地の整理に使い、最終判断は周辺の状況と合わせて行う形が向いています。",
+        "特に前提が曖昧な台は、深いラインまで待つ判断の方がズレを起こしにくいです。"
       ]
     }
   ]

@@ -1,32 +1,41 @@
 {
   "slug": "hokuto_tensei2",
   "updated": "2026-03-20",
-  "lead": "Use the checker after you decide whether the current table should be viewed as normal or reset.",
+  "lead": "この機種は通常時とリセット時で見る基準が分かれています。まずは現在の台がどちらの前提で見るべきかを決めてから、上のチェッカーと早見表を使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Check normal first, then compare with reset when needed." },
-    { "label": "Modes", "value": "normal / reset" },
-    { "label": "Input limit", "value": "1268G" },
-    { "label": "Note", "value": "Pick the matching mode before reading the result." }
+    { "label": "狙い方", "value": "通常狙いとリセット狙いを分けて確認" },
+    { "label": "対応モード", "value": "normal / reset" },
+    { "label": "入力上限", "value": "1268G" },
+    { "label": "使い方", "value": "現在地に近いモードを先に選んでから判定を見る" },
+    { "label": "見るポイント", "value": "通常時の深さとリセット時の浅さを混同しない" }
   ],
   "factTable": [
-    ["Modes", "normal / reset"],
-    ["Input limit", "1268G"],
-    ["Use", "Separate normal and reset before judging."],
-    ["Check point", "Do not mix the two routes."]
+    ["対応モード", "normal / reset"],
+    ["入力上限", "1268G"],
+    ["基本の見方", "通常時とリセット時を別々の基準で確認する"],
+    ["向いている使い方", "今の状態がある程度読める台を確認する"],
+    ["注意点", "モードを間違えると基準が大きくずれる"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "This page keeps the current checker rules in a readable format.",
-        "Choose the route first, then compare the result card and the summary table."
+        "このページは、現在 machines.json に入っているチェッカー条件を記事ページで見やすく整理したものです。",
+        "最初に上のモード切り替えで通常時かリセット時かを選び、その前提のまま結果表示と早見表を見比べてください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "通常とリセットの分け方",
       "body": [
-        "When the route is unclear, use the safer side and avoid a shallow start.",
-        "This article stays close to the current checker structure."
+        "この機種は normal と reset で狙い目のラインが分かれています。通常時として見るのか、リセット後として見るのかを先に決めることが大事です。",
+        "状態がはっきりしていない台を無理に浅い基準で見るよりも、安全側の見方で確認した方がズレを減らしやすいです。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "上のチェッカーは今の状態を整理するための入口として使い、最終判断は履歴や当日の動きとあわせて見る形が向いています。",
+        "特に通常とリセットの前提があいまいなときは、浅いゲーム数から無理に入らず、はっきり読める台を優先してください。"
       ]
     }
   ]

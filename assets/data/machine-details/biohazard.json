@@ -1,32 +1,41 @@
 {
   "slug": "biohazard",
   "updated": "2026-03-20",
-  "lead": "This machine uses normal, tenkoku, and reset. Pick the current route first, then use the checker.",
+  "lead": "この機種は通常、tenkoku、リセットで基準が分かれます。いまどの状態を見ている台なのかを決めてから、上のチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep normal, tenkoku, and reset on separate lines." },
-    { "label": "Modes", "value": "normal / tenkoku / reset" },
-    { "label": "Input limit", "value": "999G" },
-    { "label": "Note", "value": "Use the tenkoku line only when it matches the current state." }
+    { "label": "狙い方", "value": "通常、tenkoku、リセットを分けて確認" },
+    { "label": "対応モード", "value": "normal / tenkoku / reset" },
+    { "label": "入力上限", "value": "999G" },
+    { "label": "使い方", "value": "現在地に近いモードを選んでから判定を見る" },
+    { "label": "見るポイント", "value": "tenkoku を使う場面かどうかを先に見る" }
   ],
   "factTable": [
-    ["Modes", "normal / tenkoku / reset"],
-    ["Input limit", "999G"],
-    ["Use", "Judge after the route is identified."],
-    ["Check point", "Do not mix normal and tenkoku."]
+    ["対応モード", "normal / tenkoku / reset"],
+    ["入力上限", "999G"],
+    ["基本の見方", "通常と tenkoku と reset を別で確認する"],
+    ["向いている使い方", "状態をある程度切り分けられる台を見る"],
+    ["注意点", "通常ラインと tenkoku ラインを混ぜない"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "The selected route changes the checker output.",
-        "Use the matching route first, then compare the result card and the summary table."
+        "この機種は normal、tenkoku、reset で別々のラインを使う構成です。",
+        "最初にどの状態を前提にするかを決め、その前提のまま結果表示と早見表を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "tenkoku の使い方",
       "body": [
-        "When the current state is vague, stay on the safer line.",
-        "This page follows the current checker structure."
+        "tenkoku モードは、現在の台がその状態として見るべきかどうかを先に考えてから使うラインです。",
+        "はっきり読めない台を無理に tenkoku 基準で見るよりも、通常ラインで保守的に見る方がズレを減らしやすいです。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "状態切り替えを伴う機種では、ゲーム数だけでなく前提の合わせ方が大事です。",
+        "チェッカーは入口を整理する道具として使い、最終判断は履歴や状況も合わせて行ってください。"
       ]
     }
   ]

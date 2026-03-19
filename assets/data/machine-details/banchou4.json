@@ -1,32 +1,41 @@
 {
   "slug": "banchou4",
   "updated": "2026-03-20",
-  "lead": "This machine uses normal, suru, and reset. Set the current suru count before using the suru line.",
+  "lead": "この機種は通常、スルー回数、リセットで見る基準が分かれます。上のチェッカーでは、いまどの前提で見る台かを先に決めてから判定してください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep normal, suru, and reset on separate lines." },
-    { "label": "Modes", "value": "normal / suru / reset" },
-    { "label": "Input limit", "value": "1000G" },
-    { "label": "Note", "value": "The suru line supports 0 to 2." }
+    { "label": "狙い方", "value": "通常基準、スルー回数基準、リセット基準を分けて確認" },
+    { "label": "対応モード", "value": "normal / suru / reset" },
+    { "label": "入力上限", "value": "1000G" },
+    { "label": "補足", "value": "suru は 0 から 2 に対応" },
+    { "label": "使い方", "value": "回数を使う場面では現在値まで合わせる" }
   ],
   "factTable": [
-    ["Modes", "normal / suru / reset"],
-    ["Input limit", "1000G"],
-    ["Suru count", "0 to 2"],
-    ["Check point", "Set route and count first."]
+    ["対応モード", "normal / suru / reset"],
+    ["入力上限", "1000G"],
+    ["スルー回数", "0 から 2 まで対応"],
+    ["基本の見方", "通常とスルー回数狙いを別で確認する"],
+    ["注意点", "回数不明の台に suru を当てない"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "Use the normal line when the suru count is not part of the judgment.",
-        "Use the suru line only after the count is fixed."
+        "このページは現在のチェッカー条件を記事ページで見やすく整理したものです。",
+        "normal、suru、reset のどれで見るかを決めてから、同じ前提で結果表示と早見表を読む使い方を想定しています。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "スルー回数の見方",
       "body": [
-        "When the count is unclear, use the safer line.",
-        "This article follows the current checker structure."
+        "suru モードは現在の回数が分かっている台に向いています。0、1、2 のどこかを合わせてから使ってください。",
+        "回数が読めない台は無理に浅い基準を採らず、通常ラインや安全側の見方で整理する方がズレを減らせます。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "ゲーム数だけでなく前提の切り分けが大事なタイプなので、条件がはっきりしている台ほど使いやすいです。",
+        "チェッカーは入口の整理に使い、最終判断は履歴や周辺状況も含めて行ってください。"
       ]
     }
   ]

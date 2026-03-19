@@ -1,32 +1,41 @@
 {
   "slug": "kabaneri",
   "updated": "2026-03-20",
-  "lead": "This machine uses separate lines for normal and reset. Select the route first, then read the checker.",
+  "lead": "この機種も通常時とリセット時で基準が分かれています。上のチェッカーは前提を切り替えて使う形なので、今の台がどちらに近いかを先に見てください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Normal route and reset route are handled separately." },
-    { "label": "Modes", "value": "normal / reset" },
-    { "label": "Input limit", "value": "650G" },
-    { "label": "Note", "value": "Read the result only after the route is fixed." }
+    { "label": "狙い方", "value": "通常狙いとリセット狙いを分けて確認" },
+    { "label": "対応モード", "value": "normal / reset" },
+    { "label": "入力上限", "value": "650G" },
+    { "label": "使い方", "value": "モード選択後にチェッカー結果と早見表を確認" },
+    { "label": "見るポイント", "value": "通常時の基準とリセット時の基準を混ぜない" }
   ],
   "factTable": [
-    ["Modes", "normal / reset"],
-    ["Input limit", "650G"],
-    ["Use", "Split the table into normal and reset."],
-    ["Check point", "Do not mix the two routes."]
+    ["対応モード", "normal / reset"],
+    ["入力上限", "650G"],
+    ["基本の見方", "通常時とリセット時を別の入り口で確認する"],
+    ["向いている使い方", "現在の状態をある程度切り分けられる台を見る"],
+    ["注意点", "前提がずれると判定もずれやすい"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "The checker is built around two entry points.",
-        "Choose the matching route first, then confirm the result card and summary table together."
+        "このページは、現行のチェッカー条件を記事ページ内で見やすく使うためのまとめです。",
+        "最初に normal か reset を選んでから、結果表示、早見表、本文を同じ前提で読むのが基本です。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "モードの使い分け",
       "body": [
-        "If the current state is not clear, stay on the safer side.",
-        "This page only reorganizes the current checker rules."
+        "通常時のラインとリセット時のラインは別です。今の台をどちらの基準で見るべきかを先に決めてから判断してください。",
+        "状態があいまいな台は、浅い基準で無理に追うより、安全側で見た方が使いやすいです。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "上のチェッカーは座るかどうかを整理するための目安として使い、最終的には履歴や当日の状況も合わせて見てください。",
+        "特に通常かリセットかの前提が読みづらい台は、無理に踏み込まない方がズレを減らせます。"
       ]
     }
   ]

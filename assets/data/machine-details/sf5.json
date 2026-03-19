@@ -1,32 +1,41 @@
 {
   "slug": "sf5",
   "updated": "2026-03-20",
-  "lead": "This machine is treated as a setting-focused page, not as a normal game-count checker page.",
+  "lead": "この機種はゲーム数狙いの通常チェッカーではなく、設定狙い主体の案内ページとして扱います。記事ページでは入力判定ではなく、設定判別ツールへの案内を中心に見てください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Use the setting tool as the main guide." },
-    { "label": "Modes", "value": "normal" },
-    { "label": "Input limit", "value": "none" },
-    { "label": "Note", "value": "The article page shows guide text instead of a normal checker." }
+    { "label": "狙い方", "value": "設定狙い主体" },
+    { "label": "対応モード", "value": "normal" },
+    { "label": "入力上限", "value": "上限なし" },
+    { "label": "使い方", "value": "記事ページでは案内文を確認し、設定判別ツールへ進む" },
+    { "label": "見るポイント", "value": "通常のゲーム数チェッカー機種とは分けて扱う" }
   ],
   "factTable": [
-    ["Modes", "normal"],
-    ["Input limit", "none"],
-    ["Use", "Treat this page as a guide for the setting tool."],
-    ["Check point", "Open the setting tool from the article page."]
+    ["対応モード", "normal"],
+    ["入力上限", "上限なし"],
+    ["基本の見方", "ゲーム数狙いではなく設定狙い主体で見る"],
+    ["向いている使い方", "設定判別ツールと組み合わせて使う"],
+    ["注意点", "他機種のような通常チェッカーの使い方はしない"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "This machine does not use the normal game-count checker flow on the article page.",
-        "Use the article page as a guide page and move to the setting tool when needed."
+        "この機種は、他機種のようにゲーム数を入力して狙い目を判定するページではありません。",
+        "記事ページでは案内表示として内容を読み、必要に応じて設定判別ツールへ移動して使う前提です。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "使い分け",
       "body": [
-        "The current structure keeps this machine separate from the normal checker flow.",
-        "This article follows the current checker and setting-tool roles."
+        "通常のゲーム数チェッカー機種と同じ感覚で見るのではなく、設定狙い主体のページとして分けて扱ってください。",
+        "記事ページでは入力判定を求めるよりも、設定判別ツールの入口として見る方が自然です。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "この機種は記事ページよりも設定判別ツール側の役割が大きい構成です。",
+        "ページ内の案内を確認したうえで、設定狙いの判断材料をまとめて見る流れが向いています。"
       ]
     }
   ]

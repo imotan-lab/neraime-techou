@@ -1,32 +1,41 @@
 {
   "slug": "valvrave2",
   "updated": "2026-03-20",
-  "lead": "This machine uses cz, bonus, suru, and reset. Pick the current route first, then read the checker.",
+  "lead": "この機種は CZ、bonus、スルー回数、リセットで基準が分かれます。入口が多いので、いまどの状態を見ている台かを先に整理してからチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep cz, bonus, suru, and reset on separate lines." },
-    { "label": "Modes", "value": "cz / bonus / suru / reset" },
-    { "label": "Input limit", "value": "1500G" },
-    { "label": "Note", "value": "The suru line supports 0 to 3." }
+    { "label": "狙い方", "value": "CZ、bonus、スルー回数、リセットを分けて確認" },
+    { "label": "対応モード", "value": "cz / bonus / suru / reset" },
+    { "label": "入力上限", "value": "1500G" },
+    { "label": "補足", "value": "suru は 0 から 3 に対応" },
+    { "label": "使い方", "value": "現在地に合う入口を固定してから判定を見る" }
   ],
   "factTable": [
-    ["Modes", "cz / bonus / suru / reset"],
-    ["Input limit", "1500G"],
-    ["Suru count", "0 to 3"],
-    ["Check point", "Do not mix the four routes."]
+    ["対応モード", "cz / bonus / suru / reset"],
+    ["入力上限", "1500G"],
+    ["スルー回数", "0 から 3 まで対応"],
+    ["基本の見方", "複数の入口を混ぜずに別々で確認する"],
+    ["注意点", "入口が多いぶん、前提のズレが出やすい"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "The selected route changes the checker output.",
-        "Fix the route first, then compare the result card and the summary table."
+        "この機種は複数のモードを持つため、最初のモード選択が特に重要です。",
+        "CZで見る台なのか、bonusで見る台なのか、suru で見る台なのか、resetで見る台なのかを決めてから結果表示を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "入口の分け方",
       "body": [
-        "This machine has many entry points, so vague reading causes the biggest error.",
-        "When the route is unclear, stay on the safer side."
+        "cz、bonus、suru はそれぞれ別のラインです。複数の基準を同時に都合よく使うと、判定がぶれやすくなります。",
+        "suru を使う場合は回数入力も必要なので、現在の回数が読める台に限って使う方が安全です。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "こうした複数入口の機種は、ゲーム数以上に現在地の切り分けが重要になります。",
+        "迷う台は浅い基準で無理に追わず、はっきり読める台だけを優先した方がズレを減らしやすいです。"
       ]
     }
   ]

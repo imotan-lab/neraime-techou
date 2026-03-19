@@ -1,32 +1,41 @@
 {
   "slug": "tensura",
   "updated": "2026-03-20",
-  "lead": "Use the checker after you decide whether the current table should be viewed as normal or reset.",
+  "lead": "この機種は通常時とリセット時で基準が分かれます。まずは現在の台がどちらの前提に近いかを決めてから、上のチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Check normal and reset on separate lines." },
-    { "label": "Modes", "value": "normal / reset" },
-    { "label": "Input limit", "value": "1000G" },
-    { "label": "Note", "value": "Fix the route before reading the result." }
+    { "label": "狙い方", "value": "通常狙いとリセット狙いを分けて確認" },
+    { "label": "対応モード", "value": "normal / reset" },
+    { "label": "入力上限", "value": "1000G" },
+    { "label": "使い方", "value": "モード選択後に結果と早見表を確認" },
+    { "label": "見るポイント", "value": "前提が読めない台は安全側で見る" }
   ],
   "factTable": [
-    ["Modes", "normal / reset"],
-    ["Input limit", "1000G"],
-    ["Use", "Split the table into normal and reset."],
-    ["Check point", "Judge after the route is fixed."]
+    ["対応モード", "normal / reset"],
+    ["入力上限", "1000G"],
+    ["基本の見方", "通常時とリセット時を別で確認する"],
+    ["向いている使い方", "状態がある程度読める台を確認する"],
+    ["注意点", "モード選択を誤ると判定がずれる"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "This page keeps the current checker rules in a readable format.",
-        "Choose the matching route first, then compare the result card and summary table."
+        "このページは current のチェッカー条件を記事ページで見やすく整理したものです。",
+        "normal と reset のどちらで見るかを先に決め、その前提のまま結果表示、早見表、本文を読んでください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "通常とリセットの分け方",
       "body": [
-        "When the route is not clear, stay on the safer side.",
-        "Avoid a shallow start if the current state is uncertain."
+        "通常ラインとリセットラインは別です。現在の台がどちらに近いかを先に決めることが大切です。",
+        "前提があいまいな台は、浅い基準を採るより安全側で見る方がズレを減らせます。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "チェッカーは現在地を整理するための道具として使い、最終判断は履歴や周辺状況も合わせて行ってください。",
+        "特に前提が読みにくい台は、無理に浅い位置から入らない方が使いやすいです。"
       ]
     }
   ]

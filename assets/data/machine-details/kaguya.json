@@ -1,32 +1,41 @@
 {
   "slug": "kaguya",
   "updated": "2026-03-20",
-  "lead": "This machine uses normal, reg, suru, and reset. Set the current route first, then read the checker.",
+  "lead": "この機種は normal、reg、スルー回数、リセットで基準が分かれます。いまどの入口で見る台なのかを整理してから、上のチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep normal, reg, suru, and reset on separate lines." },
-    { "label": "Modes", "value": "normal / reg / suru / reset" },
-    { "label": "Input limit", "value": "999G" },
-    { "label": "Note", "value": "The suru line supports 0 to 7." }
+    { "label": "狙い方", "value": "normal、reg、スルー回数、リセットを分けて確認" },
+    { "label": "対応モード", "value": "normal / reg / suru / reset" },
+    { "label": "入力上限", "value": "999G" },
+    { "label": "補足", "value": "suru は 0 から 7 に対応" },
+    { "label": "使い方", "value": "入口を決めてから現在値を合わせて判定を見る" }
   ],
   "factTable": [
-    ["Modes", "normal / reg / suru / reset"],
-    ["Input limit", "999G"],
-    ["Suru count", "0 to 7"],
-    ["Check point", "Do not mix normal, reg, and suru."]
+    ["対応モード", "normal / reg / suru / reset"],
+    ["入力上限", "999G"],
+    ["スルー回数", "0 から 7 まで対応"],
+    ["基本の見方", "normal、reg、suru を別々の基準で確認する"],
+    ["注意点", "入口の取り違えが起きやすい"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "Each route has its own checker line.",
-        "Fix the current route first, then compare the result card and the summary table."
+        "この機種は入口が多く、normal、reg、suru、reset で別々の基準を使います。",
+        "今の台がどの入口で見るべきかを先に決めて、その前提のまま結果表示と早見表を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "スルー回数の扱い",
       "body": [
-        "If the current route is unclear, use the safer line.",
-        "This article only reorganizes the current checker rules."
+        "suru モードは 0 から 7 まで回数入力に対応しています。回数が分かっている台だけに使うと、現在地に近い見方ができます。",
+        "回数や入口があいまいな台は、無理に浅い基準を採らず、安全側で見る方がズレを減らしやすいです。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "複数モード機種では、ゲーム数だけでなく前提の精度が重要です。",
+        "チェッカーは入口を整理する道具として使い、履歴や当日の状況も見ながら最終判断してください。"
       ]
     }
   ]

@@ -1,32 +1,41 @@
 {
   "slug": "tokyo_ghoul",
   "updated": "2026-03-20",
-  "lead": "This machine uses cz, at, and reset. The at line also changes with the suru count, so set both before reading the checker.",
+  "lead": "この機種は CZ、AT、リセットで基準が分かれ、AT 側はスルー回数でも条件が変わります。モードと回数の両方を合わせてから上のチェッカーを使ってください。",
   "summaryBoxes": [
-    { "label": "Base plan", "value": "Keep cz, at, and reset on separate lines." },
-    { "label": "Modes", "value": "cz / at / reset" },
-    { "label": "Input limit", "value": "1000G" },
-    { "label": "Note", "value": "The at line uses suru count from 0 to 2." }
+    { "label": "狙い方", "value": "CZ基準、AT基準、リセット基準を分けて確認" },
+    { "label": "対応モード", "value": "cz / at / reset" },
+    { "label": "入力上限", "value": "1000G" },
+    { "label": "補足", "value": "AT はスルー回数 0 から 2 に対応" },
+    { "label": "使い方", "value": "モードとスルー回数を合わせてから判定を見る" }
   ],
   "factTable": [
-    ["Modes", "cz / at / reset"],
-    ["Input limit", "1000G"],
-    ["Suru count", "at supports 0 to 2"],
-    ["Check point", "Set both route and suru count first."]
+    ["対応モード", "cz / at / reset"],
+    ["入力上限", "1000G"],
+    ["スルー回数", "AT側は 0 から 2 まで対応"],
+    ["基本の見方", "CZ、AT、リセットを別々の基準で確認する"],
+    ["注意点", "AT側は回数入力まで合わせないとずれやすい"]
   ],
   "sections": [
     {
-      "title": "How to use",
+      "title": "このページの見方",
       "body": [
-        "Use cz when the current table should be read as cz.",
-        "Use at only after the suru count is also fixed."
+        "この機種は複数モードに加えて、AT 側ではスルー回数の入力も必要です。",
+        "最初に CZ、AT、reset のどれで見るかを決め、AT を選んだ場合は現在のスルー回数も合わせてから結果表示を確認してください。"
       ]
     },
     {
-      "title": "Memo",
+      "title": "AT側の見方",
       "body": [
-        "This machine is easy to misread if the route is vague.",
-        "When the count is unclear, stay on the safer side."
+        "AT 側はスルー回数 0、1、2 でラインが変わる構成です。回数があいまいなまま見ると判定もぶれます。",
+        "回数がはっきりしている台だけを AT モードで見て、読めない台は無理に浅い基準を採らない方が安全です。"
+      ]
+    },
+    {
+      "title": "立ち回りメモ",
+      "body": [
+        "複数モード機種では、ゲーム数よりも前提の合わせ方が重要になる場面があります。",
+        "チェッカーは現在地の整理に使い、履歴や台の状況とあわせて最終判断する使い方が向いています。"
       ]
     }
   ]
