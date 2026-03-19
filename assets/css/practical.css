@@ -320,13 +320,13 @@ button, input, select { font: inherit; }
 /* SETTEI TABLE */
 .settei-sub-label { color: var(--muted); font-size: 10px; letter-spacing: .1em; font-weight: 700; margin: 16px 0 8px; }
 .article-item .settei-sub-label:first-of-type { margin-top: 4px; }
-.settei-table { width: calc(100% + 14px); margin-left: -14px; border-collapse: collapse; border: 1px solid var(--line2); margin-bottom: 4px; table-layout: fixed; }
-.settei-table th:last-child { width: 150px; }
+.settei-table { width: 100%; border-collapse: collapse; border: 1px solid var(--line2); margin-bottom: 4px; table-layout: fixed; }
+.settei-table th:last-child { width: 90px; }
 .settei-table th { background: var(--panel); color: var(--muted); font-size: 10px; font-weight: 700; padding: 7px 8px; border: 1px solid var(--line2); text-align: left; }
-.settei-table td { color: var(--text); font-size: 12px; font-weight: 700; padding: 4px 4px; border: 1px solid var(--line2); line-height: 1.5; vertical-align: middle; }
-.settei-table td:last-child { text-align: center; padding: 2px; }
+.settei-table td { color: var(--text); font-size: 12px; font-weight: 700; padding: 6px 8px; border: 1px solid var(--line2); line-height: 1.5; vertical-align: middle; }
+.settei-table td:last-child { text-align: center; padding: 3px; }
 .settei-note { font-size: 11px; color: var(--muted); margin: 4px 0 0; }
-.settei-badge { display: block; width: 100%; box-sizing: border-box; padding: 1px 0; border-radius: 3px; font-size: 10px; font-weight: 700; text-align: center; line-height: 1.15; white-space: nowrap; overflow: hidden; }
+.settei-badge { display: block; width: 100%; box-sizing: border-box; padding: 3px 2px; border-radius: 3px; font-size: 10px; font-weight: 700; text-align: center; line-height: 1.3; white-space: nowrap; overflow: hidden; }
 .settei-hint { display: block; color: var(--muted); font-size: 10px; font-weight: 400; text-align: center; }
 .settei-weak { background: rgba(245,185,65,.12); color: var(--gold); border: 1px solid var(--gold-line); }
 .settei-mid { background: rgba(245,185,65,.22); color: var(--gold); border: 1px solid var(--gold-line); }
