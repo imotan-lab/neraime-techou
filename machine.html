@@ -342,7 +342,6 @@ async function loadJson(path){
     judge();
   }
 
-  // 記事データの要点を狙い目早見表として表示
   // 狙い目早見表（田の字テーブル）
   const summaryGrid = document.getElementById("summaryGrid");
   const boxes = detail?.summaryBoxes || [
@@ -356,7 +355,7 @@ async function loadJson(path){
     if (b) {
       rows += `<tr><td><span class="s-label">${a.label}</span><span class="s-value">${a.value}</span></td><td><span class="s-label">${b.label}</span><span class="s-value">${b.value}</span></td></tr>`;
     } else {
-      rows += `<tr><td class="full" colspan="2"><span class="s-label">${a.label}</span><span class="s-value">${a.value}</span></td></tr>`;
+      rows += `<tr><td><span class="s-label">${a.label}</span><span class="s-value">${a.value}</span></td><td></td></tr>`;
     }
   }
   summaryGrid.innerHTML = rows;
