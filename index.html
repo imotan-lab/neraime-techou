@@ -147,10 +147,12 @@ function buildKeywords(machine){
         row.className = "list-row";
         row.innerHTML = `
           <span class="list-rank">${i + 1}</span>
-          <span class="machine-name" style="flex:1;min-width:0;">${machine.name}</span>
-          <div class="machine-btns">
-            <a class="btn-nerai" href="machine.html?slug=${machine.slug}">狙い目</a>
-            <a class="btn-settei" href="setting.html?slug=${machine.slug}">設定判別</a>
+          <div class="list-row-body">
+            <span class="machine-name">${machine.name}</span>
+            <div class="machine-btns">
+              <a class="btn-nerai" href="machine.html?slug=${machine.slug}">狙い目</a>
+              <a class="btn-settei" href="setting.html?slug=${machine.slug}">設定判別</a>
+            </div>
           </div>
         `;
         list.appendChild(row);

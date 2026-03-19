@@ -155,7 +155,7 @@ button, input, select { font: inherit; }
 }
 .list-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 12px 14px;
   background: var(--panel);
@@ -412,9 +412,10 @@ button, input, select { font: inherit; }
 .setting-reset-btn:hover { border-color: var(--ng); color: #ff9090; }
 
 /* TOP LIST BUTTONS */
-.machine-btns { display: flex; gap: 6px; flex-shrink: 0; }
-.btn-nerai { display: inline-flex; align-items: center; padding: 5px 10px; background: var(--bg2); border: 1px solid var(--line2); border-radius: var(--radius-sm); color: var(--muted); font-size: 11px; font-weight: 700; white-space: nowrap; text-decoration: none; }
+.list-row-body { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
+.machine-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.btn-nerai { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; background: var(--bg2); border: 1px solid var(--line2); border-radius: var(--radius-sm); color: var(--muted); font-size: 13px; font-weight: 700; white-space: nowrap; text-decoration: none; }
 .btn-nerai:hover { border-color: var(--gold); color: var(--gold); }
-.btn-settei { display: inline-flex; align-items: center; padding: 5px 10px; background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: var(--radius-sm); color: var(--gold); font-size: 11px; font-weight: 700; white-space: nowrap; text-decoration: none; }
+.btn-settei { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; background: var(--gold-bg); border: 1px solid var(--gold-line); border-radius: var(--radius-sm); color: var(--gold); font-size: 13px; font-weight: 700; white-space: nowrap; text-decoration: none; }
 .btn-settei:hover { background: rgba(245,185,65,.18); }
-.machine-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.machine-name { font-size: 15px; font-weight: 800; color: var(--text); }
