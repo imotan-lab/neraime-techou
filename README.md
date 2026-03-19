@@ -1,26 +1,33 @@
-# 狙い目手帖
+# うちどころ。
 
-GitHub Pages 用の静的サイトです。
+GitHub Pages で運用する静的スロット攻略サイトです。  
+公開URL: https://imotan-lab.github.io/uchidokoro/
 
-## 現在の整理方針
+## 技術構成
 
-- トップの掲載機種一覧は `assets/data/machines.json` で管理
-- `index.html` は JSON を読み込んで一覧を自動描画
-- 新機種追加は `templates/` のテンプレートを複製して対応
-- checker は `assets/js/checker-common.js` を土台にして量産しやすくする
+- HTML / CSS（assets/css/practical.css）/ JavaScript
+- 機種一覧データ：assets/data/machines.json
+- 機種詳細記事データ：assets/data/machine-details/機種名.json
+- Google Fonts（Orbitron）
 
-## 新機種追加の最短手順
+## ファイル構成
 
-1. `templates/article-template.html` を複製
-2. `templates/checker-template.html` を複製
-3. 機種名と slug を置換
-4. `assets/data/machines.json` に追加
-5. GitHub にアップロード
+- `index.html` トップページ
+- `machine.html` 記事ページ（slugで機種切り替え）
+- `checker.html` チェッカーページ（slugで機種切り替え）
+- `setting.html` 設定判別ページ「ポチポチくん」（slugで機種切り替え）
+- `assets/css/practical.css` 全ページ共通CSS
+- `assets/data/machines.json` 機種一覧
+- `assets/data/machine-details/` 機種別記事データ（JSON）
 
-詳しくは `docs/ADD_MACHINE_GUIDE.md` を参照。
+## 新機種追加の手順
 
+1. `assets/data/machines.json` に機種データを追加
+2. `assets/data/machine-details/機種名.json` を作成
+3. `machines/機種名/index.html`・`checker.html` を追加（リダイレクト用）
+4. `sitemap.xml` にURLを追加
+5. GitHubにプッシュ
 
-2026-03-17 更新: GitHub上で差分検知しやすいようにUI微調整と文言更新を反映。
+## 自動更新
 
-
-更新メモ: hokuto-v3-checker-auto-reset
+GitHub Actions により毎日UTC18:00（日本時間3:00）にYouTube APIで人気ランキングを自動更新。

@@ -41,11 +41,14 @@
     <div class="article-block">
       <p class="block-label">▶ 狙い目チェッカー</p>
       <div class="checker-card">
-        <div class="mode-toggle">
-          <input type="radio" name="mode" id="modeNormal" value="normal" checked>
-          <label for="modeNormal">通常</label>
-          <input type="radio" name="mode" id="modeReset" value="reset">
-          <label for="modeReset">リセット</label>
+        <div id="modeToggle" class="mode-toggle"></div>
+        <div id="suruWrap" style="display:none;margin-bottom:10px;">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:6px;">CZスルー回数</p>
+          <div class="setting-counter-wrap">
+            <button class="setting-cnt-btn" id="suruDec">－</button>
+            <span class="setting-current-val" id="suruVal">0</span>
+            <button class="setting-cnt-btn" id="suruInc">＋</button>
+          </div>
         </div>
         <input id="gameInput" class="game-input" type="number" inputmode="numeric" placeholder="現在G数を入力">
         <div id="checkerResult" class="checker-result result-wait">
@@ -169,35 +172,94 @@ async function loadJson(path){
   if (settingHeroLink) settingHeroLink.href = `setting.html?slug=${slug}`;
 
   // チェッカー
-  const checkerData = machine.checker || {};
+  const checker = machine.checker || {};
   const gameInput = document.getElementById("gameInput");
   const checkerResult = document.getElementById("checkerResult");
+  const modeToggle = document.getElementById("modeToggle");
+  const suruWrap = document.getElementById("suruWrap");
+  const suruVal = document.getElementById("suruVal");
+  let suruCount = 0;
 
-  function judge(){
-    const g = parseInt(gameInput.value);
-    const mode = document.querySelector('input[name="mode"]:checked').value;
-    const data = mode === "reset" ? checkerData.reset : checkerData.normal;
+  document.getElementById("suruInc").addEventListener("click", () => {
+    suruCount++;
+    suruVal.textContent = suruCount;
+    judge();
+  });
+  document.getElementById("suruDec").addEventListener("click", () => {
+    suruCount = Math.max(0, suruCount - 1);
+    suruVal.textContent = suruCount;
+    judge();
+  });
+
+  function getModes(c) {
+    if (c.modes) return c.modes;
+    const m = [];
+    if (c.normal) m.push({ key: "normal", label: "通常" });
+    if (c.reset)  m.push({ key: "reset",  label: "リセット" });
+    if (!m.length) m.push({ key: "normal", label: "通常" });
+    return m;
+  }
+
+  function getConfig(c, modeKey, suru) {
+    const modeData = c[modeKey];
+    if (!modeData) return c;
+    if (modeData.suru && Array.isArray(modeData.suru)) {
+      const list = modeData.suru;
+      const max = list[list.length - 1].count;
+      const idx = Math.min(suru, max);
+      return list.find(s => s.count === idx) || list[list.length - 1];
+    }
+    return modeData;
+  }
+
+  function judge() {
+    const checked = document.querySelector('input[name="mode"]:checked');
+    if (!checked) return;
+    const modeKey = checked.value;
+    const modedef = (checker.modes || []).find(m => m.key === modeKey);
+    suruWrap.style.display = (modedef && modedef.hasSuru) ? "block" : "none";
+    const config = getConfig(checker, modeKey, suruCount);
     const noteEl = document.getElementById("checkerNote");
-    if (noteEl && data?.note) noteEl.textContent = data.note;
-    if (!data || isNaN(g)) {
+    if (noteEl) noteEl.textContent = config.note || "";
+    const g = parseInt(gameInput.value);
+    if (!config || isNaN(g)) {
       checkerResult.className = "checker-result result-wait";
       checkerResult.querySelector(".result-text").textContent = "G数を入力してください";
       return;
     }
-    if (g >= data.excellent) {
+    if (Number.isFinite(config.excellent) && g >= config.excellent) {
       checkerResult.className = "checker-result result-ok";
       checkerResult.querySelector(".result-text").textContent = "◎ 狙い目OK！積極的に着席を検討";
-    } else if (g >= data.good) {
+    } else if (Number.isFinite(config.good) && g >= config.good) {
       checkerResult.className = "checker-result result-ok";
       checkerResult.querySelector(".result-text").textContent = "◯ 狙い目OK　交換率次第で候補";
     } else {
-      checkerResult.className = "checker-result result-ng";
-      checkerResult.querySelector(".result-text").textContent = `× まだ早い　${data.good}G以上を目安に`;
+      const t = Number.isFinite(config.caution) ? config.caution : (config.target || config.good);
+      if (Number.isFinite(t) && g >= t) {
+        checkerResult.className = "checker-result result-wait";
+        checkerResult.querySelector(".result-text").textContent = `△ 条件次第　${t}G以上で候補`;
+      } else {
+        checkerResult.className = "checker-result result-ng";
+        const thr = Number.isFinite(config.good) ? config.good : t;
+        checkerResult.querySelector(".result-text").textContent = `× まだ早い　${thr}G以上を目安に`;
+      }
     }
   }
 
+  // モード動的生成
+  getModes(checker).forEach((mode, i) => {
+    const id = "mode_" + mode.key;
+    const input = document.createElement("input");
+    input.type = "radio"; input.name = "mode"; input.id = id; input.value = mode.key;
+    if (i === 0) input.checked = true;
+    const label = document.createElement("label");
+    label.htmlFor = id; label.textContent = mode.label;
+    input.addEventListener("change", () => { suruCount = 0; suruVal.textContent = 0; gameInput.value = ""; judge(); });
+    modeToggle.appendChild(input);
+    modeToggle.appendChild(label);
+  });
+
   gameInput.addEventListener("input", judge);
-  document.querySelectorAll('input[name="mode"]').forEach(r => r.addEventListener("change", () => { gameInput.value = ""; judge(); }));
 
   // 狙い目早見表（田の字テーブル）
   const summaryGrid = document.getElementById("summaryGrid");

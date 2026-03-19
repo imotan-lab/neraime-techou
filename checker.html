@@ -39,11 +39,14 @@
     <div class="article-block">
       <p class="block-label">▶ 狙い目チェッカー</p>
       <div class="checker-card">
-        <div class="mode-toggle">
-          <input id="modeNormal" name="mode" type="radio" value="normal" checked>
-          <label for="modeNormal">通常</label>
-          <input id="modeReset" name="mode" type="radio" value="reset">
-          <label for="modeReset">リセット</label>
+        <div id="modeToggle" class="mode-toggle"></div>
+        <div id="suruWrap" style="display:none;margin-bottom:10px;">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:6px;">CZスルー回数</p>
+          <div class="setting-counter-wrap">
+            <button class="setting-cnt-btn" id="suruDec">－</button>
+            <span class="setting-current-val" id="suruVal">0</span>
+            <button class="setting-cnt-btn" id="suruInc">＋</button>
+          </div>
         </div>
         <label class="visually-hidden" for="game">現在G数</label>
         <input id="game" class="game-input" inputmode="numeric" type="number" placeholder="現在G数を入力">
@@ -109,33 +112,51 @@
   document.addEventListener("click", e => { if (!e.target.closest(".header-search-wrap")) dropdown.style.display = "none"; });
 })();
 
-function readModeConfig(machine, mode){
-  const c = machine.checker || {};
-  return (c[mode] && typeof c[mode] === "object") ? c[mode] : c;
+// モード設定を取得（hasSuru対応・後方互換あり）
+function getModes(checker) {
+  if (checker.modes) return checker.modes;
+  const modes = [];
+  if (checker.normal) modes.push({ key: "normal", label: "通常" });
+  if (checker.reset)  modes.push({ key: "reset",  label: "リセット" });
+  if (!modes.length)  modes.push({ key: "normal", label: "通常" });
+  return modes;
 }
 
-function evaluate(game, config){
+// モード + スルー回数からconfigを取得
+function getConfig(checker, modeKey, suruCount) {
+  const modeData = checker[modeKey];
+  if (!modeData) return checker; // 旧形式フォールバック
+  if (modeData.suru && Array.isArray(modeData.suru)) {
+    const list = modeData.suru;
+    const max = list[list.length - 1].count;
+    const idx = Math.min(suruCount, max);
+    return list.find(s => s.count === idx) || list[list.length - 1];
+  }
+  return modeData;
+}
+
+function evaluate(game, config) {
   if (!config || (!Number.isFinite(config.good) && !Number.isFinite(config.target))) {
-    return { cls:"result-wait", text:"準備中" };
+    return { cls: "result-wait", text: "準備中" };
   }
   if (!Number.isFinite(game) || game < 0) {
-    return { cls:"result-wait", text:"G数を入力してください" };
+    return { cls: "result-wait", text: "G数を入力してください" };
   }
   if (Number.isFinite(config.excellent) && game >= config.excellent) {
-    return { cls:"result-ok", text:"◎ 狙い目OK！積極的に着席を検討" };
+    return { cls: "result-ok", text: "◎ 狙い目OK！積極的に着席を検討" };
   }
   if (Number.isFinite(config.good) && game >= config.good) {
-    return { cls:"result-ok", text:"◯ 狙い目OK　交換率次第で候補" };
+    return { cls: "result-ok", text: "◯ 狙い目OK　交換率次第で候補" };
   }
   const t = Number.isFinite(config.caution) ? config.caution : (config.target || config.good);
   if (Number.isFinite(t) && game >= t) {
-    return { cls:"result-wait", text:`△ 条件次第　${t}G以上で候補` };
+    return { cls: "result-wait", text: `△ 条件次第　${t}G以上で候補` };
   }
   const thr = Number.isFinite(config.good) ? config.good : t;
-  return { cls:"result-ng", text:`× まだ早い　${thr}G以上を目安に` };
+  return { cls: "result-ng", text: `× まだ早い　${thr}G以上を目安に` };
 }
 
-(function(){
+(function () {
   const slug = new URLSearchParams(location.search).get("slug");
   const titleEl = document.getElementById("checkerTitle");
   const articleLinkNav = document.getElementById("articleLinkNav");
@@ -143,19 +164,64 @@ function evaluate(game, config){
   const checkerResult = document.getElementById("checkerResult");
   const gameInput = document.getElementById("game");
   const hintText = document.getElementById("hintText");
+  const modeToggle = document.getElementById("modeToggle");
+  const suruWrap = document.getElementById("suruWrap");
+  const suruVal = document.getElementById("suruVal");
   let currentMachine = null;
+  let suruCount = 0;
 
-  function applyResult(r){
+  document.getElementById("suruInc").addEventListener("click", () => {
+    suruCount++;
+    suruVal.textContent = suruCount;
+    judge();
+  });
+  document.getElementById("suruDec").addEventListener("click", () => {
+    suruCount = Math.max(0, suruCount - 1);
+    suruVal.textContent = suruCount;
+    judge();
+  });
+
+  function applyResult(r) {
     checkerResult.className = "checker-result " + r.cls;
     checkerResult.querySelector(".result-text").textContent = r.text;
   }
 
-  function judge(){
+  function getCurrentMode() {
+    const checked = document.querySelector('input[name="mode"]:checked');
+    return checked ? checked.value : null;
+  }
+
+  function judge() {
     if (!currentMachine) return;
-    const mode = document.querySelector('input[name="mode"]:checked').value;
-    const config = readModeConfig(currentMachine, mode);
+    const checker = currentMachine.checker || {};
+    const modeKey = getCurrentMode();
+    if (!modeKey) return;
+    const modedef = (checker.modes || []).find(m => m.key === modeKey);
+    suruWrap.style.display = (modedef && modedef.hasSuru) ? "block" : "none";
+    const config = getConfig(checker, modeKey, suruCount);
     applyResult(evaluate(Number(gameInput.value), config));
     hintText.textContent = config.note || "";
+  }
+
+  function buildModes(machine) {
+    const checker = machine.checker || {};
+    const modes = getModes(checker);
+    modeToggle.innerHTML = "";
+    modes.forEach((mode, i) => {
+      const id = "mode_" + mode.key;
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "mode";
+      input.id = id;
+      input.value = mode.key;
+      if (i === 0) input.checked = true;
+      const label = document.createElement("label");
+      label.htmlFor = id;
+      label.textContent = mode.label;
+      input.addEventListener("change", () => { suruCount = 0; suruVal.textContent = 0; gameInput.value = ""; judge(); });
+      modeToggle.appendChild(input);
+      modeToggle.appendChild(label);
+    });
   }
 
   fetch("assets/data/machines.json")
@@ -168,17 +234,17 @@ function evaluate(game, config){
       articleLinkCard.href = href;
       document.title = currentMachine.name + " チェッカー | うちどころ。";
       titleEl.textContent = currentMachine.name + " チェッカー";
+      buildModes(currentMachine);
       judge();
     })
     .catch(() => {
       titleEl.textContent = "機種が見つかりません";
-      applyResult({ cls:"result-ng", text:"機種データを読み込めませんでした。" });
+      applyResult({ cls: "result-ng", text: "機種データを読み込めませんでした。" });
       gameInput.disabled = true;
     });
 
   gameInput.addEventListener("input", judge);
   gameInput.addEventListener("keydown", e => { if (e.key === "Enter") judge(); });
-  document.querySelectorAll('input[name="mode"]').forEach(r => r.addEventListener("change", () => { gameInput.value = ""; judge(); }));
 })();
 </script>
 <script>

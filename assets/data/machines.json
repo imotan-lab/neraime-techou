@@ -97,13 +97,69 @@
     "seo": {
       "title": "L 東京喰種 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "CZ間350G〜 / AT間400G〜（0スルー）",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
-    }
+      "unit": "G",
+      "modes": [
+        {
+          "key": "cz",
+          "label": "CZ間"
+        },
+        {
+          "key": "at",
+          "label": "AT間",
+          "hasSuru": true
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "cz": {
+        "excellent": 450,
+        "good": 350,
+        "caution": 250,
+        "note": "液晶右下のG数カウンタで確認。スイカ成立時に複数G加算あり。CZ天井600G+α。"
+      },
+      "at": {
+        "suru": [
+          {
+            "count": 0,
+            "excellent": 600,
+            "good": 400,
+            "caution": 200,
+            "note": "0スルー。400G〜で候補。AT間G数はメニュー画面で確認。"
+          },
+          {
+            "count": 1,
+            "excellent": 550,
+            "good": 350,
+            "caution": 150,
+            "note": "1スルー。350G〜で候補。スルーが増えるほど当選G数が軽くなる傾向。"
+          },
+          {
+            "count": 2,
+            "excellent": 500,
+            "good": 300,
+            "caution": 100,
+            "note": "2スルー以上。300G〜で積極的に。AT間天井1200G+α。"
+          }
+        ]
+      },
+      "reset": {
+        "excellent": 150,
+        "good": 80,
+        "caution": 30,
+        "note": "設定変更後はCZ天井200G+αに短縮。30G〜でプラス域。"
+      }
+    },
+    "aliases": [
+      "東京喰種",
+      "とうきょうぐーる",
+      "グール",
+      "ぐーる"
+    ]
   },
   {
     "slug": "tekken6",
