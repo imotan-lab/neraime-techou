@@ -40,7 +40,7 @@
     <div class="article-block">
       <p class="block-label">▶ カウント入力</p>
         <p class="hint-text portrait-hint" style="margin-bottom:12px;">BB回数は初当たりのみ。小役・共通ベルは通常時のみカウント（BB中は除く）。データはこの端末・ブラウザに保存されるため、ページを閉じても復元されます。一度表示すればネット接続なしでも使えます。</p>
-      <p class="hint-text landscape-hint" style="margin-bottom:12px;">横画面で使えます。スマホ置き場がある台ならそのまま打ちながら入力できます。データはこの端末に保存されるため、ネット接続なしでも使えます。</p>
+      <p class="hint-text landscape-hint" style="margin-bottom:8px;font-size:11px;color:var(--muted);">横画面・簡易表示モード。ボタンで増減、数値は左に表示されます。スマホ置き場のある台でそのまま使えます。</p>
       <div class="setting-input-grid">
         <div class="setting-input-item">
           <div class="setting-input-label-wrap">
@@ -49,7 +49,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('totalG')">－</button>
-            <input class="setting-num-input" id="totalG" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_totalG">0</span><input class="setting-num-input" id="totalG" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('totalG')">＋</button>
           </div>
         </div>
@@ -60,7 +60,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('bbCount')">－</button>
-            <input class="setting-num-input" id="bbCount" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_bbCount">0</span><input class="setting-num-input" id="bbCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('bbCount')">＋</button>
           </div>
         </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('cherryCount')">－</button>
-            <input class="setting-num-input" id="cherryCount" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_cherryCount">0</span><input class="setting-num-input" id="cherryCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('cherryCount')">＋</button>
           </div>
         </div>
@@ -82,7 +82,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('weakWmCount')">－</button>
-            <input class="setting-num-input" id="weakWmCount" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_weakWmCount">0</span><input class="setting-num-input" id="weakWmCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('weakWmCount')">＋</button>
           </div>
         </div>
@@ -93,7 +93,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('strongWmCount')">－</button>
-            <input class="setting-num-input" id="strongWmCount" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_strongWmCount">0</span><input class="setting-num-input" id="strongWmCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('strongWmCount')">＋</button>
           </div>
         </div>
@@ -104,7 +104,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('reachCount')">－</button>
-            <input class="setting-num-input" id="reachCount" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_reachCount">0</span><input class="setting-num-input" id="reachCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('reachCount')">＋</button>
           </div>
         </div>
@@ -115,7 +115,7 @@
           </div>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" onclick="dec('bellCount')">－</button>
-            <input class="setting-num-input" id="bellCount" type="number" inputmode="numeric" placeholder="0">
+            <span class="setting-current-val" id="cur_bellCount">0</span><input class="setting-num-input" id="bellCount" type="number" inputmode="numeric" placeholder="0">
             <button class="setting-cnt-btn" onclick="inc('bellCount')">＋</button>
           </div>
         </div>
@@ -229,8 +229,12 @@ function load(){
     FIELDS.forEach(id=>{if(data[id])document.getElementById(id).value=data[id];});
   }catch(e){}
 }
-function inc(id){document.getElementById(id).value=(val(id)+1);save();calcAll();}
-function dec(id){document.getElementById(id).value=Math.max(0,val(id)-1);save();calcAll();}
+function updateCurrentVal(id){
+  const cur=document.getElementById('cur_'+id);
+  if(cur) cur.textContent=val(id);
+}
+function inc(id){document.getElementById(id).value=(val(id)+1);save();calcAll();updateCurrentVal(id);}
+function dec(id){document.getElementById(id).value=Math.max(0,val(id)-1);save();calcAll();updateCurrentVal(id);}
 
 function poisson(k,lambda){
   if(k<0||lambda<=0)return k===0?1:0;
@@ -303,6 +307,7 @@ function resetAll(){
 document.querySelectorAll('.setting-num-input').forEach(el=>el.addEventListener('input',()=>{save();calcAll();}));
 load();
 calcAll();
+FIELDS.forEach(id=>updateCurrentVal(id));
 </script>
 
 <script>
