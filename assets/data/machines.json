@@ -24,7 +24,17 @@
         "note": "リセット時は800G+α天井短縮を反映し、通常より浅め基準で判定します。"
       },
       "ok": "狙い目OK",
-      "ng": "まだ早い"
+      "ng": "まだ早い",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "通常"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ]
     },
     "aliases": [
       "北斗",
@@ -41,12 +51,32 @@
     "seo": {
       "title": "スマスロ 北斗の拳 転生の章2 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "あべし間900G〜 / リセット短縮あり",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "あべし間"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 1100,
+        "good": 900,
+        "caution": 700,
+        "note": "あべし（CZ）間天井1200G+α。900G〜でプラス域。液晶右下のG数カウンタで確認。"
+      },
+      "reset": {
+        "excellent": 400,
+        "good": 250,
+        "caution": 150,
+        "note": "設定変更後は天井短縮。250G〜でプラス域。"
+      }
     }
   },
   {
@@ -55,12 +85,32 @@
     "seo": {
       "title": "スマスロ 甲鉄城のカバネリ 海門(うなと)決戦 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "ST間500G〜 / リセット250G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "ST間"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 700,
+        "good": 500,
+        "caution": 350,
+        "note": "ST間天井800G+α。500G〜でプラス域。ST間G数はメニュー画面で確認。"
+      },
+      "reset": {
+        "excellent": 400,
+        "good": 250,
+        "caution": 150,
+        "note": "設定変更後は天井500G+αに短縮。250G〜でプラス域。"
+      }
     }
   },
   {
@@ -69,12 +119,32 @@
     "seo": {
       "title": "スマスロモンキーターンV 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "G数400G〜 / 4周期目〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "通常"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 600,
+        "good": 400,
+        "caution": 300,
+        "note": "G数天井800G+α。400G〜でプラス域。周期天井（5周期目でAT確定）も並行して確認推奨。周期カウンターは今後対応予定。"
+      },
+      "reset": {
+        "excellent": 100,
+        "good": 0,
+        "caution": 0,
+        "note": "設定変更後は最大4周期目スタート。0G〜でプラス域の場合あり。周期状態を確認してから着席。"
+      }
     }
   },
   {
@@ -83,12 +153,42 @@
     "seo": {
       "title": "スマスロ 攻殻機動隊 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "CZ間400G〜 / AT間700G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "cz",
+          "label": "CZ間"
+        },
+        {
+          "key": "at",
+          "label": "AT間"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "cz": {
+        "excellent": 550,
+        "good": 400,
+        "caution": 300,
+        "note": "CZ間天井600G+α。400G〜でプラス域。液晶のCZ間G数で確認。"
+      },
+      "at": {
+        "excellent": 900,
+        "good": 700,
+        "caution": 500,
+        "note": "AT間天井1000G+α。700G〜でプラス域。メニュー画面でAT間G数を確認。"
+      },
+      "reset": {
+        "excellent": 300,
+        "good": 150,
+        "caution": 80,
+        "note": "設定変更後はCZ天井300G+αに短縮。150G〜でプラス域。"
+      }
     }
   },
   {
@@ -240,12 +340,63 @@
     "seo": {
       "title": "押忍！番長4 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "0スルー460G〜 / 1スルー170G〜 / 2スルー0G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "通常"
+        },
+        {
+          "key": "suru",
+          "label": "スルー天井",
+          "hasSuru": true
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 600,
+        "good": 460,
+        "caution": 350,
+        "note": "G数天井700G+α。460G〜でプラス域。スルー天井（2スルーでAT確定）も並行して確認。"
+      },
+      "suru": {
+        "suruMax": 2,
+        "suru": [
+          {
+            "count": 0,
+            "excellent": 600,
+            "good": 460,
+            "caution": 350,
+            "note": "0スルー。通常と同じ460G〜が目安。"
+          },
+          {
+            "count": 1,
+            "excellent": 300,
+            "good": 170,
+            "caution": 100,
+            "note": "1スルー。170G〜でプラス域。積極的に狙える。"
+          },
+          {
+            "count": 2,
+            "excellent": 50,
+            "good": 0,
+            "caution": 0,
+            "note": "2スルー。次回ATが確定（スルー天井到達）。0G〜で着席OK。"
+          }
+        ]
+      },
+      "reset": {
+        "excellent": 200,
+        "good": 100,
+        "caution": 50,
+        "note": "設定変更後は天井短縮。100G〜でプラス域。スルーカウントもリセットされるため注意。"
+      }
     }
   },
   {
@@ -254,12 +405,80 @@
     "seo": {
       "title": "Lパチスロ 革命機ヴァルヴレイヴ2 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "CZ間600G〜 / 決戦2スルー〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "cz",
+          "label": "CZ間"
+        },
+        {
+          "key": "bonus",
+          "label": "ボーナス間"
+        },
+        {
+          "key": "suru",
+          "label": "決戦スルー",
+          "hasSuru": true
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "cz": {
+        "excellent": 800,
+        "good": 600,
+        "caution": 400,
+        "note": "CZ間天井1000G+α。600G〜でプラス域。液晶のG数カウンタで確認。"
+      },
+      "bonus": {
+        "excellent": 1200,
+        "good": 1000,
+        "caution": 700,
+        "note": "ボーナス間天井1500G+α。1000G〜でプラス域。長期ハマり台を宵越しで狙う形が基本。"
+      },
+      "suru": {
+        "suruMax": 3,
+        "suru": [
+          {
+            "count": 0,
+            "excellent": 800,
+            "good": 600,
+            "caution": 400,
+            "note": "0スルー。CZ間ボーダーと同じ600G〜が目安。"
+          },
+          {
+            "count": 1,
+            "excellent": 600,
+            "good": 400,
+            "caution": 200,
+            "note": "1スルー。400G〜でプラス域。"
+          },
+          {
+            "count": 2,
+            "excellent": 300,
+            "good": 100,
+            "caution": 0,
+            "note": "2スルー。100G〜で積極的に狙える。"
+          },
+          {
+            "count": 3,
+            "excellent": 50,
+            "good": 0,
+            "caution": 0,
+            "note": "3スルー。次回決戦ボーナスでAT確定。0G〜で着席OK。"
+          }
+        ]
+      },
+      "reset": {
+        "excellent": 400,
+        "good": 300,
+        "caution": 200,
+        "note": "設定変更後は周期3周期短縮。300G〜でプラス域。周期カウンターは今後対応予定。"
+      }
     }
   },
   {
@@ -378,12 +597,42 @@
     "seo": {
       "title": "スマスロ バイオハザード5 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "通常400G〜 / リセット300G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "通常"
+        },
+        {
+          "key": "tenkoku",
+          "label": "天国後"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 700,
+        "good": 400,
+        "caution": 200,
+        "note": "天井999G+α。400G〜でプラス域。増殖アイコン所持台は200G〜でも狙い目。天井到達後は次回99G天国濃厚なので即ヤメ厳禁。"
+      },
+      "tenkoku": {
+        "excellent": 99,
+        "good": 50,
+        "caution": 0,
+        "note": "前回天井到達台は次回99G+α天国濃厚。0G〜で着席OK。クライマックスウェスカーゾーン経由の場合は無効なので注意。"
+      },
+      "reset": {
+        "excellent": 450,
+        "good": 300,
+        "caution": 150,
+        "note": "設定変更後は天井666G+αに短縮。300G〜でプラス域。リセット判別は666Gを超えたかどうかで確認。"
+      }
     }
   },
   {
@@ -426,12 +675,84 @@
     "seo": {
       "title": "Lパチスロ ダンベル何キロ持てる? 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "CZ間400G〜 / 1スルー以上200G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "cz",
+          "label": "CZ間"
+        },
+        {
+          "key": "suru",
+          "label": "スルー天井",
+          "hasSuru": true
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "cz": {
+        "excellent": 550,
+        "good": 400,
+        "caution": 300,
+        "note": "CZ間天井600G+α。400G〜でプラス域。液晶のG数カウンタで確認。"
+      },
+      "suru": {
+        "suruMax": 5,
+        "suru": [
+          {
+            "count": 0,
+            "excellent": 550,
+            "good": 400,
+            "caution": 300,
+            "note": "0スルー。CZ間と同じ400G〜が目安。"
+          },
+          {
+            "count": 1,
+            "excellent": 400,
+            "good": 200,
+            "caution": 100,
+            "note": "1スルー。200G〜で積極的に。"
+          },
+          {
+            "count": 2,
+            "excellent": 300,
+            "good": 150,
+            "caution": 50,
+            "note": "2スルー。150G〜でプラス域。"
+          },
+          {
+            "count": 3,
+            "excellent": 200,
+            "good": 100,
+            "caution": 0,
+            "note": "3スルー。100G〜でプラス域。"
+          },
+          {
+            "count": 4,
+            "excellent": 100,
+            "good": 50,
+            "caution": 0,
+            "note": "4スルー。50G〜でプラス域。"
+          },
+          {
+            "count": 5,
+            "excellent": 50,
+            "good": 0,
+            "caution": 0,
+            "note": "5スルー。次回CZでAT確定。0G〜で着席OK。"
+          }
+        ]
+      },
+      "reset": {
+        "excellent": 200,
+        "good": 80,
+        "caution": 30,
+        "note": "設定変更後は天井短縮。80G〜でプラス域。"
+      }
     }
   },
   {
@@ -440,12 +761,22 @@
     "seo": {
       "title": "スマスロ ストリートファイターV 挑戦者の道 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "設定狙い主体・天井なし",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "設定狙い"
+        }
+      ],
+      "normal": {
+        "excellent": 99999,
+        "good": 99999,
+        "caution": 99999,
+        "note": "この機種は天井非搭載のため、ハイエナ狙いには向きません。設定狙い主体の機種です。高設定をつかめる環境（イベント・特定日）での使用を推奨。"
+      }
     }
   },
   {
@@ -454,12 +785,42 @@
     "seo": {
       "title": "スマスロ ゴッドイーター リザレクション 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "通常590G〜 / 駆け抜け後170G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "通常"
+        },
+        {
+          "key": "nukete",
+          "label": "駆け抜け後"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 750,
+        "good": 590,
+        "caution": 450,
+        "note": "天井800G+α。590G〜でプラス域。液晶右下のG数で確認。"
+      },
+      "nukete": {
+        "excellent": 300,
+        "good": 170,
+        "caution": 100,
+        "note": "AT駆け抜け後は天井350G+αに短縮。170G〜でプラス域。"
+      },
+      "reset": {
+        "excellent": 300,
+        "good": 180,
+        "caution": 100,
+        "note": "設定変更後は天井350G+αに短縮。180G〜でプラス域。"
+      }
     }
   },
   {
@@ -574,12 +935,32 @@
     "seo": {
       "title": "スマスロ転生したらスライムだった件 狙い目"
     },
-    "info": "準備中",
-    "strategy": "準備中",
+    "info": "スマスロAT",
+    "strategy": "通常450G〜 / リセット0G〜",
     "checker": {
-      "target": 99999999,
-      "ok": "準備中",
-      "ng": "準備中"
+      "unit": "G",
+      "modes": [
+        {
+          "key": "normal",
+          "label": "通常"
+        },
+        {
+          "key": "reset",
+          "label": "リセット"
+        }
+      ],
+      "normal": {
+        "excellent": 600,
+        "good": 450,
+        "caution": 300,
+        "note": "天井600G+α。450G〜でプラス域。スライム状態（転生モード）が継続しているか確認。"
+      },
+      "reset": {
+        "excellent": 200,
+        "good": 0,
+        "caution": 0,
+        "note": "朝一リセット時は転生状態が引き継がれる可能性あり。0G〜でプラス域。転生状態を確認してから着席。"
+      }
     }
   }
 ]
