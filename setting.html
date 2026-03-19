@@ -29,7 +29,7 @@
 </header>
 <main class="site-main">
 
-  <section class="article-hero">
+  <section class="article-hero" style="border-bottom:none;padding-bottom:12px;">
     <p class="eyebrow"><a href="machine.html" id="backLink" style="color:var(--muted);text-decoration:none;">‹ 狙い目に戻る</a>&nbsp;&nbsp;SETTING JUDGE</p>
     <h1 id="pageTitle" class="page-title">設定判別</h1>
     <p class="hero-sub" id="heroSub">ゲーム数・小役をカウントしながら入力すると設定期待度がリアルタイムで更新されます。</p>
@@ -37,9 +37,9 @@
 
   <section class="article-section-wrap">
 
-    <div style="background:var(--panel);border:1px solid var(--line2);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
-      <span style="font-size:18px;flex-shrink:0;">↔</span>
-      <p style="font-size:12px;color:var(--muted);margin:0;line-height:1.5;">横画面にすると3列表示になります。スマホ置き場のある台でそのまま使えます。</p>
+    <div id="landscapeHint" style="background:var(--gold-bg);border:1px solid var(--gold-line);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+      <span style="font-size:18px;flex-shrink:0;color:var(--gold);">↔</span>
+      <p style="font-size:12px;color:var(--gold);margin:0;line-height:1.5;font-weight:700;">横画面にすると3列表示になります。スマホ置き場のある台でそのまま使えます。</p>
     </div>
 
     <div class="article-block">
@@ -330,6 +330,8 @@ function checkOrientation(){
   } else {
     document.body.classList.remove('is-landscape');
   }
+  const hint = document.getElementById('landscapeHint');
+  if(hint) hint.style.display = isLandscape ? 'none' : 'flex';
 }
 // 即時実行 + イベント
 checkOrientation();
