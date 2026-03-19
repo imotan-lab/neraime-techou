@@ -145,7 +145,8 @@
             "caution": 100,
             "note": "2スルー以上。300G〜で積極的に。AT間天井1200G+α。"
           }
-        ]
+        ],
+        "suruMax": 2
       },
       "reset": {
         "excellent": 150,

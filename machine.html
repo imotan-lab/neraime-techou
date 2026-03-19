@@ -46,7 +46,7 @@
           <p style="font-size:12px;color:var(--muted);margin-bottom:6px;">CZスルー回数</p>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" id="suruDec">－</button>
-            <span class="setting-current-val" id="suruVal">0</span>
+            <span id="suruVal" style="min-width:40px;text-align:center;font-size:20px;font-weight:700;color:var(--gold);">0</span>
             <button class="setting-cnt-btn" id="suruInc">＋</button>
           </div>
         </div>
@@ -181,7 +181,10 @@ async function loadJson(path){
   let suruCount = 0;
 
   document.getElementById("suruInc").addEventListener("click", () => {
-    suruCount++;
+    const checked = document.querySelector('input[name="mode"]:checked');
+    const modeKey = checked ? checked.value : null;
+    const suruMax = modeKey && checker[modeKey] && Number.isFinite(checker[modeKey].suruMax) ? checker[modeKey].suruMax : 99;
+    suruCount = Math.min(suruMax, suruCount + 1);
     suruVal.textContent = suruCount;
     judge();
   });

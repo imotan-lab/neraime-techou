@@ -44,7 +44,7 @@
           <p style="font-size:12px;color:var(--muted);margin-bottom:6px;">CZスルー回数</p>
           <div class="setting-counter-wrap">
             <button class="setting-cnt-btn" id="suruDec">－</button>
-            <span class="setting-current-val" id="suruVal">0</span>
+            <span id="suruVal" style="min-width:40px;text-align:center;font-size:20px;font-weight:700;color:var(--gold);">0</span>
             <button class="setting-cnt-btn" id="suruInc">＋</button>
           </div>
         </div>
@@ -171,7 +171,10 @@ function evaluate(game, config) {
   let suruCount = 0;
 
   document.getElementById("suruInc").addEventListener("click", () => {
-    suruCount++;
+    const checker = currentMachine ? (currentMachine.checker || {}) : {};
+    const modeKey = getCurrentMode();
+    const suruMax = checker[modeKey] && Number.isFinite(checker[modeKey].suruMax) ? checker[modeKey].suruMax : 99;
+    suruCount = Math.min(suruMax, suruCount + 1);
     suruVal.textContent = suruCount;
     judge();
   });
