@@ -165,8 +165,18 @@ function evaluate(game, config) {
   return { cls: "result-ng", text: `× まだ早い　${thr}G以上を目安に` };
 }
 
+function resolveMachineSlug() {
+  const paramsSlug = new URLSearchParams(location.search).get("slug");
+  if (paramsSlug) return paramsSlug;
+
+  const match = location.pathname.match(/\/machines\/([^\/]+)\/?(?:checker\.html)?$/);
+  if (match) return match[1];
+
+  return null;
+}
+
 (function () {
-  const slug = new URLSearchParams(location.search).get("slug");
+  const slug = resolveMachineSlug();
   const titleEl = document.getElementById("checkerTitle");
   const articleLinkNav = document.getElementById("articleLinkNav");
   const articleLinkCard = document.getElementById("articleLinkCard");

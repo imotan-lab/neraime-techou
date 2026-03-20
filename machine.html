@@ -148,8 +148,18 @@ async function loadJson(path){
   return res.json();
 }
 
+function resolveMachineSlug() {
+  const paramsSlug = new URLSearchParams(location.search).get("slug");
+  if (paramsSlug) return paramsSlug;
+
+  const match = location.pathname.match(/\/machines\/([^\/]+)\/?(?:index\.html)?$/);
+  if (match) return match[1];
+
+  return null;
+}
+
 (async () => {
-  const slug = new URLSearchParams(location.search).get("slug");
+  const slug = resolveMachineSlug();
   const machines = await loadJson("assets/data/machines.json");
   if (!machines) {
     document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#667788;">データの取得に失敗しました。<br><a href="index.html" style="color:#f5b941;">一覧へ戻る</a></div>';
