@@ -212,8 +212,8 @@ async function loadJson(path){
     checkerResult.classList.add("checker-result--guide");
     if (checkerNote) checkerNote.classList.add("hint-text--guide");
     checkerResult.querySelector(".result-label").textContent = "案内";
-    checkerResult.querySelector(".result-text").textContent = "この機種は天井非搭載のため、ハイエナ狙いには向きません。";
-    if (checkerNote) checkerNote.textContent = "設定狙い主体の機種です。高設定をつかめる環境（イベント・特定日）での使用を推奨します。";
+    checkerResult.querySelector(".result-text").textContent = "ゲーム数狙いには向きません。";
+    if (checkerNote) checkerNote.textContent = "設定狙い向けの機種です。高設定をつかめる環境（イベント・特定日）での使用を推奨します。";
   } else {
     document.getElementById("suruInc").addEventListener("click", () => {
       const checked = document.querySelector('input[name="mode"]:checked');
