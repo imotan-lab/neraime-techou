@@ -194,6 +194,28 @@ function evaluate(game, config) {
     return checked ? checked.value : null;
   }
 
+  function getMachineLimit(modeKey) {
+    const checker = currentMachine ? (currentMachine.checker || {}) : {};
+    if (currentMachine && Number.isFinite(currentMachine.limit)) return currentMachine.limit;
+    if (currentMachine && currentMachine.limit && typeof currentMachine.limit === "object" && Number.isFinite(currentMachine.limit[modeKey])) return currentMachine.limit[modeKey];
+    if (Number.isFinite(checker.limit)) return checker.limit;
+    if (checker[modeKey] && Number.isFinite(checker[modeKey].limit)) return checker[modeKey].limit;
+    return null;
+  }
+
+  function applyInputLimit(modeKey) {
+    const limit = getMachineLimit(modeKey);
+    if (Number.isFinite(limit)) {
+      gameInput.max = String(limit);
+      gameInput.placeholder = `現在G数を入力（最大${limit}G）`;
+      const current = parseInt(gameInput.value, 10);
+      if (!Number.isNaN(current) && current > limit) gameInput.value = String(limit);
+    } else {
+      gameInput.removeAttribute("max");
+      gameInput.placeholder = "現在G数を入力";
+    }
+  }
+
   function judge() {
     if (!currentMachine) return;
     const checker = currentMachine.checker || {};
@@ -221,7 +243,13 @@ function evaluate(game, config) {
       const label = document.createElement("label");
       label.htmlFor = id;
       label.textContent = mode.label;
-      input.addEventListener("change", () => { suruCount = 0; suruVal.textContent = 0; gameInput.value = ""; judge(); });
+      input.addEventListener("change", () => {
+        suruCount = 0;
+        suruVal.textContent = 0;
+        gameInput.value = "";
+        applyInputLimit(mode.key);
+        judge();
+      });
       modeToggle.appendChild(input);
       modeToggle.appendChild(label);
     });
@@ -238,6 +266,7 @@ function evaluate(game, config) {
       document.title = currentMachine.name + " チェッカー | うちどころ。";
       titleEl.textContent = currentMachine.name + " チェッカー";
       buildModes(currentMachine);
+      applyInputLimit(getCurrentMode() || "normal");
       judge();
     })
     .catch(() => {
@@ -246,7 +275,24 @@ function evaluate(game, config) {
       gameInput.disabled = true;
     });
 
-  gameInput.addEventListener("input", judge);
+  gameInput.addEventListener("input", () => {
+    const modeKey = getCurrentMode() || "normal";
+    const limit = getMachineLimit(modeKey);
+    if (Number.isFinite(limit)) {
+      const value = parseInt(gameInput.value, 10);
+      if (!Number.isNaN(value) && value > limit) gameInput.value = String(limit);
+    }
+    judge();
+  });
+  gameInput.addEventListener("blur", () => {
+    const modeKey = getCurrentMode() || "normal";
+    const limit = getMachineLimit(modeKey);
+    const value = parseInt(gameInput.value, 10);
+    if (Number.isFinite(limit) && !Number.isNaN(value) && value > limit) {
+      gameInput.value = String(limit);
+    }
+    judge();
+  });
   gameInput.addEventListener("keydown", e => { if (e.key === "Enter") judge(); });
 })();
 </script>
