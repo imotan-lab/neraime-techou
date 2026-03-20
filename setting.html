@@ -191,7 +191,17 @@
 })();
 
 // slug読み込みとmeta設定
-const slug = new URLSearchParams(location.search).get("slug") || "hokuto";
+function resolveMachineSlug() {
+  const paramsSlug = new URLSearchParams(location.search).get("slug");
+  if (paramsSlug) return paramsSlug;
+
+  const match = location.pathname.match(/\/machines\/([^\/]+)\/?(?:setting\.html)?$/);
+  if (match) return match[1];
+
+  return "hokuto";
+}
+
+const slug = resolveMachineSlug();
 const STORAGE_KEY = "uchidokoro_setting_" + slug;
 
 fetch("assets/data/machines.json").then(r=>r.json()).then(machines=>{
