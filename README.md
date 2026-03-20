@@ -34,7 +34,7 @@ GitHub Actions により毎日UTC18:00（日本時間3:00）にYouTube APIで人
 
 ## 運用ドキュメント
 
-- 作業ルール: `CODEX_RULES.txt`
+- 作業ルール（正本）: `CODEX_RULES.md`
 - 引き継ぎメモ: `HANDOFF.md`
 
 日をまたいで作業するときや 別のAIへ引き継ぐときは 上の2つを先に確認すること。

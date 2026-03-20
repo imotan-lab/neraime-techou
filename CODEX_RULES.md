@@ -383,7 +383,7 @@ function checkOrientation(){
 
 - `README.md`
   - サイト概要 構成 新機種追加の手順だけを見る
-- `CODEX_RULES.txt`
+- `CODEX_RULES.md`
   - 作業前の手順 回答ルール 守るべき運用を見る
 - `HANDOFF.md`
   - どこで躓いたか どう直したか 未完了事項 今後100機種以上へ増やす時の注意点を見る
