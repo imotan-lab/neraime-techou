@@ -158,8 +158,19 @@ function resolveMachineSlug() {
   return null;
 }
 
+function resolvePreviewState() {
+  const params = new URLSearchParams(location.search);
+  const suruValue = parseInt(params.get("suru"), 10);
+  return {
+    rate: params.get("rate"),
+    mode: params.get("mode"),
+    suru: Number.isNaN(suruValue) ? null : Math.max(0, suruValue)
+  };
+}
+
 (async () => {
   const slug = resolveMachineSlug();
+  const previewState = resolvePreviewState();
   const machines = await loadJson("assets/data/machines.json");
   if (!machines) {
     document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#667788;">データの取得に失敗しました。<br><a href="index.html" style="color:#f5b941;">一覧へ戻る</a></div>';
@@ -299,6 +310,9 @@ function resolveMachineSlug() {
     }
 
     rateToggle.style.display = "grid";
+    const initialRateKey = rates.some(rate => rate.key === previewState.rate)
+      ? previewState.rate
+      : (checker.defaultRate || rates[0].key);
     rates.forEach((rate, i) => {
       const id = "rate_" + rate.key;
       const input = document.createElement("input");
@@ -306,7 +320,7 @@ function resolveMachineSlug() {
       input.name = "exchangeRate";
       input.id = id;
       input.value = rate.key;
-      if (rate.key === checker.defaultRate || (!checker.defaultRate && i === 0)) {
+      if (rate.key === initialRateKey || (!initialRateKey && i === 0)) {
         input.checked = true;
         currentRateKey = rate.key;
       }
@@ -401,14 +415,18 @@ function resolveMachineSlug() {
   // モード動的生成
   if (slug !== "sf5") {
     buildRateOptions(machine);
-    getModes(checker).forEach((mode, i) => {
+    const modes = getModes(checker);
+    const firstMode = modes.some(mode => mode.key === previewState.mode)
+      ? previewState.mode
+      : (modes[0]?.key || "normal");
+    modes.forEach((mode) => {
       const id = "mode_" + mode.key;
       const input = document.createElement("input");
       input.type = "radio";
       input.name = "mode";
       input.id = id;
       input.value = mode.key;
-      if (i === 0) input.checked = true;
+      if (mode.key === firstMode) input.checked = true;
 
       const label = document.createElement("label");
       label.htmlFor = id;
@@ -426,8 +444,14 @@ function resolveMachineSlug() {
       modeToggle.appendChild(label);
     });
 
-    const firstMode = getModes(checker)[0]?.key || "normal";
     applyInputLimit(firstMode);
+    const firstModeData = checker[firstMode];
+    if (firstModeData && firstModeData.suru && Array.isArray(firstModeData.suru)) {
+      const fallbackMax = firstModeData.suru[firstModeData.suru.length - 1].count;
+      const suruMax = Number.isFinite(firstModeData.suruMax) ? firstModeData.suruMax : fallbackMax;
+      suruCount = Math.min(suruMax, previewState.suru ?? 0);
+      suruVal.textContent = suruCount;
+    }
 
     gameInput.addEventListener("input", function(){
       const checked = document.querySelector('input[name="mode"]:checked');
