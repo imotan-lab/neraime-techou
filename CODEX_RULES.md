@@ -126,6 +126,10 @@ uchidokoro/
 ├── meta-auto.js          title/meta descriptionを機種ごとに動的生成
 ├── manifest.json         PWA設定
 ├── service-worker.js     オフラインキャッシュ
+├── contact.html          お問い合わせページ
+├── privacy.html          プライバシーポリシーページ
+├── 404.html              エラーページ
+├── robots.txt            クローラー向け設定
 ├── assets/
 │   ├── css/
 │   │   └── practical.css     全ページ共通CSS（唯一のCSS）

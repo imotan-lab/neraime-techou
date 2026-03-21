@@ -16,6 +16,10 @@ GitHub Pages で運用する静的スロット攻略サイトです。
 - `machine.html` 記事ページ（slugで機種切り替え）
 - `checker.html` チェッカーページ（slugで機種切り替え）
 - `setting.html` 設定判別ページ「ポチポチくん」（slugで機種切り替え）
+- `contact.html` お問い合わせページ
+- `privacy.html` プライバシーポリシーページ
+- `404.html` 404ページ
+- `robots.txt` クローラー向け設定
 - `assets/css/practical.css` 全ページ共通CSS
 - `assets/data/machines.json` 機種一覧
 - `assets/data/machine-details/` 機種別記事データ（JSON）
@@ -43,6 +47,8 @@ GitHub Actions により毎日UTC18:00（日本時間3:00）にYouTube APIで人
 スクショ確認専用の URLパラメータや状態指定が必要な場合は 常設せず その確認便だけ一時的に入れて 確認後に外すこと。
 
 現在は 全機種分の記事ページ枠はそろっており 今後は既存記事の厚み追加とブラッシュアップをまとめて進める段階。
+
+補助ページとして `contact.html` `privacy.html` `404.html` `robots.txt` も運用中です。構成確認時はこれらも実ファイル基準で扱います。
 
 ## 次スレ開始用メモ
 
