@@ -65,6 +65,21 @@ button, input, select { font: inherit; }
 }
 .brand { display: block; flex-shrink: 0; }
 .brand img { height: 44px; width: auto; display: block; max-width: 240px; object-fit: contain; }
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.header-nav a { color: var(--muted); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.header-nav a:hover { color: var(--soft); }
+.header-link {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.header-link:hover { color: var(--soft); }
 
 .header-search-wrap {
   position: relative;
@@ -143,6 +158,27 @@ button, input, select { font: inherit; }
 .footer-links a { color: var(--muted); font-size: 13px; }
 .footer-links a:hover { color: var(--soft); }
 .footer-copy { color: var(--muted2); font-size: 12px; }
+.eyebrow-link { color: var(--muted); text-decoration: none; }
+.eyebrow-link:hover { color: var(--soft); }
+.article-hero--compact { border-bottom: none; padding-bottom: 12px; }
+.hero-actions { display: flex; gap: 8px; margin-top: 12px; }
+.btn-settei--wide { flex: 1; justify-content: center; }
+.btn-show-all--center { display: block; text-align: center; }
+.btn-show-all--muted { color: var(--muted); }
+.stack-links { display: flex; flex-direction: column; gap: 10px; }
+.compact-note { margin-bottom: 12px; }
+.landscape-hint-box {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.landscape-hint-icon { font-size: 18px; flex-shrink: 0; color: var(--gold); }
+.landscape-hint-text { font-size: 12px; color: var(--gold); margin: 0; line-height: 1.7; font-weight: 700; }
 
 /* INDEX PAGE */
 .index-toolbar { padding: 14px 0; }
@@ -458,3 +494,14 @@ button, input, select { font: inherit; }
 .setting-current-val { display: none; }
 .landscape-hint { display: none; }
 .portrait-hint { display: block; }
+
+@media (max-width: 520px) {
+  .header-inner { gap: 8px; flex-wrap: wrap; }
+  .brand img { height: 36px; max-width: 180px; }
+  .header-nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 2px;
+  }
+}

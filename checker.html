@@ -16,21 +16,21 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="うちどころ。" style="height:36px;width:auto;display:block;"></a>
+    <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="うちどころ。"></a>
     <div class="header-search-wrap">
       <span class="header-search-icon">🔍</span>
       <input id="headerSearch" class="header-search-input" type="search" placeholder="機種を検索">
       <div id="headerDropdown" class="header-dropdown"></div>
     </div>
-    <nav style="flex-shrink:0;">
-      <a id="articleLinkNav" href="machine.html" style="color:var(--muted);font-size:13px;font-weight:700;">記事</a>
+    <nav class="header-nav">
+      <a id="articleLinkNav" href="machine.html" class="header-link">記事</a>
     </nav>
   </div>
 </header>
 <main class="site-main">
 
   <section class="article-hero">
-    <p class="eyebrow"><a href="index.html" style="color:var(--muted);text-decoration:none;">‹ 一覧</a>&nbsp;&nbsp;CHECKER</p>
+    <p class="eyebrow"><a href="index.html" class="eyebrow-link">‹ 一覧</a>&nbsp;&nbsp;CHECKER</p>
     <h1 id="checkerTitle" class="page-title">チェッカー</h1>
   </section>
 
@@ -61,9 +61,9 @@
 
     <div class="article-block">
       <p class="block-label">▶ 移動</p>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <a id="articleLinkCard" class="btn-show-all" href="machine.html" style="text-align:center;">記事を見る</a>
-        <a href="index.html" class="btn-show-all" style="text-align:center;color:var(--muted);">一覧へ戻る</a>
+      <div class="stack-links">
+        <a id="articleLinkCard" class="btn-show-all btn-show-all--center" href="machine.html">記事を見る</a>
+        <a href="index.html" class="btn-show-all btn-show-all--center btn-show-all--muted">一覧へ戻る</a>
       </div>
     </div>
 
