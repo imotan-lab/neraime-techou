@@ -199,7 +199,8 @@
 
 // slug読み込みとmeta設定
 function resolveMachineSlug() {
-  const paramsSlug = new URLSearchParams(location.search).get("slug");
+  const params = new URLSearchParams(location.search);
+  const paramsSlug = params.get("slug") || params.get("machine");
   if (paramsSlug) return paramsSlug;
 
   const match = location.pathname.match(/\/machines\/([^\/]+)\/?(?:setting\.html)?$/);
