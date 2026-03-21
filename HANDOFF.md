@@ -321,3 +321,4 @@
 - `machine-details` 側は大きな加筆をせず `lead` と `ヤメ時` 周辺の文体を整えた
 - 読点の抜けや `所/ところ` の表記揺れ、接続の不自然さを最小差分で修正
 - 対象は `banchou4` `kaguya` `valvrave2` `dumbbell` `biohazard` `baki` `tekken6`
+- このメモ行は GitHub Desktop で差分が見えない場合の確認用として追加
