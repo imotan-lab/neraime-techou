@@ -53,5 +53,13 @@
     <p class="footer-copy">© 2026 うちどころ。</p>
   </div>
 </footer>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/uchidokoro/service-worker.js")
+      .catch(err => console.warn("SW登録失敗:", err));
+  });
+}
+</script>
 </body>
 </html>
