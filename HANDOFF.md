@@ -315,3 +315,9 @@
 - `machines.json` のスルー系モードと `biohazard` の天国後 `note` を微調整
 - 数値は動かさず 通常 CZ リセットとの入口差が伝わる文へ寄せた
 - 対象は `tekken6` `banchou4` `kaguya` `biohazard` `dumbbell` `baki` `valvrave2`
+
+## 2026-03-21 記事本文の文体調整
+
+- `machine-details` 側は大きな加筆をせず `lead` と `ヤメ時` 周辺の文体を整えた
+- 読点の抜けや `所/ところ` の表記揺れ、接続の不自然さを最小差分で修正
+- 対象は `banchou4` `kaguya` `valvrave2` `dumbbell` `biohazard` `baki` `tekken6`
