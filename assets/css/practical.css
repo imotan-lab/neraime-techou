@@ -73,6 +73,7 @@ button, input, select { font: inherit; }
 }
 .header-nav a { color: var(--muted); font-size: 13px; font-weight: 700; white-space: nowrap; }
 .header-nav a:hover { color: var(--soft); }
+.header-nav a[aria-current="page"] { color: var(--soft); pointer-events: none; }
 .header-link {
   color: var(--muted);
   font-size: 13px;
