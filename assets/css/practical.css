@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap");
-
 :root {
   --bg: #07090c;
   --bg2: #0c0f14;
@@ -436,6 +434,7 @@ button, input, select { font: inherit; }
 
 /* SHOW ALL BUTTON */
 .show-all-wrap { text-align: center; padding: 16px 0 8px; }
+.show-all-wrap--top { padding-top: 12px; padding-bottom: 0; }
 .btn-show-all {
   background: var(--bg2);
   border: 1px solid var(--line);
