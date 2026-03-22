@@ -239,15 +239,16 @@ function resolveMachineSlug() {
   }
 
   function applyInputLimit(modeKey) {
+    const unit = checker.unit || "G";
     const limit = getMachineLimit(modeKey);
     if (Number.isFinite(limit)) {
       gameInput.max = String(limit);
-      gameInput.placeholder = `現在G数を入力（最大${limit}G）`;
+      gameInput.placeholder = `現在${unit}を入力（最大${limit}${unit}）`;
       const current = parseInt(gameInput.value, 10);
       if (!Number.isNaN(current) && current > limit) gameInput.value = String(limit);
     } else {
       gameInput.removeAttribute("max");
-      gameInput.placeholder = "現在G数を入力";
+      gameInput.placeholder = `現在${unit}を入力`;
     }
   }
 
@@ -489,7 +490,7 @@ function resolveMachineSlug() {
 
     if (!config || isNaN(g)) {
       checkerResult.className = "checker-result result-wait";
-      checkerResult.querySelector(".result-text").textContent = "G数を入力してください";
+      checkerResult.querySelector(".result-text").textContent = `${checker.unit || "G"}を入力してください`;
       return;
     }
 

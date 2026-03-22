@@ -146,7 +146,7 @@
                                "rate45":  "4.5枚1000G〜"
                            },
         "checker":  {
-                        "unit":  "G",
+                        "unit":  "あべし",
                         "defaultRate":  "eq56",
                         "exchangeRates":  [
                                               {
