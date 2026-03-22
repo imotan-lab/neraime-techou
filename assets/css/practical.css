@@ -505,3 +505,9 @@ button, input, select { font: inherit; }
     padding-top: 2px;
   }
 }
+
+/* CONTACT FORM (Google Forms iframe dark mode) */
+.contact-form-wrap iframe {
+  filter: invert(.88) hue-rotate(180deg);
+  border-radius: var(--radius-sm);
+}
