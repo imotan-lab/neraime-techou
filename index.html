@@ -154,13 +154,11 @@ function buildKeywords(machine){
         const row = document.createElement("article");
         row.className = "list-row";
         row.innerHTML = `
-          <div class="list-row-body">
+          <a class="list-row-main" href="machine.html?slug=${machine.slug}">
             <span class="machine-name">${machine.name}</span>
-            <div class="machine-btns">
-              <a class="btn-nerai" href="machine.html?slug=${machine.slug}">狙い目</a>
-              <a class="btn-settei" href="setting.html?slug=${machine.slug}">設定判別</a>
-            </div>
-          </div>
+            <span class="machine-strategy">${machine.strategy || ''}</span>
+          </a>
+          <a class="btn-settei" href="setting.html?slug=${machine.slug}">設定判別</a>
         `;
         list.appendChild(row);
       });
