@@ -1,10 +1,11 @@
-const CACHE_NAME = 'uchidokoro-v3';
+const CACHE_NAME = 'uchidokoro-v4';
 
 const STATIC_CACHE = [
   '/uchidokoro/',
   '/uchidokoro/index.html',
   '/uchidokoro/machine.html',
   '/uchidokoro/setting.html',
+  '/uchidokoro/about.html',
   '/uchidokoro/contact.html',
   '/uchidokoro/privacy.html',
   '/uchidokoro/404.html',

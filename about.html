@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>このサイトについて | うちどころ。</title>
+<meta name="description" content="うちどころ。はスマスロ・スロット6.5号機の狙い目や設定判別情報を無料で公開しているサイトです。">
+<link rel="stylesheet" href="assets/css/practical.css">
+<link rel="manifest" href="/uchidokoro/manifest.json">
+<meta name="theme-color" content="#07090c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="うちどころ。">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="うちどころ。"></a>
+    <nav class="header-nav">
+      <a href="index.html">トップ</a>
+      <a href="about.html" aria-current="page">このサイトについて</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+</header>
+<main class="site-main">
+  <section class="article-hero article-hero--compact">
+    <p class="eyebrow">ABOUT</p>
+    <h1 class="page-title">このサイトについて</h1>
+    <p class="hero-sub">うちどころ。の運営情報と方針をご案内します。</p>
+  </section>
+  <section class="article-section-wrap">
+    <article class="article-block">
+      <p class="block-label">▶ サイト概要</p>
+      <table class="info-table">
+        <tbody>
+          <tr><th>サイト名</th><td>うちどころ。</td></tr>
+          <tr><th>内容</th><td>スマスロ・スロット6.5号機の狙い目（天井・ゾーン）、設定判別、立ち回り情報を無料で公開しています。</td></tr>
+          <tr><th>対象機種</th><td>北斗の拳、番長4、カバネリ、モンキーターンVなど全18機種。順次追加予定です。</td></tr>
+          <tr><th>URL</th><td>https://imotan-lab.github.io/uchidokoro/</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="article-block">
+      <p class="block-label">▶ 運営者情報</p>
+      <table class="info-table">
+        <tbody>
+          <tr><th>運営</th><td>個人運営</td></tr>
+          <tr><th>連絡先</th><td><a href="contact.html">お問い合わせページ</a>よりご連絡ください。</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="article-block">
+      <p class="block-label">▶ 免責事項</p>
+      <p class="hint-text">当サイトに掲載している狙い目、期待値、設定判別情報はすべて参考情報です。実際の遊技における判断や損益について、当サイトは一切の責任を負いません。</p>
+      <p class="hint-text" style="margin-top:8px;">掲載情報は公開されている解析データや実戦値をもとに作成していますが、正確性を保証するものではありません。最新の情報は各情報源をご確認ください。</p>
+    </article>
+  </section>
+</main>
+<footer>
+  <div class="site-footer-inner">
+    <div class="footer-links">
+      <a href="about.html">このサイトについて</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 うちどころ。</p>
+  </div>
+</footer>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/uchidokoro/service-worker.js")
+      .catch(err => console.warn("SW登録失敗:", err));
+  });
+}
+</script>
+</body>
+</html>
