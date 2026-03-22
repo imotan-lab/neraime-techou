@@ -508,6 +508,6 @@ button, input, select { font: inherit; }
 
 /* CONTACT FORM (Google Forms iframe dark mode) */
 .contact-form-wrap iframe {
-  filter: invert(.92) saturate(0.3) brightness(0.7);
+  filter: invert(.92) saturate(0) brightness(0.55);
   border-radius: var(--radius-sm);
 }
