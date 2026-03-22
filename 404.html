@@ -6,7 +6,7 @@
 <title>ページが見つかりません | うちどころ。</title>
 <meta name="description" content="うちどころ。の404ページです。ページが見つからない場合の案内と戻り導線を掲載しています。">
 <link rel="stylesheet" href="assets/css/practical.css">
-<link rel="manifest" href="/uchidokoro/manifest.json">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#07090c">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -56,7 +56,7 @@
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/uchidokoro/service-worker.js")
+    navigator.serviceWorker.register("/service-worker.js")
       .catch(err => console.warn("SW登録失敗:", err));
   });
 }

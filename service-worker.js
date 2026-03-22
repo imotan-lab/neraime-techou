@@ -1,20 +1,20 @@
-const CACHE_NAME = 'uchidokoro-v5';
+const CACHE_NAME = 'uchidokoro-v6';
 
 const STATIC_CACHE = [
-  '/uchidokoro/',
-  '/uchidokoro/index.html',
-  '/uchidokoro/machine.html',
-  '/uchidokoro/setting.html',
-  '/uchidokoro/about.html',
-  '/uchidokoro/contact.html',
-  '/uchidokoro/privacy.html',
-  '/uchidokoro/404.html',
-  '/uchidokoro/meta-auto.js',
-  '/uchidokoro/assets/css/practical.css',
-  '/uchidokoro/assets/img/logo.png',
-  '/uchidokoro/assets/img/ogp.png',
-  '/uchidokoro/assets/data/machines.json',
-  '/uchidokoro/assets/data/machine-details/hokuto.json'
+  '/',
+  '/index.html',
+  '/machine.html',
+  '/setting.html',
+  '/about.html',
+  '/contact.html',
+  '/privacy.html',
+  '/404.html',
+  '/meta-auto.js',
+  '/assets/css/practical.css',
+  '/assets/img/logo.png',
+  '/assets/img/ogp.png',
+  '/assets/data/machines.json',
+  '/assets/data/machine-details/hokuto.json'
 ];
 
 // インストール時：静的ファイルをキャッシュ

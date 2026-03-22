@@ -1,7 +1,7 @@
 # うちどころ。
 
 GitHub Pages で運用する静的スロット狙い目サイトです。
-公開URL: https://imotan-lab.github.io/uchidokoro/
+公開URL: https://uchidokoro.com/
 
 ## 技術構成
 

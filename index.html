@@ -8,12 +8,12 @@
 <meta property="og:title" content="うちどころ。 | 機種一覧">
 <meta property="og:description" content="スマホで使いやすいスロット狙い目一覧。機種名検索から記事とチェッカーへすぐ移動できます。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://imotan-lab.github.io/uchidokoro/">
-<meta property="og:image" content="https://imotan-lab.github.io/uchidokoro/assets/img/ogp.png">
+<meta property="og:url" content="https://uchidokoro.com/">
+<meta property="og:image" content="https://uchidokoro.com/assets/img/ogp.png">
 <meta property="og:site_name" content="うちどころ。">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/css/practical.css">
-<link rel="manifest" href="/uchidokoro/manifest.json">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#07090c">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -184,7 +184,7 @@ function buildKeywords(machine){
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/uchidokoro/service-worker.js")
+    navigator.serviceWorker.register("/service-worker.js")
       .catch(err => console.warn("SW登録失敗:", err));
   });
 }
