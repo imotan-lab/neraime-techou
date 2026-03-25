@@ -8,24 +8,24 @@ GitHub Pages で運用する静的スロット狙い目サイトです。
 - HTML / CSS（assets/css/practical.css）/ JavaScript
 - 機種一覧データ：assets/data/machines.json
 - 機種詳細記事データ：assets/data/machine-details/機種名.json
-- 設定判別データ：setting.html 内の MACHINE_CONFIGS（ベイズ推定）
+- 小役カウンター：setting.html 内の MACHINE_CONFIGS（ベイズ推定）
 - Google Fonts（Orbitron）
 - PWA対応（service-worker.js / manifest.json）
-- GitHub Actions による人気ランキング自動更新
+- GitHub Actions による人気ランキング自動更新（YouTube API・再生数ベース）
 
 ## 主な機能
 
 - 狙い目チェッカー（交換率4パターン対応・モード切り替え・スルー回数/周期カウンター）
 - 期待値早見表（閾値から色分けテーブルを自動生成）
-- 設定判別ツール「ポチポチくん」（16機種対応・ベイズ推定でリアルタイム期待度表示）
+- 小役カウンター「ポチポチくん」（29機種対応・ベイズ推定でリアルタイム期待度表示）
 - 設定示唆まとめ（バッジ色分け＋凡例自動生成）
 - 狙い目早見表（モード別入口ライン）と基本情報（スペック補足）の役割分離
 
 ## ファイル構成
 
-- `index.html` トップページ（機種一覧・検索・人気TOP10）
+- `index.html` トップページ（機種一覧・検索・人気ランキング）
 - `machine.html` 記事ページ（全機種共通・slugで切り替え）
-- `setting.html` ポチポチくん（全機種共通・slugで切り替え）
+- `setting.html` 小役カウンター ポチポチくん（全機種共通・slugで切り替え）
 - `about.html` このサイトについて（運営者情報・免責事項）
 - `contact.html` お問い合わせページ（Googleフォーム埋め込み）
 - `privacy.html` プライバシーポリシーページ
@@ -35,50 +35,54 @@ GitHub Pages で運用する静的スロット狙い目サイトです。
 - `service-worker.js` オフラインキャッシュ
 - `sitemap.xml` サイトマップ
 - `robots.txt` クローラー向け設定
+- `favicon.ico` ファビコン（「う。」ゴールド）
 - `assets/css/practical.css` 全ページ共通CSS（唯一のCSS）
 - `assets/data/machines.json` 機種一覧（交換率別データ含む）
-- `assets/data/machine-details/` 機種別記事データ（JSON・全18機種）
+- `assets/data/machine-details/` 機種別記事データ（JSON・全33機種）
 - `machines/機種名/index.html` 直アクセス用リダイレクト
+- `scripts/update_ranking.py` YouTube APIランキング更新スクリプト
 
-## 対応機種（全18機種）
+## 対応機種（全33機種）
 
-北斗の拳 / 北斗転生2 / SF5 / チバリヨ2 / 番長4 / カバネリ / モンキーターンV / ゴブリンスレイヤー / 鉄拳6 / 東京喰種 / 攻殻機動隊 / バイオハザードRE2 / ゴッドイーター / バキ / 転スラ / ダンベル何キロ持てる / かぐや様 / ヴァルヴレイヴ2
+### スマスロ・AT機（23機種）
+北斗の拳 / 北斗転生2 / カバネリ / モンキーターンV / 攻殻機動隊 / 東京喰種 / 鉄拳6 / 番長4 / ヴァルヴレイヴ2 / かぐや様 / バイオハザードRE2 / チバリヨ2 / ダンベル何キロ持てる / ゴッドイーター / ゴブリンスレイヤー / バキ / 転スラ / 炎炎ノ消防隊2 / からくりサーカス / 東京リベンジャーズ / 新鬼武者3 / 化物語 / マギアレコード
 
-- SF5 は設定狙い専用（交換率セレクター対象外）
-- かぐや様・ヴァルヴレイヴ2 はポチポチくん非対応（設定差が小さいため）
+### Aタイプ・ノーマル機（5機種）
+SF5 / サンダーV
+
+### ジャグラーシリーズ（5機種）
+マイジャグラーV / ネオアイムジャグラーEX / ゴーゴージャグラー3 / ファンキージャグラー2 / ハッピージャグラーVIII
+
+### その他（3機種）
+沖ドキDUOアンコール / うみねこのなく頃に2 / 秘宝伝
+
+- SF5・ジャグラー系・サンダーVは設定狙い専用（天井なし）
+- 炎炎2・からくり・かぐや・ヴァルヴレイヴ2はポチポチくん非対応（小役確率に設定差なし）
 
 ## 新機種追加の手順
 
 1. `assets/data/machines.json` に機種データを追加（交換率別 byRate 含む）
 2. `assets/data/machine-details/機種名.json` を作成
 3. `machines/機種名/index.html` を追加（リダイレクト用）
-4. `setting.html` の MACHINE_CONFIGS に確率テーブルを追加（対応可能な場合）
-5. `sitemap.xml` にURLを追加
-6. GitHubにプッシュ
+4. `setting.html` の MACHINE_CONFIGS に確率テーブルを追加（設定差がある機種のみ）
+5. `scripts/update_ranking.py` に検索キーワードを追加
+6. `sitemap.xml` にURLを追加
+7. GitHubにプッシュ
 
 ## 自動更新
 
 GitHub Actions により毎日UTC18:00（日本時間3:00）にYouTube APIで人気ランキングを自動更新。
+直近7日間に投稿された動画の再生数合計でソート。
 
 ## 運用ドキュメント
 
-- 作業ルール（正本）: `CODEX_RULES.md`（ローカルにのみ存在・GitHubから除外済み）
-- 引き継ぎメモ: `HANDOFF.md`（ローカルにのみ存在・GitHubから除外済み）
-- この2つに `README.md` を加えた3ファイル全体を通称「ルール」として扱う
+- 作業ルール・引き継ぎ情報：`CLAUDE.md`（ローカルにのみ存在・GitHubから除外済み）
 
-新スレッドや初回着手時は `CODEX_RULES.md` → `HANDOFF.md` の順で確認してから作業を開始すること。
+## 現在の状態（2026-03-25時点）
 
-## 現在の状態（2026-03-23時点）
-
-- 全18機種の記事データJSON・チェッカー・ポチポチくん完成済み
-- 交換率4パターン対応は sf5 を除く17機種で実装済み
-- 設定示唆バッジ凡例・早見表と基本情報の役割整理も完了
-- 補助ページ整備完了（about.html / contact.html / privacy.html / 404.html）
-- お問い合わせページはGoogleフォーム埋め込み・ダークテーマ対応済み
-- 今後は既存記事の精度と厚みを上げる段階
-
-## 残タスク
-
-- 記事内容の最終ブラッシュアップ（情報源との突き合わせ）
-- SEO強化（OGPタグ整備など）
-- AdSense申請（補助ページ整備済み・コンテンツ充実後に申請）
+- 全33機種の記事データJSON・チェッカー・ポチポチくん完成済み
+- 交換率4パターン対応済み（Aタイプ除く）
+- カスタムドメイン uchidokoro.com 設定済み（HTTPS有効）
+- AdSense申請済み（審査待ち）
+- A8.netアフィリエイト設置済み（A-SLOTテキストリンク）
+- ファビコン設定済み（「う。」ゴールド・BIZ UDゴシックBold）
