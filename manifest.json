@@ -1,7 +1,7 @@
 {
   "name": "うちどころ。",
   "short_name": "うちどころ",
-  "description": "スロット狙い目・設定判別ツール",
+  "description": "スロット狙い目・小役カウンター",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
