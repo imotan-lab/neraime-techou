@@ -40,7 +40,7 @@
       <p class="hero-desc-lead">G数を入力するだけで、今の台が狙い目かを即判定。</p>
       <ul class="hero-desc-list">
         <li>通常・リセット別対応の天井チェッカー</li>
-        <li>打ちながら使える設定判別ツール</li>
+        <li>打ちながら使える小役カウンター</li>
         <li>機種別の立ち回りをまとめた攻略記事</li>
       </ul>
     </div>
@@ -171,7 +171,9 @@ function buildKeywords(machine){
             <span class="machine-name">${machine.name}</span>
             <span class="machine-strategy">${machine.strategy || ''}</span>
           </a>
-          <a class="btn-settei" href="setting.html?slug=${machine.slug}">設定判別</a>
+          ${['enen2','karakuri','kaguya','valvrave2'].includes(machine.slug)
+            ? '<span class="btn-settei" style="opacity:0.4;cursor:default;font-size:0.7em;">小役による設定差なし</span>'
+            : `<a class="btn-settei" href="setting.html?slug=${machine.slug}">小役カウンター</a>`}
         `;
         list.appendChild(row);
       });
