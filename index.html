@@ -94,27 +94,8 @@ function normalizeText(value){
 
 function buildKeywords(machine){
   const base = [machine.name, machine.slug, machine.info, machine.strategy];
-  const map = {
-    hokuto: ["ほくと", "北斗", "北斗の拳", "スマスロ北斗", "スマスロ北斗の拳"],
-    hokuto_tensei2: ["転生", "てんせい", "北斗転生2", "ほくとてんせい2"],
-    tokyo_ghoul: ["とうきょうぐーる", "ぐーる", "グール"],
-    sf5: ["すと5", "スト5", "streetfighter5"],
-    monkeyv: ["モンキー", "monkey", "モンキーターン"],
-    godeater: ["ごっどいーたー", "ge", "god eater"],
-    goblin: ["ゴブスレ", "ごぶすれ"],
-    valvrave2: ["vvv", "ヴヴヴ2", "v2"],
-    kabaneri: ["かばねり", "甲鉄城"],
-    kaguya: ["かぐや", "かぐやさま"],
-    koukaku: ["こうかく", "攻殻"],
-    tensura: ["てんすら"],
-    tekken6: ["てっけん", "鉄拳"],
-    chibaryo2: ["ちばりよ", "チバリヨ"],
-    banchou4: ["ばんちょう4", "番長"],
-    biohazard: ["ばいお", "バイオ"],
-    dumbbell: ["だんべる"],
-    baki: ["ばき"]
-  };
-  return [...base, ...(map[machine.slug] || [])].map(normalizeText).join("|");
+  const aliases = machine.aliases || [];
+  return [...base, ...aliases].map(normalizeText).join("|");
 }
 
 (async function loadMachines(){
