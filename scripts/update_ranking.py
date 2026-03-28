@@ -59,6 +59,12 @@ SEARCH_KEYWORDS = {
     "king_hanahana":"キングハナハナ スロット",
     "fujiko_bt":"不二子BT スロット",
     "dragon_hanahana_senko":"ドラゴンハナハナ 閃光 スロット",
+    "iza_bancho":"いざ番長 スロット",
+    "super_blackjack":"スーパーブラックジャック スロット",
+    "yoshimune":"吉宗 スマスロ",
+    "azurlane":"アズールレーン スロット",
+    "monhun_rise":"モンスターハンターライズ スロット",
+    "sengoku_otome4":"戦国乙女4 スロット",
 }
 
 def get_7days_ago():
