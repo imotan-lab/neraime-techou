@@ -54,6 +54,11 @@ SEARCH_KEYWORDS = {
     "hanabi":"スマスロ ハナビ HANABI",
     "onepunchman":"ワンパンマン スロット",
     "kizumonogatari":"傷物語 スロット",
+    "new_king_hanahana_v":"ニューキングハナハナV スロット",
+    "okidoki_gorgeous":"沖ドキ ゴージャス スロット",
+    "king_hanahana":"キングハナハナ スロット",
+    "fujiko_bt":"不二子BT スロット",
+    "dragon_hanahana_senko":"ドラゴンハナハナ 閃光 スロット",
 }
 
 def get_7days_ago():
